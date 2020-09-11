@@ -9,7 +9,7 @@ import "./Gatherings.css"
 export const Gatherings = () => (
     <>
         <Route render={() => {
-            if (localStorage.getItem("gathering_customer")) {
+            if (localStorage.getItem("gatherings_customer")) {
                 return (
                     <>
                         <Route render={props => <NavBar {...props} />} />

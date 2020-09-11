@@ -22,7 +22,7 @@ export const Login = props => {
             .then(exists => {
                 if (exists && exists.password === password.current.value) {
                     localStorage.setItem("gatherings_customer", exists.id)
-                    props.history.push("/")
+                    props.history.push("/home")
                 } else if (exists && exists.password !== password.current.value) {
                     passwordDialog.current.showModal()
                 } else if (!exists) {
