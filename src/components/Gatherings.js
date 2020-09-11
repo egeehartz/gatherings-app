@@ -1,6 +1,6 @@
 import React from "react"
 import { Route, Redirect } from "react-router-dom"
-import { ApplicationViews } from "./ApplicationViews"
+import { AppViews } from "./AppViews"
 import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
@@ -13,7 +13,7 @@ export const Gatherings = () => (
                 return (
                     <>
                         <Route render={props => <NavBar {...props} />} />
-                        <Route render={props => <ApplicationViews {...props} />} />
+                        <Route render={props => <AppViews {...props} />} />
                     </>
                 )
             } else {
