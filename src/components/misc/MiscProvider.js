@@ -3,7 +3,7 @@ import React, { useState } from "react"
 export const MiscContext = React.createContext()
 
 export const MiscProvider = (props) => {
-    const [misc, setMiscs] = useState([])
+    const [misc, setMisc] = useState([])
 
     const getMisc = () => {
         return fetch("http://localhost:8088/misc")

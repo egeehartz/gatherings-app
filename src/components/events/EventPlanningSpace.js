@@ -1,16 +1,18 @@
 import React, { useContext, useState, useEffect } from "react"
-import { EventContext } from "./EventProvider"
+import { EventContext } from "./EventsProvider"
+import { EventTypeContext } from "./EventTypeProvider"
 import { FoodContext } from "../foods/FoodProvider"
 import { ActivityContext } from "../activities/ActivityProvider"
 import { MiscContext } from "../misc/MiscProvider"
 
 
-const EventPlanningSpace = props => {
+export const EventPlanningSpace = props => {
     //double check that these are the correct variable names
     const {events, addEvent, getEvents } = useContext(EventContext)
     const {food, addFood, getFood} = useContext(FoodContext)
     const {activities, addActivity, getActivities} = useContext(ActivityContext)
     const {misc, getMisc, addMisc} = useContext(MiscContext)
+    const {eventTypes, getEventType} = useContext(EventTypeContext)
 
     // Get data from API when component initializes
     useEffect(() => {
@@ -18,6 +20,7 @@ const EventPlanningSpace = props => {
         getFood()
         getActivities()
         getMisc()
+        getEventType()
     }, [])
 
     //POST
@@ -28,8 +31,8 @@ const EventPlanningSpace = props => {
         addFood({
             //double check how to send the correct data
             name: food.name,
-            eventId: eventId,
-            foodTypeId: foodTypeId,
+            //eventId: eventId,
+            //foodTypeId: foodTypeId,
             userId: parseInt(localStorage.getItem("gatherings_customer"))
     })
     }
@@ -38,7 +41,66 @@ const EventPlanningSpace = props => {
     const constructNewMisc = () => {
     }
 
-
+return (
+    <>
+    <h2>{/* Event Title, how do I get the specific one?*/}Test</h2>
+    <fieldset>
+        <div className="form-group">
+            {/* type, host, location, date, time */}
+            {/*figure out how to "handle input change" and onChange events */}
+            <label htmlFor="eventDetails">details</label>
+            <select name="eventId">
+                <option value="0">Select a type</option>
+                {eventTypes.map(type => {
+                return <option key={type.id} value={type.id}>{type.type}</option>
+            })}</select>
+            <input type="text" name="" placeholder="host" />
+            <input type="text" name="" placeholder="location" />
+            <input type="date" name="" />
+            <input type="text" name="" placeholder="time" />
+        </div>
+    </fieldset>
+    <fieldset>
+        <div className="form-group">
+            {/* food */}
+            {/*onChange=evt => addFood
+                .then() ?
+            */}
+            <label>Main:</label>
+                <input type="text" placeholder="type here"></input>
+                <button>Save</button>
+            <label>Sides:</label>
+                <input type="text" placeholder="type here"></input>
+                <button>Save</button>
+            <label>Desserts:</label>
+                <input type="text" placeholder="type here"></input>
+                <button>Save</button>
+            <label>Snacks:</label>
+                <input type="text" placeholder="type here"></input>
+                <button>Save</button>
+            <label>Drinks:</label>
+                <input type="text" placeholder="type here"></input>
+                <button>Save</button>
+        </div>
+    </fieldset>
+    <fieldset>
+        <div className="form-group">
+            {/* activity */}
+            <label>Activities:</label>
+                <input type="text" placeholder="type here"></input>
+                <button>Save</button>
+        </div>
+    </fieldset>
+    <fieldset className="form-group">
+        <div>
+            {/* misc */}
+            <label>Miscellaneous:</label>
+                <input type="text" placeholder="type here"></input>
+                <button>Save</button>
+        </div>
+    </fieldset>
+    </>
+)
 
 
 }
@@ -122,69 +184,5 @@ const EventPlanningSpace = props => {
            }
        }
    }
-
-   return (
-       <form className="animalForm">
-           <h2 className="animalForm__title">{editMode ? "Update Animal" : "Admit Animal"}</h2>
-           <fieldset>
-               <div className="form-group">
-                   <label htmlFor="name">Animal name: </label>
-                   <input type="text" name="name" required autoFocus className="form-control"
-                       placeholder="Animal name"
-                       defaultValue={animal.name}
-                       onChange={handleControlledInputChange}
-                   />
-               </div>
-           </fieldset>
-           <fieldset>
-               <div className="form-group">
-                   <label htmlFor="breed">Animal breed: </label>
-                   <input type="text" name="breed" required className="form-control"
-                       placeholder="Animal breed"
-                       defaultValue={animal.breed}
-                       onChange={handleControlledInputChange}
-                   />
-               </div>
-           </fieldset>
-           <fieldset>
-               <div className="form-group">
-                   <label htmlFor="eventId">event: </label>
-
-                   <select name="eventId" className="form-control"
-
-                       value={animal.eventId}
-
-                       onChange={handleControlledInputChange}>
-
-                       <option value="0">Select a event</option>
-
-                       {events.map(e => (
-
-                           <option key={e.id} value={e.id}>
-                               {e.name}
-                           </option>
-                       ))}
-                   </select>
-               </div>
-           </fieldset>
-           <fieldset>
-               <div className="form-group">
-                   <label htmlFor="treatment">Treatments: </label>
-                   <textarea type="text" name="treatment" className="form-control"
-                       value={animal.treatment}
-                       onChange={handleControlledInputChange}>
-                   </textarea>
-               </div>
-           </fieldset>
-           <button type="submit"
-               onClick={evt => {
-                   evt.preventDefault()
-                   constructNewAnimal()
-               }}
-               className="btn btn-primary">
-               {editMode ? "Save Updates" : "Make Reservation"}
-           </button>
-       </form>
-   )
 }
  */

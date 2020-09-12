@@ -1,18 +1,37 @@
 import React from "react"
 import { Route } from "react-router-dom"
 import {ProfileList} from "./profile/ProfileList"
-import {EventProvider} from "./events/EventsProvider"
+import {EventsProvider} from "./events/EventsProvider"
+import { EventTypeProvider } from "./events/EventTypeProvider"
+import { FoodProvider } from "./foods/FoodProvider"
+import { ActivityProvider } from "./activities/ActivityProvider"
+import { MiscProvider } from "./misc/MiscProvider"
+import { EventPlanningSpace } from "./events/EventPlanningSpace"
+
 
 
 export const AppViews = props => {
     return (
         <>
-        <EventProvider>
+        <EventsProvider>
             <Route exact path="/home">
                 {/* function that renders profile page */}
                 <ProfileList />
             </Route>
-        </EventProvider>
+        </EventsProvider>
+        <EventsProvider>
+            <EventTypeProvider>
+                <FoodProvider>
+                    <ActivityProvider>
+                        <MiscProvider>
+                            <Route path="/plan">
+                                <EventPlanningSpace />
+                            </Route>
+                        </MiscProvider>
+                    </ActivityProvider>
+                </FoodProvider>
+            </EventTypeProvider>
+        </EventsProvider>
         <Route path="/logout" render={
                 (props) => {
                     localStorage.removeItem("kennel_customer")

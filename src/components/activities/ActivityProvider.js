@@ -29,7 +29,7 @@ export const ActivityProvider = (props) => {
     
     return (
         <ActivityContext.Provider value={{
-            Activities, getActivities,  getActivityById, addActivity
+            activities, getActivities,  getActivityById, addActivity
         }}>
             {props.children}
         </ActivityContext.Provider>

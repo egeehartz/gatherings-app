@@ -2,7 +2,7 @@ import React, { useState } from "react"
 
 export const EventContext = React.createContext()
 
-export const EventProvider = (props) => {
+export const EventsProvider = (props) => {
     const [events, setEvents] = useState([])
 
     const getEvents = () => {
