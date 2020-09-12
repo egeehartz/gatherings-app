@@ -50,7 +50,7 @@ const updateEvent = Event => {
 }
 
 //for deleting event functionality
-const releaseEvent = (EventId) => {
+const deleteEvent = (EventId) => {
         return fetch(`http://localhost:8088/Events/${EventId}`, {
             method: "DELETE"
         })
