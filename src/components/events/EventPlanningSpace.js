@@ -8,11 +8,20 @@ import { MiscContext } from "../misc/MiscProvider"
 
 export const EventPlanningSpace = props => {
     //double check that these are the correct variable names
+    //CONTEXT
     const {events, addEvent, getEvents } = useContext(EventContext)
     const {food, addFood, getFood} = useContext(FoodContext)
     const {activities, addActivity, getActivities} = useContext(ActivityContext)
     const {misc, getMisc, addMisc} = useContext(MiscContext)
     const {eventTypes, getEventType} = useContext(EventTypeContext)
+
+    //double check that these are the correct variable names
+    //STATE
+    const [tEvents, setEvents] = useState([])
+    const [tFood, setFood] = useState([])
+    const [tActivities, setActivities] = useState([])
+    const [tMisc, setMisc] = useState([])
+   
 
     // Get data from API when component initializes
     useEffect(() => {

@@ -19,19 +19,21 @@ export const AppViews = props => {
                 <ProfileList />
             </Route>
         </EventsProvider>
+        {/* ///////////////////////////////////////////// */}
         <EventsProvider>
             <EventTypeProvider>
                 <FoodProvider>
                     <ActivityProvider>
                         <MiscProvider>
-                            <Route path="/plan">
-                                <EventPlanningSpace />
-                            </Route>
+                            <Route path="/events/:eventId(\d+)" render={
+                            props => <EventPlanningSpace {...props} />
+                            } />
                         </MiscProvider>
                     </ActivityProvider>
                 </FoodProvider>
             </EventTypeProvider>
         </EventsProvider>
+        {/* ///////////////////////////////////////////// */}
         <Route path="/logout" render={
                 (props) => {
                     localStorage.removeItem("kennel_customer")
