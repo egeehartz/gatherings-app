@@ -69,7 +69,8 @@ export const EventPlanningSpace = props => {
 return (
     <>
     <h2>
-        {props.location.state.chosenEvent.name}
+        test test test 
+        {/* {props.location.state.chosenEvent.name} */}
     </h2>
     <fieldset>
         <div className="form-group">

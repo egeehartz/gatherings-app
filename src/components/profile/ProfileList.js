@@ -1,16 +1,23 @@
-import React, { useEffect, useContext, useRef } from "react"
+import React, { useEffect, useContext, useRef, useState } from "react"
 import {EventContext} from "../events/EventsProvider"
 import {ProfileEvents} from "./Profile"
 import {Link} from "react-router-dom"
 
 
-export const ProfileList = () => {
-    const {events, getEvents, addEvent} = useContext(EventContext)
+export const ProfileList = (props) => {
+    const {events, getEvents, addEvent, getEventById} = useContext(EventContext)
+    const [event, setEvent] = useState([])
     const createEvent = useRef()
 
     useEffect(() => {
         getEvents()
     }, [])
+
+    // useEffect(() => {
+    //     const eventId = events.length + 1
+    //     getEventById(eventId)
+    //         .then(setEvent)               
+    // }, [])
 
    const eventName = useRef(null)
 
@@ -25,19 +32,16 @@ export const ProfileList = () => {
                 <p>Enter an Event Title</p>
                 <input type="text" placeholder="type here" ref={eventName} ></input>
                <div>    
-                <Link 
-                to={{
-                    pathname:`/events/${events.id}`,
-                    state: { chosenEvent: events }
-                    }}>
-                       <button
+                    <button
                         onClick={() => {
                             addEvent({
                                 name: eventName.current.value
                             })
+                            .then(() =>{
+                            props.history.push(`/events/${events.length + 1}`)
+                            })
                         }}
-                       >create!</button>
-                </Link>
+                    >create!</button>
                </div>
             </dialog> 
 
