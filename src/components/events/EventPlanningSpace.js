@@ -102,15 +102,19 @@ return (
                 <input type="hidden" ref={mainDishType} value="1"/>
                 <button onClick={() => constructNewFood()}>Save</button>
             <label>Sides:</label>
+                <input type="hidden" ref={sidesType} value="2"/>
                 <input type="text" placeholder="type here"></input>
                 <button>Save</button>
             <label>Desserts:</label>
+                <input type="hidden" ref={dessertType} value="3"/>
                 <input type="text" placeholder="type here"></input>
                 <button>Save</button>
             <label>Snacks:</label>
+                <input type="hidden" ref={snackType} value="5"/>
                 <input type="text" placeholder="type here"></input>
                 <button>Save</button>
             <label>Drinks:</label>
+                <input type="hidden" ref={drinkType} value="4"/>
                 <input type="text" placeholder="type here"></input>
                 <button>Save</button>
         </div>
