@@ -1,11 +1,11 @@
 import React, { useEffect, useContext, useRef, useState } from "react"
 import {EventContext} from "../events/EventsProvider"
-import {ProfileEvents} from "./Profile"
+//import {ProfileEvents} from "./Profile"
 import {Link} from "react-router-dom"
 
 
 export const ProfileList = (props) => {
-    const {events, getEvents, addEvent, getEventById} = useContext(EventContext)
+    const {events, getEvents, addEvent} = useContext(EventContext)
     const [event, setEvent] = useState([])
     const createEvent = useRef()
 
@@ -13,11 +13,6 @@ export const ProfileList = (props) => {
         getEvents()
     }, [])
 
-    // useEffect(() => {
-    //     const eventId = events.length + 1
-    //     getEventById(eventId)
-    //         .then(setEvent)               
-    // }, [])
 
    const eventName = useRef(null)
 

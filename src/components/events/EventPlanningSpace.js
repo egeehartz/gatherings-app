@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react"
+import React, { useContext, useState, useEffect, useRef } from "react"
 import { EventContext } from "./EventsProvider"
 import { EventTypeContext } from "./EventTypeProvider"
 import { FoodContext } from "../foods/FoodProvider"
@@ -21,6 +21,9 @@ export const EventPlanningSpace = props => {
     const [tFood, setFood] = useState([])
     const [tActivities, setActivities] = useState([])
     const [tMisc, setMisc] = useState([])
+
+    const mainDishType = useRef(null)
+    const mainFood = useRef(null)
    
 
     // Get data from API when component initializes
@@ -47,9 +50,9 @@ export const EventPlanningSpace = props => {
     const constructNewFood = () => {
         addFood({
             //double check how to send the correct data
-            name: food.name,
+            name: mainFood.current.value,
             //eventId: eventId,
-            //foodTypeId: foodTypeId,
+            foodTypeId: parseInt(mainDishType.current.value),
             userId: parseInt(localStorage.getItem("gatherings_customer"))
         })
     }
@@ -95,8 +98,9 @@ return (
                 .then() ?
             */}
             <label>Main:</label>
-                <input type="text" placeholder="type here"></input>
-                <button>Save</button>
+                <input type="text" ref={mainFood} placeholder="type here" name="name"></input>
+                <input type="hidden" ref={mainDishType} value="1"/>
+                <button onClick={() => constructNewFood()}>Save</button>
             <label>Sides:</label>
                 <input type="text" placeholder="type here"></input>
                 <button>Save</button>
