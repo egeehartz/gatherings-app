@@ -41,7 +41,7 @@ export const ProfileList = () => {
                             <Link 
                             to={{
                                 pathname:`/events/${event.id}`,
-                                state: { chosenEvent: events }
+                                state: { chosenEvent: event }
                                 }}>
                             <h3>replace me!</h3>
                             </Link>
