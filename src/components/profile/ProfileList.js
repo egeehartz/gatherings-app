@@ -12,7 +12,7 @@ export const ProfileList = () => {
         getEvents()
     }, [])
 
-    const eventName = useRef(null)
+   //const eventName = useRef(null)
 
     return (
         <>
@@ -20,35 +20,35 @@ export const ProfileList = () => {
         <button onClick={() =>{
             createEvent.current.showModal()
         }}>create event</button>
+
             <dialog className="dialog dialog--createEvent" ref={createEvent}>
                 <p>Enter an Event Title</p>
-                <input type="text" placeholder="type here" ref={eventName}></input>
-               <div>
-                <button onClick={() => {
-                    addEvent({
-                        eventName: eventName.current.value,
-                        host: "",
-                        location: "",
-                        date: "",
-                        time: "",
-                    })
-                    {/* a route/link to send the user to the unique event planning space
-                        also need to send the input to the database 
-                    */}
-                }}>create!</button>
-                <Link
-                       to={{
-                           pathname: `/events/${events.id}`,
-                           state: { chosenEvent: events }
-                       }} />
-
+                <input type="text" placeholder="type here" ></input>
+               <div>    
+                <Link 
+                to={{
+                    pathname:`/events/${events.id}`,
+                    state: { chosenEvent: events }
+                    }}>
+                       <button>create!</button>
+                </Link>
                </div>
             </dialog> 
-        <div>
-            {events.map(event => {
-                return <ProfileEvents key={event.id} event={event} />
-            })}
-        </div> 
+            <article className="events">
+                {
+                    events.map(event => {
+                        return <section className="event" key={event.id}>
+                            <Link 
+                            to={{
+                                pathname:`/events/${event.id}`,
+                                state: { chosenEvent: events }
+                                }}>
+                            <h3>replace me!</h3>
+                            </Link>
+                        </section>
+                    })
+                }
+            </article> 
         </>
     )
 }

@@ -27,7 +27,7 @@ export const AppViews = props => {
                         <MiscProvider>
                             <Route path="/events/:eventId(\d+)" render={
                             props => <EventPlanningSpace {...props} />
-                            } />
+                        } />
                         </MiscProvider>
                     </ActivityProvider>
                 </FoodProvider>
