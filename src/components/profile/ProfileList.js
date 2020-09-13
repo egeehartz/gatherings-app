@@ -12,7 +12,7 @@ export const ProfileList = () => {
         getEvents()
     }, [])
 
-   //const eventName = useRef(null)
+   const eventName = useRef(null)
 
     return (
         <>
@@ -23,17 +23,25 @@ export const ProfileList = () => {
 
             <dialog className="dialog dialog--createEvent" ref={createEvent}>
                 <p>Enter an Event Title</p>
-                <input type="text" placeholder="type here" ></input>
+                <input type="text" placeholder="type here" ref={eventName} ></input>
                <div>    
                 <Link 
                 to={{
                     pathname:`/events/${events.id}`,
                     state: { chosenEvent: events }
                     }}>
-                       <button>create!</button>
+                       <button
+                        onClick={() => {
+                            addEvent({
+                                name: eventName.current.value
+                            })
+                        }}
+                       >create!</button>
                 </Link>
                </div>
             </dialog> 
+
+            {/* events that already exist */}
             <article className="events">
                 {
                     events.map(event => {
@@ -43,7 +51,7 @@ export const ProfileList = () => {
                                 pathname:`/events/${event.id}`,
                                 state: { chosenEvent: event }
                                 }}>
-                            <h3>replace me!</h3>
+                            <h3>{event.name}</h3>
                             </Link>
                         </section>
                     })

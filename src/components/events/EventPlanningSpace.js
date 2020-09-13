@@ -69,8 +69,6 @@ export const EventPlanningSpace = props => {
 return (
     <>
     <h2>
-        {/* Event Title, how do I get the specific one?*/}
-        Test
         {props.location.state.chosenEvent.name}
     </h2>
     <fieldset>

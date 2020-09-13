@@ -9,9 +9,6 @@ export const NavBar = (props) => {
                 <Link className="navbar__link" to="/home">Profile Page</Link>
             </li>
             <li className="navbar__item active">
-                <Link className="navbar__link" to="/plan">plan</Link>
-            </li>
-            <li className="navbar__item active">
                 <Link className="navbar__link" to="/logout">Logout</Link>
             </li>
         </ul>
