@@ -17,13 +17,18 @@ export const EventPlanningSpace = props => {
 
     //double check that these are the correct variable names
     //STATE
-    const [tEvents, setEvents] = useState([])
+    const [event, setEvents] = useState([])
     const [tFood, setFood] = useState([])
     const [tActivities, setActivities] = useState([])
     const [tMisc, setMisc] = useState([])
 
     const mainDishType = useRef(null)
     const mainFood = useRef(null)
+    const sidesType = useRef(null)
+    const dessertType = useRef(null)
+    const snackType = useRef(null)
+    const drinkType = useRef(null)
+    
    
 
     // Get data from API when component initializes
@@ -35,6 +40,10 @@ export const EventPlanningSpace = props => {
         getEventType()
     }, [])
 
+    useEffect(() => {
+        const event = events.find(e => e.id === parseInt(props.match.params.eventId)) || {}
+        setEvents(event)
+    }, [events])
     //POST
     const constructNewEvent = () => {
         //is this even the right method?
@@ -71,10 +80,7 @@ export const EventPlanningSpace = props => {
 
 return (
     <>
-    <h2>
-        test test test 
-        {/* {props.location.state.chosenEvent.name} */}
-    </h2>
+    <h2>{event.name}</h2>
     <fieldset>
         <div className="form-group">
             {/* type, host, location, date, time */}
