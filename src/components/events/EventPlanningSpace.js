@@ -1,49 +1,58 @@
-import React, { useContext, useState, useEffect, useRef } from "react"
+import React, { useContext, useState, useEffect, useRef, useImperativeHandle } from "react"
 import { EventContext } from "./EventsProvider"
 import { EventTypeContext } from "./EventTypeProvider"
 import { FoodContext } from "../foods/FoodProvider"
 import { ActivityContext } from "../activities/ActivityProvider"
 import { MiscContext } from "../misc/MiscProvider"
-
+import {UserContext} from "../users/UserProvider"
+import {Activity} from "../activities/Activity"
+import {Misc} from "../misc/Misc"
+import{FoodTypeContext} from "../foods/FoodTypeProvider"
+import {FoodForm} from "../forms/FoodForm"
 
 export const EventPlanningSpace = props => {
     //double check that these are the correct variable names
     //CONTEXT
     const {events, addEvent, getEvents } = useContext(EventContext)
-    const {food, addFood, getFood} = useContext(FoodContext)
+    const {foodsArr, addFood, getFood} = useContext(FoodContext)
+    const {foodTypes, getFoodType} = useContext(FoodTypeContext)
     const {activities, addActivity, getActivities} = useContext(ActivityContext)
     const {misc, getMisc, addMisc} = useContext(MiscContext)
     const {eventTypes, getEventType} = useContext(EventTypeContext)
+    const {users, getUsers} = useContext(UserContext)
+
+    const aName = useRef(null)
+    const mName = useRef(null)
 
     //double check that these are the correct variable names
     //STATE
     const [event, setEvents] = useState([])
-    const [tFood, setFood] = useState([])
     const [tActivities, setActivities] = useState([])
     const [tMisc, setMisc] = useState([])
-
-    const mainDishType = useRef(null)
-    const mainFood = useRef(null)
-    const sidesType = useRef(null)
-    const dessertType = useRef(null)
-    const snackType = useRef(null)
-    const drinkType = useRef(null)
-    
-   
 
     // Get data from API when component initializes
     useEffect(() => {
         getEvents()
         getFood()
+        getFoodType()
         getActivities()
         getMisc()
         getEventType()
+        getUsers()
     }, [])
 
     useEffect(() => {
         const event = events.find(e => e.id === parseInt(props.match.params.eventId)) || {}
         setEvents(event)
-    }, [events])
+    },[events])
+    useEffect(() => {
+        const eventActivity = activities.filter(a => a.eventId === parseInt(props.match.params.eventId)) || {}
+        setActivities(eventActivity)
+    },[activities])
+    useEffect(() => {
+        const eventMisc = misc.filter(m => m.eventId === parseInt(props.match.params.eventId)) || {}
+        setMisc(eventMisc)
+    },[misc])
     //POST
     const constructNewEvent = () => {
         //is this even the right method?
@@ -56,26 +65,21 @@ export const EventPlanningSpace = props => {
             //time
         })      
     }
-    const constructNewFood = () => {
-        addFood({
-            //double check how to send the correct data
-            name: mainFood.current.value,
-            //eventId: eventId,
-            foodTypeId: parseInt(mainDishType.current.value),
-            userId: parseInt(localStorage.getItem("gatherings_customer"))
-        })
-    }
     const constructNewActivity = () => {
         addActivity({
-            //text:
+            text: aName.current.value,
+            eventId: event.id,
             userId: parseInt(localStorage.getItem("gatherings_customer"))
         })
+        .then(aName.current.value = "")
     }
     const constructNewMisc = () => {
         addMisc({
-            //text:
+            text: mName.current.value,
+            eventId: event.id,
             userId: parseInt(localStorage.getItem("gatherings_customer"))
         })
+        .then(mName.current.value = "")
     }
 
 return (
@@ -100,45 +104,37 @@ return (
     <fieldset>
         <div className="form-group">
             {/* food */}
-            {/*onChange=evt => constructNewFood()
-                .then() ?
-            */}
-            <label>Main:</label>
-                <input type="text" ref={mainFood} placeholder="type here" name="name"></input>
-                <input type="hidden" ref={mainDishType} value="1"/>
-                <button onClick={() => constructNewFood()}>Save</button>
-            <label>Sides:</label>
-                <input type="hidden" ref={sidesType} value="2"/>
-                <input type="text" placeholder="type here"></input>
-                <button>Save</button>
-            <label>Desserts:</label>
-                <input type="hidden" ref={dessertType} value="3"/>
-                <input type="text" placeholder="type here"></input>
-                <button>Save</button>
-            <label>Snacks:</label>
-                <input type="hidden" ref={snackType} value="5"/>
-                <input type="text" placeholder="type here"></input>
-                <button>Save</button>
-            <label>Drinks:</label>
-                <input type="hidden" ref={drinkType} value="4"/>
-                <input type="text" placeholder="type here"></input>
-                <button>Save</button>
+           {foodTypes.map(ft => {
+               return <FoodForm key={ft.id} foodTypeObj={ft} {...props} />
+           })}
         </div>
     </fieldset>
     <fieldset>
         <div className="form-group">
             {/* activity */}
             <label>Activities:</label>
-                <input type="text" placeholder="type here"></input>
-                <button>Save</button>
+            <div>{tActivities.map(ea => {
+                return <Activity key={ea.id} activity={ea} {...props}/>
+            })}</div>
+            <input type="text" placeholder="type here" name="aName"
+                ref={aName}></input>
+            <button onClick={() => {
+                constructNewActivity()
+            }}>Save</button>
         </div>
     </fieldset>
     <fieldset className="form-group">
         <div>
             {/* misc */}
             <label>Miscellaneous:</label>
-                <input type="text" placeholder="type here"></input>
-                <button>Save</button>
+            <div>{tMisc.map(em => {
+                return <Misc key={em.id} misc={em} {...props}/>
+            })}</div>
+            <input type="text" placeholder="type here" name="mName"
+                ref={mName}></input>
+            <button onClick={() => {
+                constructNewMisc()
+            }}>Save</button>
         </div>
     </fieldset>
     </>

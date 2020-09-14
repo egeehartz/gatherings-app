@@ -3,7 +3,7 @@ import React, { useState } from "react"
 export const FoodContext = React.createContext()
 
 export const FoodProvider = (props) => {
-    const [food, setFoods] = useState([])
+    const [foodsArr, setFoods] = useState([])
 
     const getFood = () => {
         return fetch("http://localhost:8088/food?_expand=foodType")
@@ -12,7 +12,7 @@ export const FoodProvider = (props) => {
     }
 
     const getFoodById = (id) => {
-        return fetch(`http://localhost:8088/food/${id}`)
+        return fetch(`http://localhost:8088/food/${id}?_expand=foodType`)
             .then(res => res.json())
     }
 
@@ -29,7 +29,8 @@ export const FoodProvider = (props) => {
     
     return (
         <FoodContext.Provider value={{
-            food, getFood,  getFoodById, addFood
+            foodsArr,
+             getFood,  getFoodById, addFood, 
         }}>
             {props.children}
         </FoodContext.Provider>
