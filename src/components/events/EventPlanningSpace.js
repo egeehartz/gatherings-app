@@ -4,7 +4,7 @@ import { EventTypeContext } from "./EventTypeProvider"
 import { FoodContext } from "../foods/FoodProvider"
 import { ActivityContext } from "../activities/ActivityProvider"
 import { MiscContext } from "../misc/MiscProvider"
-
+import {Food} from "../foods/Food"
 
 export const EventPlanningSpace = props => {
     //double check that these are the correct variable names
@@ -22,12 +22,8 @@ export const EventPlanningSpace = props => {
     const [tActivities, setActivities] = useState([])
     const [tMisc, setMisc] = useState([])
 
-    const mainDishType = useRef(null)
-    const mainFood = useRef(null)
-    const sidesType = useRef(null)
-    const dessertType = useRef(null)
-    const snackType = useRef(null)
-    const drinkType = useRef(null)
+    const foodType = useRef(null)
+    const foodRef = useRef(null)
     
     // Get data from API when component initializes
     useEffect(() => {
@@ -63,9 +59,9 @@ export const EventPlanningSpace = props => {
     const constructNewFood = () => {
         addFood({
             //double check how to send the correct data
-            name: mainFood.current.value,
+            name: foodRef.current.value,
             eventId: event.id,
-            foodTypeId: parseInt(mainDishType.current.value),
+            foodTypeId: parseInt(foodType.current.value),
             userId: parseInt(localStorage.getItem("gatherings_customer"))
         })
     }
@@ -105,31 +101,43 @@ return (
         <div className="form-group">
             {/* food */}
             <label>Main:</label>
-            <div>{foodItem.map(f => {
+            <div>
+                {foodItem.map(f => {
                 if(f.foodTypeId === 1) {
-                return <div>{f.name}</div>
+                return <Food key={f.id} food={f} />
                 }
-            })}</div>
-                <input type="text" ref={mainFood} placeholder="type here" name="name"></input>
-                <input type="hidden" ref={mainDishType} value="1"/>
+                })}
+            </div>
+                <input type="text" ref={foodRef} placeholder="type here" name="name"></input>
+                <input type="hidden" ref={foodType} value="1"/>
                 <button onClick={() => {
                     constructNewFood()
-                    mainFood.current.value = ""
+                    foodRef.current.value = ""
                 }}>Save</button>
             <label>Sides:</label>
-                <input type="hidden" ref={sidesType} value="2"/>
-                <input type="text" placeholder="type here"></input>
-                <button>Save</button>
+            <div>
+                {foodItem.map(f => {
+                if(f.foodTypeId === 2) {
+                return <Food key={f.id} food={f} />
+                }
+                })}
+            </div>
+                <input type="hidden" ref={foodType} value="2"/>
+                <input type="text" ref={foodRef} placeholder="type here"></input>
+                <button onClick={() => {
+                    constructNewFood()
+                    foodRef.current.value = ""
+                }}>Save</button>
             <label>Desserts:</label>
-                <input type="hidden" ref={dessertType} value="3"/>
+                <input type="hidden" ref={foodType} value="3"/>
                 <input type="text" placeholder="type here"></input>
                 <button>Save</button>
             <label>Snacks:</label>
-                <input type="hidden" ref={snackType} value="5"/>
+                <input type="hidden" ref={foodType} value="5"/>
                 <input type="text" placeholder="type here"></input>
                 <button>Save</button>
             <label>Drinks:</label>
-                <input type="hidden" ref={drinkType} value="4"/>
+                <input type="hidden" ref={foodType} value="4"/>
                 <input type="text" placeholder="type here"></input>
                 <button>Save</button>
         </div>
