@@ -24,6 +24,7 @@ export const FoodForm = (props) => {
             foodTypeId: parseInt(props.foodTypeObj.id),
             userId: parseInt(localStorage.getItem("gatherings_customer"))
         })
+        .then(fname.current.value = "")
     }
     return (
         <>

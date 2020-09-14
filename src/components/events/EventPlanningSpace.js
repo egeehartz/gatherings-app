@@ -70,6 +70,7 @@ export const EventPlanningSpace = props => {
             eventId: event.id,
             userId: parseInt(localStorage.getItem("gatherings_customer"))
         })
+        .then(aName.current.value = "")
     }
     const constructNewMisc = () => {
         addMisc({
@@ -77,6 +78,7 @@ export const EventPlanningSpace = props => {
             eventId: event.id,
             userId: parseInt(localStorage.getItem("gatherings_customer"))
         })
+        .then(mName.current.value = "")
     }
 
 return (
