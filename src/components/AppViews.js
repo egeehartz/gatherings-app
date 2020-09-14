@@ -8,6 +8,7 @@ import { ActivityProvider } from "./activities/ActivityProvider"
 import { MiscProvider } from "./misc/MiscProvider"
 import { EventPlanningSpace } from "./events/EventPlanningSpace"
 import { FoodTypeProvider } from "./foods/FoodTypeProvider"
+import { UserProvider } from "./users/UserProvider"
 
 
 
@@ -29,9 +30,11 @@ export const AppViews = props => {
                     <ActivityProvider>
                         <MiscProvider>
                             <FoodTypeProvider>
-                            <Route path="/events/:eventId(\d+)" render={
-                            props => <EventPlanningSpace {...props} />
-                        } />
+                                <UserProvider>
+                                    <Route path="/events/:eventId(\d+)" render={
+                                    props => <EventPlanningSpace {...props} />
+                                    } />
+                                </UserProvider>
                             </FoodTypeProvider>
                         </MiscProvider>
                     </ActivityProvider>

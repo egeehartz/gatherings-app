@@ -4,6 +4,7 @@ import { EventTypeContext } from "./EventTypeProvider"
 import { FoodContext } from "../foods/FoodProvider"
 import { ActivityContext } from "../activities/ActivityProvider"
 import { MiscContext } from "../misc/MiscProvider"
+import {UserContext} from "../users/UserProvider"
 import {Activity} from "../activities/Activity"
 import {Misc} from "../misc/Misc"
 import{FoodTypeContext} from "../foods/FoodTypeProvider"
@@ -18,6 +19,7 @@ export const EventPlanningSpace = props => {
     const {activities, addActivity, getActivities} = useContext(ActivityContext)
     const {misc, getMisc, addMisc} = useContext(MiscContext)
     const {eventTypes, getEventType} = useContext(EventTypeContext)
+    const {users, getUsers} = useContext(UserContext)
 
     const aName = useRef(null)
     const mName = useRef(null)
@@ -25,8 +27,6 @@ export const EventPlanningSpace = props => {
     //double check that these are the correct variable names
     //STATE
     const [event, setEvents] = useState([])
-    const [foodItem, setEventFood] = useState([])
-    const [newFoodItem, setFood] = useState([])
     const [tActivities, setActivities] = useState([])
     const [tMisc, setMisc] = useState([])
 
@@ -38,6 +38,7 @@ export const EventPlanningSpace = props => {
         getActivities()
         getMisc()
         getEventType()
+        getUsers()
     }, [])
 
     useEffect(() => {
