@@ -18,7 +18,7 @@ export const EventPlanningSpace = props => {
     //double check that these are the correct variable names
     //STATE
     const [event, setEvents] = useState([])
-    const [tFood, setFood] = useState([])
+    const [foodItem, setFood] = useState([])
     const [tActivities, setActivities] = useState([])
     const [tMisc, setMisc] = useState([])
 
@@ -29,8 +29,6 @@ export const EventPlanningSpace = props => {
     const snackType = useRef(null)
     const drinkType = useRef(null)
     
-   
-
     // Get data from API when component initializes
     useEffect(() => {
         getEvents()
@@ -44,6 +42,12 @@ export const EventPlanningSpace = props => {
         const event = events.find(e => e.id === parseInt(props.match.params.eventId)) || {}
         setEvents(event)
     }, [events])
+
+    useEffect(() => {
+        //pulls all food related to the specific event
+        const foodItem = food.filter(f => f.eventId === parseInt(props.match.params.eventId)) || {}
+        setFood(foodItem)
+    },[food])
     //POST
     const constructNewEvent = () => {
         //is this even the right method?
@@ -60,7 +64,7 @@ export const EventPlanningSpace = props => {
         addFood({
             //double check how to send the correct data
             name: mainFood.current.value,
-            //eventId: eventId,
+            eventId: event.id,
             foodTypeId: parseInt(mainDishType.current.value),
             userId: parseInt(localStorage.getItem("gatherings_customer"))
         })
@@ -100,10 +104,12 @@ return (
     <fieldset>
         <div className="form-group">
             {/* food */}
-            {/*onChange=evt => constructNewFood()
-                .then() ?
-            */}
             <label>Main:</label>
+            <div>{foodItem.map(f => {
+                if(f.foodTypeId === 1) {
+                return <div>{f.name}</div>
+                }
+            })}</div>
                 <input type="text" ref={mainFood} placeholder="type here" name="name"></input>
                 <input type="hidden" ref={mainDishType} value="1"/>
                 <button onClick={() => constructNewFood()}>Save</button>
