@@ -4,13 +4,16 @@ import { EventTypeContext } from "./EventTypeProvider"
 import { FoodContext } from "../foods/FoodProvider"
 import { ActivityContext } from "../activities/ActivityProvider"
 import { MiscContext } from "../misc/MiscProvider"
-import {Food} from "../foods/Food"
+//import {Food} from "../foods/Food"
+import{FoodTypeContext} from "../foods/FoodTypeProvider"
+import {FoodForm} from "../FoodForm/MainFood"
 
 export const EventPlanningSpace = props => {
     //double check that these are the correct variable names
     //CONTEXT
     const {events, addEvent, getEvents } = useContext(EventContext)
     const {foodsArr, addFood, getFood} = useContext(FoodContext)
+    const {foodTypes, getFoodType} = useContext(FoodTypeContext)
     const {activities, addActivity, getActivities} = useContext(ActivityContext)
     const {misc, getMisc, addMisc} = useContext(MiscContext)
     const {eventTypes, getEventType} = useContext(EventTypeContext)
@@ -24,17 +27,23 @@ export const EventPlanningSpace = props => {
     //const [tMisc, setMisc] = useState([])
 
     const editMode = props.match.params.hasOwnProperty("foodId")
-
     const handleInputChange = event => {
+        
         const newFood = Object.assign({}, foodsArr)
         newFood[event.target.name] = event.target.value
         setFood(newFood)
     }
-    
+    const handleSidesInputChange = event => {
+        debugger
+        const newFood = Object.assign({}, foodsArr)
+        newFood[event.target.name] = event.target.value
+        setFood(newFood)
+    }    
     // Get data from API when component initializes
     useEffect(() => {
         getEvents()
         getFood()
+        getFoodType()
         getActivities()
         getMisc()
         getEventType()
@@ -44,18 +53,14 @@ export const EventPlanningSpace = props => {
         const event = events.find(e => e.id === parseInt(props.match.params.eventId)) || {}
         setEvents(event)
     }, [events])
-
     useEffect(() => {
         //pulls all food related to the specific event
         const eventFood = foodsArr.filter(f => f.eventId === parseInt(props.match.params.eventId)) || {}
         setEventFood(eventFood)
     },[foodsArr])
-
     useEffect(() => {
 
     },[])
-
-
     //POST
     const constructNewEvent = () => {
         //is this even the right method?
@@ -67,21 +72,6 @@ export const EventPlanningSpace = props => {
             //date
             //time
         })      
-    }
-    const constructNewFood = () => {
-        if(editMode) {
-            //updateFood()
-            //double check how to get event id
-           // .then(() => props.history.push(`/events/${event.id}`))
-        } else {
-            addFood({
-                //double check how to send the correct data
-                name: newFoodItem.name,
-                eventId: event.id,
-                foodTypeId: parseInt(newFoodItem.foodType),
-                userId: parseInt(localStorage.getItem("gatherings_customer"))
-            })
-        }
     }
     const constructNewActivity = () => {
         addActivity({
@@ -118,50 +108,9 @@ return (
     <fieldset>
         <div className="form-group">
             {/* food */}
-            <label>Main:</label>
-            <div>
-                {foodItem.map(f => {
-                if(f.foodTypeId === 1) {
-                return <Food key={f.id} food={f} />
-                }
-                })}
-            </div>
-                <input type="text" placeholder="type here"
-                 name="name" value={newFoodItem.name}
-                 onChange={handleInputChange}></input>
-                <input type="hidden" name="foodType" value={newFoodItem.foodType = 1}/>
-                <button onClick={() => {
-                    constructNewFood()
-                }}>Save</button>
-
-
-
-            <label>Sides:</label>
-            <div>
-                {foodItem.map(f => {
-                if(f.foodTypeId === 2) {
-                return <Food key={f.id} food={f} />
-                }
-                })}
-            </div>
-                <input type="hidden"  value="2"/>
-                <input type="text"  placeholder="type here"></input>
-                <button onClick={() => {
-                    constructNewFood()
-                    
-                }}>Save</button>
-            <label>Desserts:</label>
-                <input type="hidden"  value="3"/>
-                <input type="text" placeholder="type here"></input>
-                <button>Save</button>
-            <label>Snacks:</label>
-                <input type="hidden"  value="5"/>
-                <input type="text" placeholder="type here"></input>
-                <button>Save</button>
-            <label>Drinks:</label>
-                <input type="hidden"  value="4"/>
-                <input type="text" placeholder="type here"></input>
-                <button>Save</button>
+           {foodTypes.map(ft => {
+               return <FoodForm key={ft.id} foodTypeObj={ft}  />
+           })}
         </div>
     </fieldset>
     <fieldset>
