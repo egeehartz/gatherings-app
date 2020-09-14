@@ -39,15 +39,6 @@ export const EventPlanningSpace = props => {
     }, [])
 
     useEffect(() => {
-        const event = events.find(e => e.id === parseInt(props.match.params.eventId)) || {}
-        setEvents(event)
-    }, [events])
-    useEffect(() => {
-        //pulls all food related to the specific event
-        const eventFood = foodsArr.filter(f => f.eventId === parseInt(props.match.params.eventId)) || {}
-        setEventFood(eventFood)
-    },[foodsArr])
-    useEffect(() => {
 
     },[])
     //POST
