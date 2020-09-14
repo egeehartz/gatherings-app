@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react"
+import React, { useContext, useState, useEffect, useRef } from "react"
 import { EventContext } from "./EventsProvider"
 import { EventTypeContext } from "./EventTypeProvider"
 import { FoodContext } from "../foods/FoodProvider"
@@ -17,10 +17,18 @@ export const EventPlanningSpace = props => {
 
     //double check that these are the correct variable names
     //STATE
-    const [tEvents, setEvents] = useState([])
+    const [event, setEvents] = useState([])
     const [tFood, setFood] = useState([])
     const [tActivities, setActivities] = useState([])
     const [tMisc, setMisc] = useState([])
+
+    const mainDishType = useRef(null)
+    const mainFood = useRef(null)
+    const sidesType = useRef(null)
+    const dessertType = useRef(null)
+    const snackType = useRef(null)
+    const drinkType = useRef(null)
+    
    
 
     // Get data from API when component initializes
@@ -32,6 +40,10 @@ export const EventPlanningSpace = props => {
         getEventType()
     }, [])
 
+    useEffect(() => {
+        const event = events.find(e => e.id === parseInt(props.match.params.eventId)) || {}
+        setEvents(event)
+    }, [events])
     //POST
     const constructNewEvent = () => {
         //is this even the right method?
@@ -47,9 +59,9 @@ export const EventPlanningSpace = props => {
     const constructNewFood = () => {
         addFood({
             //double check how to send the correct data
-            name: food.name,
+            name: mainFood.current.value,
             //eventId: eventId,
-            //foodTypeId: foodTypeId,
+            foodTypeId: parseInt(mainDishType.current.value),
             userId: parseInt(localStorage.getItem("gatherings_customer"))
         })
     }
@@ -68,10 +80,7 @@ export const EventPlanningSpace = props => {
 
 return (
     <>
-    <h2>
-        test test test 
-        {/* {props.location.state.chosenEvent.name} */}
-    </h2>
+    <h2>{event.name}</h2>
     <fieldset>
         <div className="form-group">
             {/* type, host, location, date, time */}
@@ -95,18 +104,23 @@ return (
                 .then() ?
             */}
             <label>Main:</label>
-                <input type="text" placeholder="type here"></input>
-                <button>Save</button>
+                <input type="text" ref={mainFood} placeholder="type here" name="name"></input>
+                <input type="hidden" ref={mainDishType} value="1"/>
+                <button onClick={() => constructNewFood()}>Save</button>
             <label>Sides:</label>
+                <input type="hidden" ref={sidesType} value="2"/>
                 <input type="text" placeholder="type here"></input>
                 <button>Save</button>
             <label>Desserts:</label>
+                <input type="hidden" ref={dessertType} value="3"/>
                 <input type="text" placeholder="type here"></input>
                 <button>Save</button>
             <label>Snacks:</label>
+                <input type="hidden" ref={snackType} value="5"/>
                 <input type="text" placeholder="type here"></input>
                 <button>Save</button>
             <label>Drinks:</label>
+                <input type="hidden" ref={drinkType} value="4"/>
                 <input type="text" placeholder="type here"></input>
                 <button>Save</button>
         </div>
