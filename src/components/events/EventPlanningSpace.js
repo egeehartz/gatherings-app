@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useRef } from "react"
+import React, { useContext, useState, useEffect, useRef, useImperativeHandle } from "react"
 import { EventContext } from "./EventsProvider"
 import { EventTypeContext } from "./EventTypeProvider"
 import { FoodContext } from "../foods/FoodProvider"
@@ -10,7 +10,7 @@ export const EventPlanningSpace = props => {
     //double check that these are the correct variable names
     //CONTEXT
     const {events, addEvent, getEvents } = useContext(EventContext)
-    const {food, addFood, getFood} = useContext(FoodContext)
+    const {foodsArr, addFood, getFood} = useContext(FoodContext)
     const {activities, addActivity, getActivities} = useContext(ActivityContext)
     const {misc, getMisc, addMisc} = useContext(MiscContext)
     const {eventTypes, getEventType} = useContext(EventTypeContext)
@@ -18,12 +18,18 @@ export const EventPlanningSpace = props => {
     //double check that these are the correct variable names
     //STATE
     const [event, setEvents] = useState([])
-    const [foodItem, setFood] = useState([])
-    const [tActivities, setActivities] = useState([])
-    const [tMisc, setMisc] = useState([])
+    const [foodItem, setEventFood] = useState([])
+    const [newFoodItem, setFood] = useState([])
+   // const [tActivities, setActivities] = useState([])
+    //const [tMisc, setMisc] = useState([])
 
-    const foodType = useRef(null)
-    const foodRef = useRef(null)
+    const editMode = props.match.params.hasOwnProperty("foodId")
+
+    const handleInputChange = event => {
+        const newFood = Object.assign({}, foodsArr)
+        newFood[event.target.name] = event.target.value
+        setFood(newFood)
+    }
     
     // Get data from API when component initializes
     useEffect(() => {
@@ -41,9 +47,15 @@ export const EventPlanningSpace = props => {
 
     useEffect(() => {
         //pulls all food related to the specific event
-        const foodItem = food.filter(f => f.eventId === parseInt(props.match.params.eventId)) || {}
-        setFood(foodItem)
-    },[food])
+        const eventFood = foodsArr.filter(f => f.eventId === parseInt(props.match.params.eventId)) || {}
+        setEventFood(eventFood)
+    },[foodsArr])
+
+    useEffect(() => {
+
+    },[])
+
+
     //POST
     const constructNewEvent = () => {
         //is this even the right method?
@@ -57,13 +69,19 @@ export const EventPlanningSpace = props => {
         })      
     }
     const constructNewFood = () => {
-        addFood({
-            //double check how to send the correct data
-            name: foodRef.current.value,
-            eventId: event.id,
-            foodTypeId: parseInt(foodType.current.value),
-            userId: parseInt(localStorage.getItem("gatherings_customer"))
-        })
+        if(editMode) {
+            //updateFood()
+            //double check how to get event id
+           // .then(() => props.history.push(`/events/${event.id}`))
+        } else {
+            addFood({
+                //double check how to send the correct data
+                name: newFoodItem.name,
+                eventId: event.id,
+                foodTypeId: parseInt(newFoodItem.foodType),
+                userId: parseInt(localStorage.getItem("gatherings_customer"))
+            })
+        }
     }
     const constructNewActivity = () => {
         addActivity({
@@ -108,12 +126,16 @@ return (
                 }
                 })}
             </div>
-                <input type="text" ref={foodRef} placeholder="type here" name="name"></input>
-                <input type="hidden" ref={foodType} value="1"/>
+                <input type="text" placeholder="type here"
+                 name="name" value={newFoodItem.name}
+                 onChange={handleInputChange}></input>
+                <input type="hidden" name="foodType" value={newFoodItem.foodType = 1}/>
                 <button onClick={() => {
                     constructNewFood()
-                    foodRef.current.value = ""
                 }}>Save</button>
+
+
+
             <label>Sides:</label>
             <div>
                 {foodItem.map(f => {
@@ -122,22 +144,22 @@ return (
                 }
                 })}
             </div>
-                <input type="hidden" ref={foodType} value="2"/>
-                <input type="text" ref={foodRef} placeholder="type here"></input>
+                <input type="hidden"  value="2"/>
+                <input type="text"  placeholder="type here"></input>
                 <button onClick={() => {
                     constructNewFood()
-                    foodRef.current.value = ""
+                    
                 }}>Save</button>
             <label>Desserts:</label>
-                <input type="hidden" ref={foodType} value="3"/>
+                <input type="hidden"  value="3"/>
                 <input type="text" placeholder="type here"></input>
                 <button>Save</button>
             <label>Snacks:</label>
-                <input type="hidden" ref={foodType} value="5"/>
+                <input type="hidden"  value="5"/>
                 <input type="text" placeholder="type here"></input>
                 <button>Save</button>
             <label>Drinks:</label>
-                <input type="hidden" ref={foodType} value="4"/>
+                <input type="hidden"  value="4"/>
                 <input type="text" placeholder="type here"></input>
                 <button>Save</button>
         </div>
