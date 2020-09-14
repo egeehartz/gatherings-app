@@ -27,18 +27,7 @@ export const EventPlanningSpace = props => {
     //const [tMisc, setMisc] = useState([])
 
     const editMode = props.match.params.hasOwnProperty("foodId")
-    const handleInputChange = event => {
-        
-        const newFood = Object.assign({}, foodsArr)
-        newFood[event.target.name] = event.target.value
-        setFood(newFood)
-    }
-    const handleSidesInputChange = event => {
-        debugger
-        const newFood = Object.assign({}, foodsArr)
-        newFood[event.target.name] = event.target.value
-        setFood(newFood)
-    }    
+   
     // Get data from API when component initializes
     useEffect(() => {
         getEvents()
@@ -109,7 +98,7 @@ return (
         <div className="form-group">
             {/* food */}
            {foodTypes.map(ft => {
-               return <FoodForm key={ft.id} foodTypeObj={ft}  />
+               return <FoodForm key={ft.id} foodTypeObj={ft} {...props} />
            })}
         </div>
     </fieldset>
