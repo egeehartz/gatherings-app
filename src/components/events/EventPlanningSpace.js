@@ -4,7 +4,8 @@ import { EventTypeContext } from "./EventTypeProvider"
 import { FoodContext } from "../foods/FoodProvider"
 import { ActivityContext } from "../activities/ActivityProvider"
 import { MiscContext } from "../misc/MiscProvider"
-//import {Food} from "../foods/Food"
+import {Activity} from "../activities/Activity"
+import {Misc} from "../misc/Misc"
 import{FoodTypeContext} from "../foods/FoodTypeProvider"
 import {FoodForm} from "../forms/FoodForm"
 
@@ -18,13 +19,16 @@ export const EventPlanningSpace = props => {
     const {misc, getMisc, addMisc} = useContext(MiscContext)
     const {eventTypes, getEventType} = useContext(EventTypeContext)
 
+    const aName = useRef(null)
+    const mName = useRef(null)
+
     //double check that these are the correct variable names
     //STATE
     const [event, setEvents] = useState([])
     const [foodItem, setEventFood] = useState([])
     const [newFoodItem, setFood] = useState([])
-   // const [tActivities, setActivities] = useState([])
-    //const [tMisc, setMisc] = useState([])
+    const [tActivities, setActivities] = useState([])
+    const [tMisc, setMisc] = useState([])
 
     // Get data from API when component initializes
     useEffect(() => {
@@ -37,8 +41,17 @@ export const EventPlanningSpace = props => {
     }, [])
 
     useEffect(() => {
-
-    },[])
+        const event = events.find(e => e.id === parseInt(props.match.params.eventId)) || {}
+        setEvents(event)
+    },[events])
+    useEffect(() => {
+        const eventActivity = activities.filter(a => a.eventId === parseInt(props.match.params.eventId)) || {}
+        setActivities(eventActivity)
+    },[activities])
+    useEffect(() => {
+        const eventMisc = misc.filter(m => m.eventId === parseInt(props.match.params.eventId)) || {}
+        setMisc(eventMisc)
+    },[misc])
     //POST
     const constructNewEvent = () => {
         //is this even the right method?
@@ -53,13 +66,15 @@ export const EventPlanningSpace = props => {
     }
     const constructNewActivity = () => {
         addActivity({
-            //text:
+            text: aName.current.value,
+            eventId: event.id,
             userId: parseInt(localStorage.getItem("gatherings_customer"))
         })
     }
     const constructNewMisc = () => {
         addMisc({
-            //text:
+            text: mName.current.value,
+            eventId: event.id,
             userId: parseInt(localStorage.getItem("gatherings_customer"))
         })
     }
@@ -95,16 +110,28 @@ return (
         <div className="form-group">
             {/* activity */}
             <label>Activities:</label>
-                <input type="text" placeholder="type here"></input>
-                <button>Save</button>
+            <div>{tActivities.map(ea => {
+                return <Activity key={ea.id} activity={ea} {...props}/>
+            })}</div>
+            <input type="text" placeholder="type here" name="aName"
+                ref={aName}></input>
+            <button onClick={() => {
+                constructNewActivity()
+            }}>Save</button>
         </div>
     </fieldset>
     <fieldset className="form-group">
         <div>
             {/* misc */}
             <label>Miscellaneous:</label>
-                <input type="text" placeholder="type here"></input>
-                <button>Save</button>
+            <div>{tMisc.map(em => {
+                return <Misc key={em.id} misc={em} {...props}/>
+            })}</div>
+            <input type="text" placeholder="type here" name="mName"
+                ref={mName}></input>
+            <button onClick={() => {
+                constructNewMisc()
+            }}>Save</button>
         </div>
     </fieldset>
     </>
