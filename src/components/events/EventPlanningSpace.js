@@ -112,7 +112,10 @@ return (
             })}</div>
                 <input type="text" ref={mainFood} placeholder="type here" name="name"></input>
                 <input type="hidden" ref={mainDishType} value="1"/>
-                <button onClick={() => constructNewFood()}>Save</button>
+                <button onClick={() => {
+                    constructNewFood()
+                    mainFood.current.value = ""
+                }}>Save</button>
             <label>Sides:</label>
                 <input type="hidden" ref={sidesType} value="2"/>
                 <input type="text" placeholder="type here"></input>
