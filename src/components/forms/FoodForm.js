@@ -11,6 +11,8 @@ export const FoodForm = (props) => {
     const {foodsArr, addFood} = useContext(FoodContext)
     const {events} = useContext(EventContext)
 
+    //const editMode = props.match.params.hasOwnProperty("foodId")
+
     const event = events.find(e => e.id === parseInt(props.match.params.eventId)) || {}
     const eventFood = foodsArr.filter(f => f.eventId === parseInt(props.match.params.eventId)) || {}
     const filteredFood = eventFood.filter(ef => ef.foodTypeId === props.foodTypeObj.id)

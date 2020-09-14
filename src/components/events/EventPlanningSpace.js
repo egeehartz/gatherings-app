@@ -6,7 +6,7 @@ import { ActivityContext } from "../activities/ActivityProvider"
 import { MiscContext } from "../misc/MiscProvider"
 //import {Food} from "../foods/Food"
 import{FoodTypeContext} from "../foods/FoodTypeProvider"
-import {FoodForm} from "../FoodForm/MainFood"
+import {FoodForm} from "../forms/FoodForm"
 
 export const EventPlanningSpace = props => {
     //double check that these are the correct variable names
@@ -26,8 +26,6 @@ export const EventPlanningSpace = props => {
    // const [tActivities, setActivities] = useState([])
     //const [tMisc, setMisc] = useState([])
 
-    const editMode = props.match.params.hasOwnProperty("foodId")
-   
     // Get data from API when component initializes
     useEffect(() => {
         getEvents()
