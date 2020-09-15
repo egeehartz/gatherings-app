@@ -26,11 +26,19 @@ export const FoodProvider = (props) => {
         })
             .then(getFood)
     }
+
+    //for deleting Food functionality
+    const deleteFood = (FoodId) => {
+        return fetch(`http://localhost:8088/food/${FoodId}`, {
+            method: "DELETE"
+        })
+        .then(getFood)
+}
     
     return (
         <FoodContext.Provider value={{
             foodsArr,
-             getFood,  getFoodById, addFood, 
+             getFood,  getFoodById, addFood, deleteFood
         }}>
             {props.children}
         </FoodContext.Provider>
