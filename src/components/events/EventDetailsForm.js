@@ -89,6 +89,7 @@ export const EventDetailsForm = (props) => {
             <button onClick={evt => {
                     evt.preventDefault()
                     addToEvent()
+                    props.func()
                 }}>Save</button>
         </form>
         </>

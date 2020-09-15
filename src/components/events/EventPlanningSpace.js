@@ -6,29 +6,29 @@ import { MiscContext } from "../misc/MiscProvider"
 import {UserContext} from "../users/UserProvider"
 import {Activity} from "../activities/Activity"
 import {Misc} from "../misc/Misc"
-import{FoodTypeContext} from "../foods/FoodTypeProvider"
+import {FoodTypeContext} from "../foods/FoodTypeProvider"
 import {FoodForm} from "../forms/FoodForm"
 import {EventDetailsForm} from "../events/EventDetailsForm"
+import {EventDetails} from "../events/EventDetails"
 
 export const EventPlanningSpace = props => {
-    //double check that these are the correct variable names
     //CONTEXT
     const {events, addEvent, getEvents } = useContext(EventContext)
     const {getFood} = useContext(FoodContext)
     const {foodTypes, getFoodType} = useContext(FoodTypeContext)
     const {activities, addActivity, getActivities} = useContext(ActivityContext)
     const {misc, getMisc, addMisc} = useContext(MiscContext)
-    
     const {users, getUsers} = useContext(UserContext)
 
+    //REFS
     const aName = useRef(null)
     const mName = useRef(null)
 
-    //double check that these are the correct variable names
     //STATE
     const [event, setEvents] = useState([])
     const [tActivities, setActivities] = useState([])
     const [tMisc, setMisc] = useState([])
+    const [editMode, setEditMode] = useState(null)
 
     // Get data from API when component initializes
     useEffect(() => {
@@ -39,10 +39,12 @@ export const EventPlanningSpace = props => {
         getMisc()
         getUsers()
     }, [])
-
     useEffect(() => {
         const event = events.find(e => e.id === parseInt(props.match.params.eventId)) || {}
         setEvents(event)
+        if(editMode === null) {
+            setEditMode(event.host === "" && event.location  === "" && event.date === "" && event.time === "")
+        }
     },[events])
     useEffect(() => {
         const eventActivity = activities.filter(a => a.eventId === parseInt(props.match.params.eventId)) || {}
@@ -53,17 +55,6 @@ export const EventPlanningSpace = props => {
         setMisc(eventMisc)
     },[misc])
     //POST
-    //const addToEvent = () => {
-        //is this even the right method?
-        //I need to add properties to an existing object
-       // addEvent({
-            //type
-            //host
-            //location
-            //date
-            //time
-        //})      
-    //}
     const constructNewActivity = () => {
         addActivity({
             text: aName.current.value,
@@ -81,11 +72,22 @@ export const EventPlanningSpace = props => {
         .then(mName.current.value = "")
     }
 
+    const toggleEditMode = () => {
+        if (editMode === true) {
+            setEditMode(false)
+        } else {
+            setEditMode(true)
+        }
+    }
+
 return (
     <>
     <h1>{event.name}</h1>
     <fieldset>
-            <EventDetailsForm key={event.id} event={event} {...props} />
+            {/* editMode ? EventDetailsForm : EventDetails */}
+            {editMode? 
+            <EventDetailsForm key={event.id} event={event} func={toggleEditMode} {...props} /> :
+            <EventDetails key={event.id} event={event} func={toggleEditMode} {...props} />}
     </fieldset>
     <fieldset>
         <div className="form-group">
