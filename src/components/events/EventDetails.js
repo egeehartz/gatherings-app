@@ -5,11 +5,6 @@ import { EventTypeContext } from "./EventTypeProvider"
 
 
 export const EventDetails = (props) => {
-   // const {eventTypes, getEventType} = useContext(EventTypeContext)
-
-    // useEffect(() => {
-    //     getEventType()
-    // },[])
 
     return (<div>
         <div>Host: {props.event.host}</div>
