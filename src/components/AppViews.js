@@ -16,12 +16,22 @@ export const AppViews = props => {
     return (
         <>
         <EventsProvider>
-           
-                {/* function that renders profile page */}
-                <Route exact path="/home" render={
-                    props => <ProfileList {...props} />
-                } />
-           
+            <EventTypeProvider>
+                <FoodProvider>
+                    <ActivityProvider>
+                        <MiscProvider>
+                            <FoodTypeProvider>
+                                <UserProvider>
+                                    {/* function that renders profile page */}
+                                    <Route exact path="/home" render={
+                                    props => <ProfileList {...props} />
+                                    } />
+                                </UserProvider>
+                            </FoodTypeProvider>
+                        </MiscProvider>
+                    </ActivityProvider>
+                </FoodProvider>
+            </EventTypeProvider>
         </EventsProvider>
         {/* ///////////////////////////////////////////// */}
         <EventsProvider>

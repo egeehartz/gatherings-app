@@ -14,7 +14,7 @@ export const EventPlanningSpace = props => {
     //double check that these are the correct variable names
     //CONTEXT
     const {events, addEvent, getEvents } = useContext(EventContext)
-    const {foodsArr, addFood, getFood} = useContext(FoodContext)
+    const {getFood} = useContext(FoodContext)
     const {foodTypes, getFoodType} = useContext(FoodTypeContext)
     const {activities, addActivity, getActivities} = useContext(ActivityContext)
     const {misc, getMisc, addMisc} = useContext(MiscContext)
