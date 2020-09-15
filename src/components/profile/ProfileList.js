@@ -24,6 +24,7 @@ export const ProfileList = (props) => {
 
     const createEvent = useRef()
     const eventName = useRef(null)
+    const editTitle = useRef()
 
     useEffect(() => {
         getEvents()
@@ -73,10 +74,13 @@ export const ProfileList = (props) => {
                                 archived: ""
                             })
                             .then(() =>{
-                            props.history.push(`/events/${events.length + 1}`)
+                            props.history.push(`/events/${events.length + 2}`)
                             })
                         }}
                     >create!</button>
+                    <button onClick={()=> {
+                                createEvent.current.close()
+                            }}>nevermind</button>
                </div>
             </dialog> 
 
@@ -93,6 +97,9 @@ export const ProfileList = (props) => {
                                 }}>
                             <h3>{event.name}</h3>
                             </Link>
+                            <button onClick={() =>{
+                            editTitle.current.showModal()
+                            }}>edit title</button>
                         </section>
                     })
                 }
@@ -132,4 +139,12 @@ export const ProfileList = (props) => {
 }
 
 
-
+/**
+ * <dialog ref={editTitle}>
+                            <input type="text" placeholder={event.name}></input>
+                            <button>save</button>
+                            <button onClick={()=> {
+                                editTitle.current.close()
+                            }}>nevermind</button>
+                            </dialog>
+ */
