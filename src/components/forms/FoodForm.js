@@ -33,7 +33,7 @@ export const FoodForm = (props) => {
     }
     return (
         <>
-            <h2>{props.foodTypeObj.type}</h2>
+            <h3>{props.foodTypeObj.type}</h3>
             <div>{filteredFood.map(ff => {
                 return <Food key={ff.id} food={ff}  />
             })}</div>
