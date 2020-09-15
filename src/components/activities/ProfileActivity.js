@@ -1,15 +1,10 @@
-import React, {useContext, useEffect} from "react"
-import {UserContext} from "../users/UserProvider"
+import React from "react"
+import {Link} from "react-router-dom"
 
 
-export const ProfileActivity = ({activity}) => {
-    //const {users, getUsers} = useContext(UserContext)
-    //const userActivity = users.find(u => u.id === props.activity.userId) || {}
 
-    //useEffect(() => {
-      //  getUsers()
-        //},[])
-
-    return(
-<div>{activity.text}</div>
-)}
+export const ProfileActivity = ({activity}) => (
+<Link to={`/events/${activity.eventId}`}>
+<div>{activity.text} </div>
+</Link>
+)
