@@ -64,7 +64,13 @@ export const ProfileList = (props) => {
                     <button
                         onClick={() => {
                             addEvent({
-                                name: eventName.current.value
+                                name: eventName.current.value,
+                                eventTypeId: "",
+                                host: "",
+                                location: "",
+                                date: "",
+                                time: "",
+                                archived: ""
                             })
                             .then(() =>{
                             props.history.push(`/events/${events.length + 1}`)

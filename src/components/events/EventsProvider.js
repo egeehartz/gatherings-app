@@ -26,10 +26,21 @@ export const EventsProvider = (props) => {
         })
             .then(getEvents)
     }
+    //for editing functionality
+    const updateEvent = event => {
+        return fetch(`http://localhost:8088/events/${event.id}`, {
+            method: "PUT",
+            headers: {
+            "Content-Type": "application/json"
+            },
+            body: JSON.stringify(event)
+            })
+                .then(getEvents)
+}
     
     return (
         <EventContext.Provider value={{
-            events, getEvents,  getEventById, addEvent
+            events, getEvents,  getEventById, addEvent, updateEvent
         }}>
             {props.children}
         </EventContext.Provider>
@@ -37,17 +48,6 @@ export const EventsProvider = (props) => {
 }
 
 /* 
-//for editing functionality
-const updateEvent = Event => {
-    return fetch(`http://localhost:8088/Events/${Event.id}`, {
-        method: "PUT",
-        headers: {
-        "Content-Type": "application/json"
-        },
-        body: JSON.stringify(Event)
-        })
-            .then(getEvents)
-}
 
 //for deleting event functionality
 const deleteEvent = (EventId) => {

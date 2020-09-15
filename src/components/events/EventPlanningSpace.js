@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect, useRef, useImperativeHandle } from "react"
 import { EventContext } from "./EventsProvider"
-import { EventTypeContext } from "./EventTypeProvider"
 import { FoodContext } from "../foods/FoodProvider"
 import { ActivityContext } from "../activities/ActivityProvider"
 import { MiscContext } from "../misc/MiscProvider"
@@ -9,6 +8,7 @@ import {Activity} from "../activities/Activity"
 import {Misc} from "../misc/Misc"
 import{FoodTypeContext} from "../foods/FoodTypeProvider"
 import {FoodForm} from "../forms/FoodForm"
+import {EventDetailsForm} from "../events/EventDetailsForm"
 
 export const EventPlanningSpace = props => {
     //double check that these are the correct variable names
@@ -18,7 +18,7 @@ export const EventPlanningSpace = props => {
     const {foodTypes, getFoodType} = useContext(FoodTypeContext)
     const {activities, addActivity, getActivities} = useContext(ActivityContext)
     const {misc, getMisc, addMisc} = useContext(MiscContext)
-    const {eventTypes, getEventType} = useContext(EventTypeContext)
+    
     const {users, getUsers} = useContext(UserContext)
 
     const aName = useRef(null)
@@ -37,7 +37,6 @@ export const EventPlanningSpace = props => {
         getFoodType()
         getActivities()
         getMisc()
-        getEventType()
         getUsers()
     }, [])
 
@@ -54,17 +53,17 @@ export const EventPlanningSpace = props => {
         setMisc(eventMisc)
     },[misc])
     //POST
-    const constructNewEvent = () => {
+    //const addToEvent = () => {
         //is this even the right method?
         //I need to add properties to an existing object
-        addEvent({
+       // addEvent({
             //type
             //host
             //location
             //date
             //time
-        })      
-    }
+        //})      
+    //}
     const constructNewActivity = () => {
         addActivity({
             text: aName.current.value,
@@ -84,26 +83,14 @@ export const EventPlanningSpace = props => {
 
 return (
     <>
-    <h2>{event.name}</h2>
+    <h1>{event.name}</h1>
     <fieldset>
-        <div className="form-group">
-            {/* type, host, location, date, time */}
-            {/*figure out how to "handle input change" and onChange events */}
-            <label htmlFor="eventDetails">details</label>
-            <select name="eventId">
-                <option value="0">Select a type</option>
-                {eventTypes.map(type => {
-                return <option key={type.id} value={type.id}>{type.type}</option>
-            })}</select>
-            <input type="text" name="" placeholder="host" />
-            <input type="text" name="" placeholder="location" />
-            <input type="date" name="" />
-            <input type="text" name="" placeholder="time" />
-        </div>
+            <EventDetailsForm key={event.id} event={event} {...props} />
     </fieldset>
     <fieldset>
         <div className="form-group">
             {/* food */}
+            <h2>Food:</h2>
            {foodTypes.map(ft => {
                return <FoodForm key={ft.id} foodTypeObj={ft} {...props} />
            })}
@@ -112,7 +99,7 @@ return (
     <fieldset>
         <div className="form-group">
             {/* activity */}
-            <label>Activities:</label>
+            <h2>Activities:</h2>
             <div>{tActivities.map(ea => {
                 return <Activity key={ea.id} activity={ea} {...props}/>
             })}</div>
@@ -126,7 +113,7 @@ return (
     <fieldset className="form-group">
         <div>
             {/* misc */}
-            <label>Miscellaneous:</label>
+            <h2>Miscellaneous:</h2>
             <div>{tMisc.map(em => {
                 return <Misc key={em.id} misc={em} {...props}/>
             })}</div>
