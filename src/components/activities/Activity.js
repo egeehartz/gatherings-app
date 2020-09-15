@@ -11,5 +11,9 @@ export const Activity = (props) => {
         },[])
 
     return(
-<div>{props.activity.text} -{userActivity.name}</div>
+    <>
+        <div>{props.activity.text} -{userActivity.name}</div>
+        {props.activity.userId === parseInt(localStorage.getItem("gatherings_customer")) ?
+        <button>x</button> : ""}
+    </>
 )}

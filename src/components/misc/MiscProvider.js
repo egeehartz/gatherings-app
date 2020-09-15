@@ -26,10 +26,18 @@ export const MiscProvider = (props) => {
         })
             .then(getMisc)
     }
+
+    //for deleting Misc functionality
+    const deleteMisc = (miscId) => {
+        return fetch(`http://localhost:8088/misc/${miscId}`, {
+            method: "DELETE"
+        })
+        .then(getMisc)
+    }
     
     return (
         <MiscContext.Provider value={{
-            misc, getMisc,  getMiscById, addMisc
+            misc, getMisc,  getMiscById, addMisc, deleteMisc
         }}>
             {props.children}
         </MiscContext.Provider>

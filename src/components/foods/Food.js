@@ -11,7 +11,11 @@ export const Food = ({food}) => {
         },[])
 
     return (
-    <div>{food.name}     -{userFood.name}</div>
+        <>
+    <div>{food.name} -{userFood.name}</div>
+    {food.userId === parseInt(localStorage.getItem("gatherings_customer")) ?
+    <button>x</button> : ""}
+        </>
     )
 }
  

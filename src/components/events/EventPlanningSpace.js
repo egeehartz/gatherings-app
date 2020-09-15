@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useRef, useImperativeHandle } from "react"
+import React, { useContext, useState, useEffect, useRef } from "react"
 import { EventContext } from "./EventsProvider"
 import { FoodContext } from "../foods/FoodProvider"
 import { ActivityContext } from "../activities/ActivityProvider"
