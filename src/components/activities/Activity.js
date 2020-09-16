@@ -14,7 +14,7 @@ export const Activity = (props) => {
 
     return(
     <>
-        <div>{props.activity.text} -{userActivity.name}</div>
+        <div>{props.activity.text} -{userActivity.fname}</div>
         {props.activity.userId === parseInt(localStorage.getItem("gatherings_customer")) ?
         <button onClick={() => {
             deleteActivity(props.activity.id)}}>x</button> : ""}

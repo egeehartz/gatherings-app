@@ -22,6 +22,7 @@ export const ProfileList = (props) => {
     const [tActivities, setActivities] = useState([])
     const [tMisc, setMisc] = useState([])
     const [tFood, setFood] = useState([])
+    const [user, setUsers] = useState([])
 
     const createEvent = useRef()
     const eventName = useRef(null)
@@ -30,12 +31,15 @@ export const ProfileList = (props) => {
     useEffect(() => {
         getEvents()
         getFood()
-        //getFoodType()
         getActivities()
         getMisc()
         getUsers()
     }, [])
 
+    useEffect(() => {
+        const currentUser = users.find(u => u.id === parseInt(localStorage.getItem("gatherings_customer"))) || {}
+        setUsers(currentUser)
+    }, [users])
     useEffect(() => {
         const userActivity = activities.filter(a => a.userId === parseInt(localStorage.getItem("gatherings_customer"))) || {}
         setActivities(userActivity)
@@ -54,7 +58,7 @@ export const ProfileList = (props) => {
 
     return (
         <>
-        <h1>Profile Page</h1>
+        <h1>{user.fname}'s Profile Page</h1>
         <button onClick={() =>{
             createEvent.current.showModal()
         }}>create event</button>
