@@ -83,7 +83,7 @@ export const EventDetailsForm = (props) => {
             </fieldset>
             <fieldset>
             <label>date</label>
-            <input type="date" name="date" value={event.date} 
+            <input type="date" name="date" value={event.date || ""} 
                 onChange={handleControlledInputChange} />
             </fieldset>
             <button onClick={evt => {

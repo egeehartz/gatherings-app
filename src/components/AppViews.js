@@ -54,7 +54,7 @@ export const AppViews = props => {
         {/* ///////////////////////////////////////////// */}
         <Route path="/logout" render={
                 (props) => {
-                    localStorage.removeItem("kennel_customer")
+                    localStorage.removeItem("gatherings_customer")
                     props.history.push("/login")
                 }
             } />

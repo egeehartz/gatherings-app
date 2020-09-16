@@ -70,15 +70,15 @@ export const ProfileList = (props) => {
                         onClick={() => {
                             addEvent({
                                 name: eventName.current.value,
-                                eventTypeId: "",
-                                host: "",
-                                location: "",
-                                date: "",
-                                time: "",
+                                eventTypeId: 1,
+                                host: "click edit to add a host",
+                                location: "click edit to add a location",
+                                date: "click edit to add a date",
+                                time: "click edit to add a time",
                                 archived: false
                             })
-                            .then(() =>{  
-                            props.history.push(`/events/${events.length + 1}`)
+                            .then((newEventId) =>{  
+                            props.history.push(`/events/${newEventId}`)
                             })
                         }}
                     >create!</button>
@@ -101,9 +101,7 @@ export const ProfileList = (props) => {
                                 }}>
                             <h3>{event.name}</h3>
                             </Link>
-                            
                             <EditTitleForm key={event.id} event={event}/>
-                        
                         </section>
                     })
                 }

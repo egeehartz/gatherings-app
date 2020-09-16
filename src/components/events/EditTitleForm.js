@@ -24,27 +24,37 @@ const {updateEvent, deleteEvent} = useContext(EventContext)
             })
     }
 
+    const deleteTheEvent = () => {
+        const eventId = parseInt(event.id)
+        deleteEvent(eventId)
+    }
+
     return (
         <>
         <section>
-        {/* open dialog button button */}
+        {/* open edit dialog button  */}
         <button onClick={() =>{
             editTitle.current.showModal()
         }}>edit title</button>
 
+        {/* open delete dialog button  */}
         <button onClick={() => {
             deleteDialog.current.showModal()
         }}>delete event</button>
+
+        {/*  delete dialog  */}
         <dialog ref={deleteDialog}>
-            <p>Are you sure?</p>
+            <p>Are you sure you want to delete {event.name}?</p>
             <button onClick={() => {
-                deleteEvent(event.id)
-                window.location.reload(false)
+                deleteTheEvent()
+                {/* force refresh? */}
             }}>Yes, absolutely</button>
             <button onClick={() => {
                 deleteDialog.current.close()
             }}>Nope</button>
         </dialog>
+
+        {/*  edit dialog */}
         <dialog ref={editTitle}>
             <input type="text" placeholder={event.name} ref={editingTitle}  ></input>
             {/* edit title button */}

@@ -13,7 +13,7 @@ import {EventDetails} from "../events/EventDetails"
 
 export const EventPlanningSpace = props => {
     //CONTEXT
-    const {events, addEvent, getEvents } = useContext(EventContext)
+    const {events, getEvents } = useContext(EventContext)
     const {getFood} = useContext(FoodContext)
     const {foodTypes, getFoodType} = useContext(FoodTypeContext)
     const {activities, addActivity, getActivities} = useContext(ActivityContext)
