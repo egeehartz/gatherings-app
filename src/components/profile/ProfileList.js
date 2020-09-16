@@ -7,6 +7,7 @@ import {UserContext} from "../users/UserProvider"
 import {ProfileActivity} from "../activities/ProfileActivity"
 import {ProfileFood} from "../foods/ProfileFood"
 import {ProfileMisc} from "../misc/ProfileMisc"
+import {EditTitleForm} from "../events/EditTitleForm"
 //import {ProfileEvents} from "./Profile"
 import {Link} from "react-router-dom"
 
@@ -24,7 +25,7 @@ export const ProfileList = (props) => {
 
     const createEvent = useRef()
     const eventName = useRef(null)
-    const editTitle = useRef()
+    
 
     useEffect(() => {
         getEvents()
@@ -51,7 +52,6 @@ export const ProfileList = (props) => {
     },[foodsArr])
 
 
-
     return (
         <>
         <h1>Profile Page</h1>
@@ -73,8 +73,8 @@ export const ProfileList = (props) => {
                                 time: "",
                                 archived: ""
                             })
-                            .then(() =>{
-                            props.history.push(`/events/${events.length + 2}`)
+                            .then(() =>{  
+                            props.history.push(`/events/${events.length + 1}`)
                             })
                         }}
                     >create!</button>
@@ -97,9 +97,9 @@ export const ProfileList = (props) => {
                                 }}>
                             <h3>{event.name}</h3>
                             </Link>
-                            <button onClick={() =>{
-                            editTitle.current.showModal()
-                            }}>edit title</button>
+                            
+                            <EditTitleForm key={event.id} event={event}/>
+                        
                         </section>
                     })
                 }
