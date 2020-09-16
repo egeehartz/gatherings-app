@@ -29,14 +29,15 @@ export const Register = (props) => {
                         body: JSON.stringify({
                             email: email.current.value,
                             password: password.current.value,
-                            name: `${firstName.current.value} ${lastName.current.value}`
+                            fname: firstName.current.value, 
+                            lname: lastName.current.value
                         })
                     })
                         .then(_ => _.json())
                         .then(createdUser => {
                             if (createdUser.hasOwnProperty("id")) {
                                 localStorage.setItem("gatherings_customer", createdUser.id)
-                                props.history.push("/")
+                                props.history.push("/home")
                             }
                         })
                 })

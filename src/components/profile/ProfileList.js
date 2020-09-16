@@ -7,6 +7,7 @@ import {UserContext} from "../users/UserProvider"
 import {ProfileActivity} from "../activities/ProfileActivity"
 import {ProfileFood} from "../foods/ProfileFood"
 import {ProfileMisc} from "../misc/ProfileMisc"
+import {EditTitleForm} from "../events/EditTitleForm"
 //import {ProfileEvents} from "./Profile"
 import {Link} from "react-router-dom"
 
@@ -21,19 +22,24 @@ export const ProfileList = (props) => {
     const [tActivities, setActivities] = useState([])
     const [tMisc, setMisc] = useState([])
     const [tFood, setFood] = useState([])
+    const [user, setUsers] = useState([])
 
     const createEvent = useRef()
     const eventName = useRef(null)
+    
 
     useEffect(() => {
         getEvents()
         getFood()
-        //getFoodType()
         getActivities()
         getMisc()
         getUsers()
     }, [])
 
+    useEffect(() => {
+        const currentUser = users.find(u => u.id === parseInt(localStorage.getItem("gatherings_customer"))) || {}
+        setUsers(currentUser)
+    }, [users])
     useEffect(() => {
         const userActivity = activities.filter(a => a.userId === parseInt(localStorage.getItem("gatherings_customer"))) || {}
         setActivities(userActivity)
@@ -50,10 +56,9 @@ export const ProfileList = (props) => {
     },[foodsArr])
 
 
-
     return (
         <>
-        <h1>Profile Page</h1>
+        <h1>{user.fname}'s Profile Page</h1>
         <button onClick={() =>{
             createEvent.current.showModal()
         }}>create event</button>
@@ -70,13 +75,16 @@ export const ProfileList = (props) => {
                                 location: "",
                                 date: "",
                                 time: "",
-                                archived: ""
+                                archived: false
                             })
-                            .then(() =>{
+                            .then(() =>{  
                             props.history.push(`/events/${events.length + 1}`)
                             })
                         }}
                     >create!</button>
+                    <button onClick={()=> {
+                                createEvent.current.close()
+                            }}>nevermind</button>
                </div>
             </dialog> 
 
@@ -93,6 +101,9 @@ export const ProfileList = (props) => {
                                 }}>
                             <h3>{event.name}</h3>
                             </Link>
+                            
+                            <EditTitleForm key={event.id} event={event}/>
+                        
                         </section>
                     })
                 }
@@ -132,4 +143,12 @@ export const ProfileList = (props) => {
 }
 
 
-
+/**
+ * <dialog ref={editTitle}>
+                            <input type="text" placeholder={event.name}></input>
+                            <button>save</button>
+                            <button onClick={()=> {
+                                editTitle.current.close()
+                            }}>nevermind</button>
+                            </dialog>
+ */

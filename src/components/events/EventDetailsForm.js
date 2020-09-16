@@ -46,7 +46,7 @@ export const EventDetailsForm = (props) => {
                 location: event.location,
                 date: event.date,
                 time: event.time,
-                archived: ""
+                archived: false
             })
         }
     }
