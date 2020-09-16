@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom"
 import './index.css';
 import {Gatherings} from "./components/Gatherings"
 import * as serviceWorker from './serviceWorker';
+import 'bootstrap/dist/css/bootstrap.css';
 
 ReactDOM.render(
   <React.StrictMode>
