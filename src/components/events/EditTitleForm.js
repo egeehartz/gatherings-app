@@ -20,7 +20,7 @@ const {updateEvent, deleteEvent} = useContext(EventContext)
                 location: event.location,
                 date: event.date,
                 time: event.time,
-                archived: ""
+                archived: false
             })
     }
 

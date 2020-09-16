@@ -71,7 +71,7 @@ export const ProfileList = (props) => {
                                 location: "",
                                 date: "",
                                 time: "",
-                                archived: ""
+                                archived: false
                             })
                             .then(() =>{  
                             props.history.push(`/events/${events.length + 1}`)
