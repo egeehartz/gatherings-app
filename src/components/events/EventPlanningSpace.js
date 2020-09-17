@@ -24,7 +24,7 @@ export const EventPlanningSpace = props => {
     const { activities, addActivity, getActivities } = useContext(ActivityContext)
     const { misc, getMisc, addMisc } = useContext(MiscContext)
     const { users, getUsers } = useContext(UserContext)
-    const {userEvents} = useContext(UserEventsContext)
+    const {userEvents, getUserEvents} = useContext(UserEventsContext)
 
     //REFS
     const aName = useRef(null)
@@ -60,6 +60,7 @@ export const EventPlanningSpace = props => {
         getActivities()
         getMisc()
         getUsers()
+        getUserEvents()
     }, [])
     useEffect(() => {
         const event = events.find(e => e.id === parseInt(props.match.params.eventId)) || {}

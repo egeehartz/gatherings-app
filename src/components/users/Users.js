@@ -3,7 +3,7 @@ import {UserContext} from "./UserProvider"
 
 export const Users = ({items}) => {
     const { users, getUsers } = useContext(UserContext)
-
+    
     useEffect(() => {
         getUsers()
     }, [])
@@ -15,7 +15,9 @@ export const Users = ({items}) => {
     })
 
     return (
-    <div>{user.fname}</div>
+    <div>{user.map(u => {
+        return <div className="userRSVP">{u.fname}</div>
+    })}</div>
 
     )
 }

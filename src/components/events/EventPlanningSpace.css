@@ -16,6 +16,11 @@ h2 {
     margin-bottom: 1rem !important;
 }
 
+.userRSVP{
+    text-align: center;
+    font-family: "Oswald", sans-serif;
+}
+
 .input {
     font-family: "Oswald", sans-serif;
 }
