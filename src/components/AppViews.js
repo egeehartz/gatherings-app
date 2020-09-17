@@ -9,6 +9,7 @@ import { MiscProvider } from "./misc/MiscProvider"
 import { EventPlanningSpace } from "./events/EventPlanningSpace"
 import { FoodTypeProvider } from "./foods/FoodTypeProvider"
 import { UserProvider } from "./users/UserProvider"
+import { UserEventsContext, UserEventsProvider } from "./users/UserEventsProvider"
 
 
 
@@ -22,10 +23,12 @@ export const AppViews = props => {
                         <MiscProvider>
                             <FoodTypeProvider>
                                 <UserProvider>
+                                    <UserEventsProvider>
                                     {/* function that renders profile page */}
                                     <Route exact path="/home" render={
                                     props => <ProfileList {...props} />
                                     } />
+                                    </UserEventsProvider>
                                 </UserProvider>
                             </FoodTypeProvider>
                         </MiscProvider>
@@ -41,9 +44,11 @@ export const AppViews = props => {
                         <MiscProvider>
                             <FoodTypeProvider>
                                 <UserProvider>
+                                    <UserEventsProvider>
                                     <Route path="/events/:eventId(\d+)" render={
                                     props => <EventPlanningSpace {...props} />
                                     } />
+                                    </UserEventsProvider>
                                 </UserProvider>
                             </FoodTypeProvider>
                         </MiscProvider>
@@ -54,7 +59,7 @@ export const AppViews = props => {
         {/* ///////////////////////////////////////////// */}
         <Route path="/logout" render={
                 (props) => {
-                    localStorage.removeItem("kennel_customer")
+                    localStorage.removeItem("gatherings_customer")
                     props.history.push("/login")
                 }
             } />

@@ -12,12 +12,12 @@ export const Food = ({food}) => {
         },[])
 
     return (
-        <>
-    <div>{food.name} -{userFood.fname}</div>
-    {food.userId === parseInt(localStorage.getItem("gatherings_customer")) ?
-    <button onClick={() => {
-        deleteFood(food.id)}}>x</button> : ""}
-        </>
+        <div className="renderedFood">
+            <div className="food">{food.name}</div> 
+            <div className="userFood">-{userFood.fname}</div>
+            {food.userId === parseInt(localStorage.getItem("gatherings_customer")) ?
+            <button className="deleteFood" onClick={() => deleteFood(food.id)}>X</button> : ""}
+        </div>
     )
 }
  

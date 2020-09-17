@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Ranchers&display=swap&family=Ribeye+Marrow&display=swap');
+
+
+.profileTitle {
+    text-align: center;
+    font-family: 'Ranchers', cursive;
+}
+
+.content{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.contentTitle{
+    text-align: center;
+    text-decoration: underline;
+    font-family: 'Ribeye Marrow', cursive;
+    margin-top: 2rem;
+}
+
+.leftContent {
+    display: flex;
+    flex-direction: column;
+}
+
+ h4 {
+    font-family: 'Ranchers', cursive;
+}
+
+.events{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.event{
+    border: 2px solid black;
+    margin: 1rem;
+    width: 367.25px;
+    background-color: whitesmoke;
+}
+
+.eventActions {
+    display: flex;
+    display: flex;
+    justify-content: space-between;
+}
+
+.eventActionButtons {
+    margin:1rem;
+    font-family: 'Oswald', sans-serif;
+    
+}
+
+.eventTitle{
+    text-align: center;
+    color: black;
+    margin-top: 1rem;
+    font-family: 'Ranchers', cursive;
+    
+}
+
+.card {
+    border: none !important;
+    background-color: whitesmoke !important;
+}
+
+.createEventButton {
+    align-self: center;
+    font-family: 'Oswald', sans-serif;
+}
+
+p {
+    font-family: 'Oswald', sans-serif;
+}

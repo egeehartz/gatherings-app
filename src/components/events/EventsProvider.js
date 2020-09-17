@@ -24,7 +24,11 @@ export const EventsProvider = (props) => {
             },
             body: JSON.stringify(Event)
         })
-            .then(getEvents)
+           .then(res => res.json())
+            .then(newEvent => {
+                getEvents()
+               return newEvent.id })
+           
     }
     //for editing functionality
     const updateEvent = event => {
@@ -40,7 +44,7 @@ export const EventsProvider = (props) => {
 
 //for deleting event functionality
 const deleteEvent = (EventId) => {
-    return fetch(`http://localhost:8088/Events/${EventId}`, {
+    return fetch(`http://localhost:8088/events/${EventId}`, {
         method: "DELETE"
     })
     .then(getEvents)

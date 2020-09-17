@@ -1,14 +1,18 @@
-import React, {useRef, useContext} from "react"
+import React, {useRef, useState, useContext} from "react"
 import {EventContext} from "./EventsProvider"
-
+import { Collapse, Button, CardBody, Card } from 'reactstrap';
 
 export const EditTitleForm = ({event}) => {
 const {updateEvent, deleteEvent} = useContext(EventContext)
 
     const editingTitle = useRef()
-    const editTitle = useRef()
-    const deleteDialog = useRef()
+    
 
+    const [isOpen, setIsOpen] = useState(false);
+    const toggle = () => setIsOpen(!isOpen);
+
+    const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+    const toggleDelete = () => setIsDeleteOpen(!isDeleteOpen);
 
     const addToEvent = () => {
             const eventId = parseInt(event.id)
@@ -24,41 +28,46 @@ const {updateEvent, deleteEvent} = useContext(EventContext)
             })
     }
 
+    const deleteTheEvent = () => {
+        const eventId = parseInt(event.id)
+        deleteEvent(eventId)
+    }
+
     return (
         <>
-        <section>
-        {/* open dialog button button */}
-        <button onClick={() =>{
-            editTitle.current.showModal()
-        }}>edit title</button>
-
-        <button onClick={() => {
-            deleteDialog.current.showModal()
-        }}>delete event</button>
-        <dialog ref={deleteDialog}>
-            <p>Are you sure?</p>
-            <button onClick={() => {
-                deleteEvent(event.id)
-                window.location.reload(false)
-            }}>Yes, absolutely</button>
-            <button onClick={() => {
-                deleteDialog.current.close()
-            }}>Nope</button>
-        </dialog>
-        <dialog ref={editTitle}>
-            <input type="text" placeholder={event.name} ref={editingTitle}  ></input>
-            {/* edit title button */}
-            <button onClick={() => {
+        <section className="eventActions">
+     <div>
+    <Button outline className="eventActionButtons" color="primary" onClick={toggle} style={{ marginBottom: '1rem' }}>
+      edit
+    </Button>
+    <Collapse isOpen={isOpen}>
+      <Card className="collapseCard">
+        <CardBody>
+          <input type="text" placeholder={event.name} ref={editingTitle}  ></input>
+          <button onClick={() => {
                 addToEvent()
                 editingTitle.current.value = ""
-                editTitle.current.close()
+                setIsOpen(false)
                 }}>save</button>
-                {/* nevermind button */}
-                <button onClick={() => {
-                editTitle.current.close()
-                }}>nevermind
-                </button>
-        </dialog>
+        </CardBody>
+      </Card>
+    </Collapse>
+  </div> 
+    <div>
+    <Button outline className="eventActionButtons" color="danger" onClick={toggleDelete} style={{ marginBottom: '1rem' }}>
+      delete
+    </Button>
+    <Collapse isOpen={isDeleteOpen}>
+      <Card >
+        <CardBody className="collapseCard">
+          <p>Are you absolutely sure?</p>
+          <button onClick={() => {
+              deleteTheEvent()
+          }}>Delete it!</button>
+        </CardBody>
+      </Card>
+    </Collapse>
+  </div>
         </section>
         </>
     )

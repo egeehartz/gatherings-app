@@ -1,6 +1,7 @@
 import React, { useEffect,useContext, useState } from "react"
 import { EventContext } from "./EventsProvider"
 import { EventTypeContext } from "./EventTypeProvider"
+//import "./EventPlanningSpace.css"
 
 export const EventDetailsForm = (props) => {
     const {eventTypes, getEventType} = useContext(EventTypeContext)
@@ -57,33 +58,32 @@ export const EventDetailsForm = (props) => {
         </div>
         <form className="form-group">
             {/* type, host, location, date, time */}
-            <h2 htmlFor="eventDetails">Details:</h2>
             <fieldset>
-                <label>type</label>
-            <select name="eventTypeId" value={event.eventTypeId} onChange={handleControlledInputChange}>
+                <label className="label">type</label>
+            <select className="input" name="eventTypeId" value={event.eventTypeId} onChange={handleControlledInputChange}>
                 <option value="0">Select a type</option>
                 {eventTypes.map(type => {
                 return <option key={type.id} value={type.id}>{type.type}</option>
             })}</select>
             </fieldset>
             <fieldset>
-            <label>host</label>
-            <input type="text" name="host" defaultValue={event.host} placeholder="host"
+            <label className="label">host</label>
+            <input className="input" type="text" name="host" defaultValue={event.host} placeholder="host"
                 onChange={handleControlledInputChange} />
             </fieldset>
             <fieldset>
-            <label>location</label>
-            <input type="text" name="location" defaultValue={event.location} placeholder="location" 
+            <label className="label">location</label>
+            <input className="input" type="text" name="location" defaultValue={event.location} placeholder="location" 
                 onChange={handleControlledInputChange}/>
             </fieldset>
             <fieldset>
-            <label>time</label>
-            <input type="text" name="time" defaultValue={event.time} placeholder="time"
+            <label className="label">time</label>
+            <input className="input" type="text" name="time" defaultValue={event.time} placeholder="time"
                 onChange={handleControlledInputChange} />
             </fieldset>
             <fieldset>
-            <label>date</label>
-            <input type="date" name="date" value={event.date} 
+            <label className="label">date</label>
+            <input className="input" type="date" name="date" value={event.date || ""} 
                 onChange={handleControlledInputChange} />
             </fieldset>
             <button onClick={evt => {

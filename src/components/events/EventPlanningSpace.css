@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Ranchers&display=swap&family=Ribeye+Marrow&display=swap');
+
+
+h1, .label, h3 {
+    font-family: 'Ranchers', cursive;
+}
+
+h1, h3 {
+    text-align: center;
+}
+
+h2 {
+    font-family: 'Ribeye Marrow', cursive;
+    text-align: center;
+    margin-top: 2rem !important;
+    margin-bottom: 1rem !important;
+}
+
+.userRSVP{
+    text-align: center;
+    font-family: "Oswald", sans-serif;
+}
+
+.input {
+    font-family: "Oswald", sans-serif;
+}
+.mainInput {
+    font-family: "Oswald", sans-serif;
+    
+}
+
+.details {
+    display: flex;
+}
+
+.savedDetailsContainer {
+    display: flex;
+    flex-direction: column;
+   align-items: center;
+}
+
+.editButton {
+    text-align: center;
+    font-family: "Oswald", sans-serif;
+}
+
+.renderedFood, .renderedActivity, .renderedMisc {
+    display: flex;
+    align-items: center;
+}
+.food, .userFood, .activity, .misc {
+ margin-right: 1rem;
+ font-family: "Oswald", sans-serif;
+}
+.deleteFood, .deleteActivity, .deleteMisc{
+    height: 30px;
+    width: 30px;
+    border-radius: 20%;
+    margin-bottom: 0.25rem;
+}
+.renderedItemsContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.inputButton {
+    display: flex;
+    justify-content: center;
+    font-family: "Oswald", sans-serif;
+}
+
+.typeTitle {
+    margin-top: 1rem;
+}
+
+.btn {
+    align-self: center;
+    font-family: 'Ribeye Marrow', cursive;
+    font-size: xx-large !important;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-info {
+background-color: #ff99c8 !important;
+border-color: #ff99c8 !important;
+color: black !important;
+margin: 2rem 0.25rem 0.25rem 0.25rem;
+}
+.btn-info:focus {
+    box-shadow: 0 0 0 0.2rem rgb(255, 153, 200, 0.5 ) !important;
+}
+.btn-primary {
+    background-color: #fcf6bd !important;
+    border-color: #fcf6bd !important;
+    color: black !important;
+    margin: 2rem 0.25rem 0.25rem 0.25rem;
+}
+.btn-success {
+    background-color: #d0f4de !important;
+    border-color: #d0f4de !important;
+    color: black !important;
+    margin: 2rem 0.25rem 0.25rem 0.25rem;
+}
+.btn-warning {
+    background-color: #a9def9 !important;
+    border-color: #a9def9 !important;
+    margin: 2rem 0.25rem 0.25rem 0.25rem;
+}
+
+.btn-danger {
+    background-color: #E4C1F9 !important;
+    border: none !important;
+    color: black !important;
+    margin: 2rem 0.25rem 0.25rem 0.25rem;
+}
