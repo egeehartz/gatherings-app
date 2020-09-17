@@ -12,7 +12,7 @@ const {updateEvent, deleteEvent} = useContext(EventContext)
     const toggle = () => setIsOpen(!isOpen);
 
     const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-    const toggleDelete = () => setIsDeleteOpen(!isOpen);
+    const toggleDelete = () => setIsDeleteOpen(!isDeleteOpen);
 
     const addToEvent = () => {
             const eventId = parseInt(event.id)
@@ -35,13 +35,13 @@ const {updateEvent, deleteEvent} = useContext(EventContext)
 
     return (
         <>
-        <section>
+        <section className="eventActions">
      <div>
-    <Button color="primary" onClick={toggle} style={{ marginBottom: '1rem' }}>
+    <Button outline className="eventActionButtons" color="primary" onClick={toggle} style={{ marginBottom: '1rem' }}>
       edit
     </Button>
     <Collapse isOpen={isOpen}>
-      <Card>
+      <Card className="collapseCard">
         <CardBody>
           <input type="text" placeholder={event.name} ref={editingTitle}  ></input>
           <button onClick={() => {
@@ -54,12 +54,12 @@ const {updateEvent, deleteEvent} = useContext(EventContext)
     </Collapse>
   </div> 
     <div>
-    <Button color="danger" onClick={toggleDelete} style={{ marginBottom: '1rem' }}>
+    <Button outline className="eventActionButtons" color="danger" onClick={toggleDelete} style={{ marginBottom: '1rem' }}>
       delete
     </Button>
     <Collapse isOpen={isDeleteOpen}>
-      <Card>
-        <CardBody>
+      <Card >
+        <CardBody className="collapseCard">
           <p>Are you absolutely sure?</p>
           <button onClick={() => {
               deleteTheEvent()
