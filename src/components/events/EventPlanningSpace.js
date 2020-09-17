@@ -10,7 +10,7 @@ import {FoodTypeContext} from "../foods/FoodTypeProvider"
 import {FoodForm} from "../forms/FoodForm"
 import {EventDetailsForm} from "../events/EventDetailsForm"
 import {EventDetails} from "../events/EventDetails"
-
+import "./EventPlanningSpace.css"
 
 export const EventPlanningSpace = props => {
     //CONTEXT
@@ -44,7 +44,7 @@ export const EventPlanningSpace = props => {
         const event = events.find(e => e.id === parseInt(props.match.params.eventId)) || {}
         setEvents(event)
         if(editMode === null) {
-            setEditMode(event.host === "" && event.location  === "" && event.date === "" && event.time === "")
+            setEditMode(event.host === "click edit" && event.location  === "to" && event.date === "" && event.time === "")
         }
     },[events])
     useEffect(() => {
@@ -84,7 +84,8 @@ export const EventPlanningSpace = props => {
 return (
     <>
     <h1>{event.name}</h1>
-    <fieldset>
+    <fieldset className="detailsContainer">
+            <h2>Details:</h2>
             {/* editMode ? EventDetailsForm : EventDetails */}
             {editMode? 
             <EventDetailsForm key={event.id} event={event} func={toggleEditMode} {...props} /> :
@@ -103,28 +104,32 @@ return (
         <div className="form-group">
             {/* activity */}
             <h2>Activities:</h2>
-            <div>{tActivities.map(ea => {
+            <div className="renderedItemsContainer">{tActivities.map(ea => {
                 return <Activity key={ea.id} activity={ea} {...props}/>
             })}</div>
-            <input type="text" placeholder="type here" name="aName"
+            <div className="inputButton">
+            <input className="mainInput" type="text" placeholder="type here" name="aName"
                 ref={aName}></input>
             <button onClick={() => {
                 constructNewActivity()
             }}>Save</button>
-        </div>
+            </div>
+            </div>
     </fieldset>
     <fieldset className="form-group">
         <div>
             {/* misc */}
             <h2>Miscellaneous:</h2>
-            <div>{tMisc.map(em => {
+            <div className="renderedItemsContainer">{tMisc.map(em => {
                 return <Misc key={em.id} misc={em} {...props}/>
             })}</div>
-            <input type="text" placeholder="type here" name="mName"
+            <div className="inputButton">
+            <input className="mainInput" type="text" placeholder="type here" name="mName"
                 ref={mName}></input>
             <button onClick={() => {
                 constructNewMisc()
             }}>Save</button>
+            </div>
         </div>
     </fieldset>
     </>

@@ -33,15 +33,17 @@ export const FoodForm = (props) => {
     }
     return (
         <>
-            <h3>{props.foodTypeObj.type}</h3>
-            <div>{filteredFood.map(ff => {
+            <h3 className="typeTitle">{props.foodTypeObj.type}</h3>
+            <div className="renderedItemsContainer">{filteredFood.map(ff => {
                 return <Food key={ff.id} food={ff}  />
             })}</div>
-            <input type="text" placeholder="type here" name="fname"
+            <div className="inputButton">
+            <input className="mainInput" type="text" placeholder="type here" name="fname"
                 ref={fname}></input>
             <button onClick={() => {
                 constructNewFood()
             }}>Save</button>
+            </div>
         </>
     )
 

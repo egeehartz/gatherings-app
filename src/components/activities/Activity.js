@@ -13,10 +13,10 @@ export const Activity = (props) => {
         },[])
 
     return(
-    <>
-        <div>{props.activity.text} -{userActivity.fname}</div>
+    <div className="renderedActivity">
+        <div className="activity">{props.activity.text} -{userActivity.fname}</div>
         {props.activity.userId === parseInt(localStorage.getItem("gatherings_customer")) ?
-        <button onClick={() => {
-            deleteActivity(props.activity.id)}}>x</button> : ""}
-    </>
+        <button className="deleteActivity" onClick={() => {
+            deleteActivity(props.activity.id)}}>X</button> : ""}
+    </div>
 )}

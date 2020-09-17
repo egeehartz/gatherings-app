@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Ranchers&display=swap&family=Ribeye+Marrow&display=swap');
+
+
+h1, .label, h3 {
+    font-family: 'Ranchers', cursive;
+}
+
+h1, h3 {
+    text-align: center;
+}
+
+h2 {
+    font-family: 'Ribeye Marrow', cursive;
+    text-align: center;
+    margin-top: 2rem !important;
+    margin-bottom: 1rem !important;
+}
+
+.input {
+    font-family: "Oswald", sans-serif;
+}
+.mainInput {
+    font-family: "Oswald", sans-serif;
+    
+}
+
+.details {
+    display: flex;
+}
+
+.savedDetailsContainer {
+    display: flex;
+    flex-direction: column;
+   align-items: center;
+}
+
+.editButton {
+    text-align: center;
+    font-family: "Oswald", sans-serif;
+}
+
+.renderedFood, .renderedActivity, .renderedMisc {
+    display: flex;
+    align-items: center;
+}
+.food, .userFood, .activity, .misc {
+ margin-right: 1rem;
+ font-family: "Oswald", sans-serif;
+}
+.deleteFood, .deleteActivity, .deleteMisc{
+    height: 30px;
+    width: 30px;
+    border-radius: 20%;
+    margin-bottom: 0.25rem;
+}
+.renderedItemsContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.inputButton {
+    display: flex;
+    justify-content: center;
+    font-family: "Oswald", sans-serif;
+}
+
+.typeTitle {
+    margin-top: 1rem;
+}
