@@ -10,6 +10,7 @@ import { ProfileMisc } from "../misc/ProfileMisc"
 import { EditTitleForm } from "../events/EditTitleForm"
 import { Link } from "react-router-dom"
 import "./Profile.css"
+import { UserEventsContext } from "../users/UserEventsProvider"
 
 
 export const ProfileList = (props) => {
@@ -18,6 +19,7 @@ export const ProfileList = (props) => {
     const { activities, getActivities } = useContext(ActivityContext)
     const { misc, getMisc } = useContext(MiscContext)
     const { users, getUsers } = useContext(UserContext)
+    const { addUserEvents } = useContext(UserEventsContext)
 
     const [tActivities, setActivities] = useState([])
     const [tMisc, setMisc] = useState([])
@@ -79,9 +81,18 @@ export const ProfileList = (props) => {
                                     time: "details!",
                                     archived: false
                                 })
-                                    .then((newEventId) => {
-                                        props.history.push(`/events/${newEventId}`)
-                                    })
+                                .then((newEventId) => {
+                                    {
+                                        users.map(u => {
+                                            addUserEvents({
+                                                userId: u.id,
+                                                eventId: newEventId,
+                                                rsvp: null
+                                            })
+                                        })
+                                    }
+                                    props.history.push(`/events/${newEventId}`)
+                                })
                             }}
                         >create!</button>
                         <button onClick={() => {

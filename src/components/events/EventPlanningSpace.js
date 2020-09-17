@@ -12,6 +12,7 @@ import { EventDetailsForm } from "../events/EventDetailsForm"
 import { EventDetails } from "../events/EventDetails"
 import "./EventPlanningSpace.css"
 import { Collapse, Button, CardBody, Card } from 'reactstrap';
+import {Users} from "../users/Users"
 
 
 export const EventPlanningSpace = props => {
@@ -42,6 +43,8 @@ export const EventPlanningSpace = props => {
     const toggleMisc = () => setIsMiscOpen(!isMiscOpen)
     const [isDetailsOpen, setIsDetailsOpen] = useState(false)
     const toggleDetails = () => setIsDetailsOpen(!isDetailsOpen)
+    const [isRSVPOpen, setIsRSVPOpen] = useState(false)
+    const toggleRSVP = () => setIsRSVPOpen(!isRSVPOpen)
 
 
     // Get data from API when component initializes
@@ -57,7 +60,7 @@ export const EventPlanningSpace = props => {
         const event = events.find(e => e.id === parseInt(props.match.params.eventId)) || {}
         setEvents(event)
         if (editMode === null) {
-            setEditMode(event.host === "click edit" && event.location === "to" && event.date === "" && event.time === "")
+            setEditMode(event.host === "click edit" && event.location === "to" && event.date === "add" && event.time === "details!")
         }
     }, [events])
     useEffect(() => {
@@ -166,6 +169,21 @@ export const EventPlanningSpace = props => {
                     </Collapse>
                 </div>
             </fieldset>
+            <div className="form-group">
+            <Button color="danger" onClick={toggleRSVP}>RSVP:</Button>
+                    <Collapse isOpen={isRSVPOpen}>
+                        <Card>
+                            <CardBody>
+                {
+                    users.map(u => {
+                        return <Users key={u.id} user={u} />
+                    })
+                }
+                </CardBody>
+                </Card>
+                </Collapse>
+
+            </div>
         </>
     )
 }

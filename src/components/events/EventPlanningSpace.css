@@ -106,3 +106,10 @@ margin: 2rem 0.25rem 0.25rem 0.25rem;
     border-color: #a9def9 !important;
     margin: 2rem 0.25rem 0.25rem 0.25rem;
 }
+
+.btn-danger {
+    background-color: #E4C1F9 !important;
+    border: none !important;
+    color: black !important;
+    margin: 2rem 0.25rem 0.25rem 0.25rem;
+}
