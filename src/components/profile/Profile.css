@@ -36,7 +36,8 @@
 .event{
     border: 2px solid black;
     margin: 1rem;
-    width: 367.25px
+    width: 367.25px;
+    background-color: whitesmoke;
 }
 
 .eventActions {
@@ -61,6 +62,7 @@
 
 .card {
     border: none !important;
+    background-color: whitesmoke !important;
 }
 
 .createEventButton {
