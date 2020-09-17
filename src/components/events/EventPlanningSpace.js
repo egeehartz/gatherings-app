@@ -11,6 +11,7 @@ import {FoodForm} from "../forms/FoodForm"
 import {EventDetailsForm} from "../events/EventDetailsForm"
 import {EventDetails} from "../events/EventDetails"
 
+
 export const EventPlanningSpace = props => {
     //CONTEXT
     const {events, getEvents } = useContext(EventContext)
