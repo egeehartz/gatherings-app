@@ -68,3 +68,41 @@ h2 {
 .typeTitle {
     margin-top: 1rem;
 }
+
+.btn {
+    align-self: center;
+    font-family: 'Ribeye Marrow', cursive;
+    font-size: xx-large !important;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-info {
+background-color: #ff99c8 !important;
+border-color: #ff99c8 !important;
+color: black !important;
+margin: 2rem 0.25rem 0.25rem 0.25rem;
+}
+.btn-info:focus {
+    box-shadow: 0 0 0 0.2rem rgb(255, 153, 200, 0.5 ) !important;
+}
+.btn-primary {
+    background-color: #fcf6bd !important;
+    border-color: #fcf6bd !important;
+    color: black !important;
+    margin: 2rem 0.25rem 0.25rem 0.25rem;
+}
+.btn-success {
+    background-color: #d0f4de !important;
+    border-color: #d0f4de !important;
+    color: black !important;
+    margin: 2rem 0.25rem 0.25rem 0.25rem;
+}
+.btn-warning {
+    background-color: #a9def9 !important;
+    border-color: #a9def9 !important;
+    margin: 2rem 0.25rem 0.25rem 0.25rem;
+}

@@ -3,6 +3,8 @@ import { EventContext } from "../events/EventsProvider"
 import {FoodContext} from "../foods/FoodProvider"
 import {Food} from "../foods/Food"
 import {UserContext} from "../users/UserProvider"
+import { CardBody, Card } from 'reactstrap';
+
 
 
 
@@ -33,6 +35,8 @@ export const FoodForm = (props) => {
     }
     return (
         <>
+        <Card>
+            <CardBody>
             <h3 className="typeTitle">{props.foodTypeObj.type}</h3>
             <div className="renderedItemsContainer">{filteredFood.map(ff => {
                 return <Food key={ff.id} food={ff}  />
@@ -44,6 +48,8 @@ export const FoodForm = (props) => {
                 constructNewFood()
             }}>Save</button>
             </div>
+            </CardBody>
+        </Card>
         </>
     )
 
