@@ -3,7 +3,7 @@ import { UserContext } from "./UserProvider"
 import { UserEventsContext } from "../users/UserEventsProvider"
 
 
-export const RSVPstatus = (props) => {
+export const RSVPstatus = ({ue}) => {
     const { userEvents, getUserEvents, updateUserEvent } = useContext(UserEventsContext)
     const { users, getUsers } = useContext(UserContext)
 
@@ -11,12 +11,13 @@ export const RSVPstatus = (props) => {
         getUsers()
     }, [])
 
-    const eventId = parseInt(props.match.params.eventId)
-    const user = props.ue.map(i => {
+    const user = ue.map(i => {
         return users.find(u => {
            return u.id === i.userId
         })
     })
+
+    const userUE = ue.find(u => u.userId === parseInt(localStorage.getItem("gatherings_customer")))
 
     const [editRSVPMode, setRSVPEditMode] = useState(false)
 
@@ -37,9 +38,9 @@ export const RSVPstatus = (props) => {
                     <button 
                         onClick={() => {
                             updateUserEvent({
-                            id: props.ue.id,
-                            userId: user.id ,
-                            eventId: eventId,
+                            id: userUE.id,
+                            userId: userUE.userId ,
+                            eventId: userUE.eventId,
                             rsvp: true,
                             })
                             toggleRSVPEditMode()}}>
@@ -48,9 +49,9 @@ export const RSVPstatus = (props) => {
                     <button 
                         onClick={() => {
                             updateUserEvent({
-                            id: props.ue.id,
-                            userId: user.id ,
-                            eventId: eventId,
+                            id: userUE.id,
+                            userId: userUE.userId ,
+                            eventId: userUE.eventId,
                             rsvp: false,
                             })
                             toggleRSVPEditMode()}}>

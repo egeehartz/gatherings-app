@@ -90,8 +90,8 @@ export const EventPlanningSpace = props => {
     },[userEvents])
     useEffect(() => {
         const eventUserEvents = userEvents.filter(ue => ue.eventId === parseInt(props.match.params.eventId)) || {}
-        setuserEvents(eventUserEvents)
-    }, [misc])
+        setUserEvents(eventUserEvents)
+    }, [userEvents])
 
     //POST
     const constructNewActivity = () => {
@@ -196,7 +196,7 @@ export const EventPlanningSpace = props => {
                 <Collapse isOpen={isRSVPOpen}>
                     <Card>
                         <CardBody>
-                            <RSVPstatus ue={tUserEvents} {...props}/>
+                            <RSVPstatus ue={tUserEvents}/>
                             <h3>Going</h3>
                             <Users items={goingArr}/>
                             <h3>Not Going</h3>
