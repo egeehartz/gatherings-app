@@ -66,7 +66,7 @@ export const AppViews = props => {
                                 <FoodTypeProvider>
                                     <UserProvider>
                                         <UserEventsProvider>
-                                            <Route exact path="/archived" render={
+                                            <Route exact path="/archive" render={
                                                 props => <Archive {...props} />} />
                                         </UserEventsProvider>
                                     </UserProvider>

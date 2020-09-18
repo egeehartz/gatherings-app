@@ -71,6 +71,10 @@
     
 }
 
+.editTitleLabel {
+    font-family: "Oswald", sans-serif;
+}
+
 .eventTitle{
     text-align: center;
     color: black;
