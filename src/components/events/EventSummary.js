@@ -21,6 +21,12 @@ export const EventSummary = (props) => {
 
 
     return (
+        <>
         <h3>{event.name}</h3>
+        <h4>Event Details</h4>
+        <h4>Food Brought</h4>
+        <h4>Activities</h4>
+
+        </>
     )
 }

@@ -42,7 +42,7 @@ export const EventDetailsForm = (props) => {
             updateEvent({
                 id: eventId,
                 name: props.event.name,
-                eventTypeId: event.eventTypeId,
+                eventTypeId: parseInt(event.eventTypeId),
                 host: event.host,
                 location: event.location,
                 date: event.date,
