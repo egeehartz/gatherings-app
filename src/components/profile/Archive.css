@@ -1,0 +1,11 @@
+.archivedEventDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.archivedEventTypes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

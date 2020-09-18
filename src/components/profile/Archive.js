@@ -14,9 +14,11 @@ export const Archive = () => {
 
     return (
         <>
+        <div className="archivedEventTypes">
             {
                 eventTypes.map(et => <ArchiveDetail key={et.id} et={et} />)
             }
+        </div>
         </>
     )
 }
