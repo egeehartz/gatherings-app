@@ -5,6 +5,7 @@ import { ProfileMisc } from "../misc/ProfileMisc"
 import { FoodContext } from "../foods/FoodProvider"
 import { ActivityContext } from "../activities/ActivityProvider"
 import { MiscContext } from "../misc/MiscProvider"
+import { EventContext } from "../events/EventsProvider"
  
  
  
@@ -12,16 +13,22 @@ import { MiscContext } from "../misc/MiscProvider"
     const { foodsArr, getFood } = useContext(FoodContext)
     const { activities, getActivities } = useContext(ActivityContext)
     const { misc, getMisc } = useContext(MiscContext)
+    const { events, getEvents } = useContext(EventContext)
 
     useEffect(() => {
         getFood()
         getActivities()
         getMisc()
+        getEvents()
     }, [])
 
     const [tActivities, setActivities] = useState([])
     const [tMisc, setMisc] = useState([])
     const [tFood, setFood] = useState([])
+    const [ vEvents, setValidEvents] = useState([])
+    const [ vFood, setValidFood] = useState([])
+    const [ vActivities, setValidActivities] = useState([])
+    const [ vMisc, setValidMisc] = useState([])
 
     useEffect(() => {
         const userActivity = activities.filter(a => a.userId === parseInt(localStorage.getItem("gatherings_customer"))) || {}
@@ -38,6 +45,26 @@ import { MiscContext } from "../misc/MiscProvider"
         setFood(userFood)
     }, [foodsArr])
 
+    useEffect(() => {
+        const currentEvents = events.filter(e => e.archived === false) || {}
+        setValidEvents(currentEvents)
+    }, [events])
+
+    useEffect(() => {
+        const currentFood = tFood.filter(f => f.event.archived === false)
+        setValidFood(currentFood)
+    }, [vEvents])
+
+    useEffect(() => {
+        const currentActivity = tActivities.filter(a => a.event.archived === false)
+        setValidActivities(currentActivity)
+    }, [vEvents])
+
+    useEffect(() => {
+        const currentMisc = tMisc.filter(m => m.event.archived === false)
+        setValidMisc(currentMisc)
+    }, [vEvents])
+
      return (
     <>
      {/* Responsibilities */}
@@ -47,15 +74,17 @@ import { MiscContext } from "../misc/MiscProvider"
      <div>
          <h4>Food:</h4>
          <ul>
-             {tFood.map(f => {
-                 return <ProfileFood key={f.id} food={f} />
-             })}
+            {
+                vFood.map(f => {
+                    return <ProfileFood key={f.id} food={f} />
+                })
+            }
          </ul>
      </div>
      <div>
          <h4>Activities:</h4>
          <ul>
-             {tActivities.map(a => {
+             {vActivities.map(a => {
                  return <ProfileActivity key={a.id} activity={a} />
              })}
          </ul>
@@ -63,7 +92,7 @@ import { MiscContext } from "../misc/MiscProvider"
      <div>
          <h4>Misc:</h4>
          <ul>
-             {tMisc.map(m => {
+             {vMisc.map(m => {
                  return <ProfileMisc key={m.id} misc={m} />
              })}
          </ul>
