@@ -34,8 +34,8 @@ export const RSVPstatus = ({ue}) => {
     return (
         <>
             {editRSVPMode ?
-                <div>
-                    <button 
+                <div className="rsvpButtonDiv">
+                    <button className="rsvpButton"
                         onClick={() => {
                             updateUserEvent({
                             id: userUE.id,
@@ -46,7 +46,7 @@ export const RSVPstatus = ({ue}) => {
                             toggleRSVPEditMode()}}>
                         Going
                     </button>
-                    <button 
+                    <button className="rsvpButton"
                         onClick={() => {
                             updateUserEvent({
                             id: userUE.id,
@@ -57,8 +57,12 @@ export const RSVPstatus = ({ue}) => {
                             toggleRSVPEditMode()}}>
                         Not Going
                     </button>
-                </div> :
-                <button onClick={toggleRSVPEditMode}>change RSVP status</button>}
+                    <button className="rsvpButton" onClick={toggleRSVPEditMode}>
+                        Nevermind
+                    </button>
+                </div> : <div className="rsvpButtonDiv">
+                <button className="rsvpButton" onClick={toggleRSVPEditMode}>change RSVP status</button>
+                </div>}
         </>
     )
 }

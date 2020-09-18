@@ -129,3 +129,12 @@ margin: 2rem 0.25rem 0.25rem 0.25rem;
 .btn-danger:focus {
     box-shadow: 0 0 0 0.2rem rgb(207, 144, 244, 0.5 ) !important;
 }
+.rsvpButton{
+    font-family: "Oswald", sans-serif;
+    margin: 0 1rem;
+}
+.rsvpButtonDiv {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
