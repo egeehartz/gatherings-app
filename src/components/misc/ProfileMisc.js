@@ -5,7 +5,7 @@ import {Link} from "react-router-dom"
 
 export const ProfileMisc = ({misc}) => (
     <Link to={`/events/${misc.eventId}`}>
-    <div>{misc.text} </div>
+    <div>{misc.text} (for {misc.event.name}) </div>
     </Link>
 )
    
