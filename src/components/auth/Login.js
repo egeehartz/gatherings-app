@@ -1,6 +1,7 @@
 import React, { useRef } from "react"
 import { Link } from "react-router-dom";
 import "./Login.css"
+import whitesmokeSwimsuit from "../images/whitesmokeSwimsuit.png"
 
 
 export const Login = props => {
@@ -71,6 +72,7 @@ export const Login = props => {
             <section className="link--register">
                 <Link to="/register">Not a member yet?</Link>
             </section>
+            <img className="loginPic" src={whitesmokeSwimsuit}/>
         </main>
     )
 }

@@ -75,3 +75,7 @@ fieldset {
     margin-top: 2rem;
     font-family: "Oswald", sans-serif;
 }
+
+.loginPic {
+    width: 100%;
+}
