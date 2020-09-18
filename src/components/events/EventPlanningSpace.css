@@ -100,21 +100,32 @@ margin: 2rem 0.25rem 0.25rem 0.25rem;
     color: black !important;
     margin: 2rem 0.25rem 0.25rem 0.25rem;
 }
+.btn-primary:focus {
+    box-shadow: 0 0 0 0.2rem rgb(252, 246, 189, 0.5 ) !important;
+}
 .btn-success {
     background-color: #d0f4de !important;
     border-color: #d0f4de !important;
     color: black !important;
     margin: 2rem 0.25rem 0.25rem 0.25rem;
 }
+.btn-success:focus {
+    box-shadow: 0 0 0 0.2rem rgb(208, 244, 222, 0.5 ) !important;
+}
 .btn-warning {
     background-color: #a9def9 !important;
     border-color: #a9def9 !important;
     margin: 2rem 0.25rem 0.25rem 0.25rem;
 }
-
+.btn-warning:focus {
+    box-shadow: 0 0 0 0.2rem rgb(169, 222, 249, 0.5 ) !important;
+}
 .btn-danger {
     background-color: #E4C1F9 !important;
     border: none !important;
     color: black !important;
     margin: 2rem 0.25rem 0.25rem 0.25rem;
+}
+.btn-danger:focus {
+    box-shadow: 0 0 0 0.2rem rgb(207, 144, 244, 0.5 ) !important;
 }
