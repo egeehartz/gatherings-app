@@ -12,6 +12,7 @@ import { UserProvider } from "./users/UserProvider"
 import { UserEventsProvider } from "./users/UserEventsProvider"
 import {Responsibilities} from "./profile/Responsibilities"
 import {Archive} from "./profile/Archive"
+import {EventSummary} from "./events/EventSummary"
 
 
 
@@ -66,7 +67,7 @@ export const AppViews = props => {
                                 <FoodTypeProvider>
                                     <UserProvider>
                                         <UserEventsProvider>
-                                            <Route exact path="/archived" render={
+                                            <Route exact path="/archive" render={
                                                 props => <Archive {...props} />} />
                                         </UserEventsProvider>
                                     </UserProvider>
@@ -87,6 +88,26 @@ export const AppViews = props => {
                                         <UserEventsProvider>
                                             <Route path="/events/:eventId(\d+)" render={
                                                 props => <EventPlanningSpace {...props} />
+                                            } />
+                                        </UserEventsProvider>
+                                    </UserProvider>
+                                </FoodTypeProvider>
+                            </MiscProvider>
+                        </ActivityProvider>
+                    </FoodProvider>
+                </EventTypeProvider>
+            </EventsProvider>
+            {/* ///////////////////////////////////////////// */}
+            <EventsProvider>
+                <EventTypeProvider>
+                    <FoodProvider>
+                        <ActivityProvider>
+                            <MiscProvider>
+                                <FoodTypeProvider>
+                                    <UserProvider>
+                                        <UserEventsProvider>
+                                            <Route path="/archive/:eventId(\d+)" render={
+                                                props => <EventSummary {...props} />
                                             } />
                                         </UserEventsProvider>
                                     </UserProvider>

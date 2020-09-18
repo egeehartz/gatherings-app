@@ -43,8 +43,9 @@ const {updateEvent, deleteEvent} = useContext(EventContext)
     <Collapse isOpen={isOpen}>
       <Card className="collapseCard">
         <CardBody>
-          <input type="text" placeholder={event.name} ref={editingTitle}  ></input>
-          <button onClick={() => {
+          <label className="editTitleLabel">Edit Event Title</label>
+          <input className="editTitleLabel" type="text" placeholder={event.name} ref={editingTitle}  ></input>
+          <button className="editTitleLabel" onClick={() => {
                 addToEvent()
                 editingTitle.current.value = ""
                 setIsOpen(false)
@@ -60,8 +61,8 @@ const {updateEvent, deleteEvent} = useContext(EventContext)
     <Collapse isOpen={isDeleteOpen}>
       <Card >
         <CardBody className="collapseCard">
-          <p>Are you absolutely sure?</p>
-          <button onClick={() => {
+          <p >Are you absolutely sure?</p>
+          <button className="editTitleLabel" onClick={() => {
               deleteTheEvent()
           }}>Delete it!</button>
         </CardBody>
