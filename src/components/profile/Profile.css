@@ -13,11 +13,8 @@
 
 .contentTitleResp{
     text-align: center;
-    text-decoration: underline;
-    font-family: 'Ribeye Marrow', cursive;
+    font-family: 'Ranchers', cursive;
     margin-top: 2rem;
-    border: 1px solid;
-    padding: 1rem;
     margin-right: 3rem;
     margin-left: 3rem;
 }
@@ -30,6 +27,20 @@
     margin-top: 2rem;
     border: 1px solid;
     padding: 1rem;
+}
+
+.responsibilitiesContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.responsibilitiesContainer > div > ul > a > div {
+    margin-right: 2.5rem;
+    color: black;
+    font-size: x-large;
+    font-family: "Oswald", sans-serif;
 }
 
 .leftContent {
