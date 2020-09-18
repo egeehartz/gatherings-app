@@ -21,10 +21,21 @@ export const UserEventsProvider = (props) => {
         })
             .then(getUserEvents)
     }
+
+    const updateUserEvent = userEvent => {
+        return fetch(`http://localhost:8088/userEvents/${userEvent.id}`, {
+            method: "PUT",
+            headers: {
+            "Content-Type": "application/json"
+            },
+            body: JSON.stringify(userEvent)
+            })
+                .then(getUserEvents)
+}
     
     return (
         <UserEventsContext.Provider value={{
-            userEvents, getUserEvents, addUserEvents, setUserEvents
+            userEvents, getUserEvents, addUserEvents, setUserEvents, updateUserEvent
         }}>
             {props.children}
         </UserEventsContext.Provider>

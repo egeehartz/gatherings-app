@@ -14,6 +14,7 @@ import "./EventPlanningSpace.css"
 import { Collapse, Button, CardBody, Card } from 'reactstrap';
 import { Users } from "../users/Users"
 import { UserEventsContext } from "../users/UserEventsProvider"
+import {RSVPstatus} from "../users/RSVPstatus"
 
 
 export const EventPlanningSpace = props => {
@@ -23,7 +24,7 @@ export const EventPlanningSpace = props => {
     const { foodTypes, getFoodType } = useContext(FoodTypeContext)
     const { activities, addActivity, getActivities } = useContext(ActivityContext)
     const { misc, getMisc, addMisc } = useContext(MiscContext)
-    const { users, getUsers } = useContext(UserContext)
+    const { getUsers } = useContext(UserContext)
     const {userEvents, getUserEvents} = useContext(UserEventsContext)
 
     //REFS
@@ -34,12 +35,13 @@ export const EventPlanningSpace = props => {
     const [event, setEvents] = useState([])
     const [tActivities, setActivities] = useState([])
     const [tMisc, setMisc] = useState([])
+    const [tUserEvents, setUserEvents] = useState([])
     const[notGoingArr, setNotGoing] = useState([])
     const[goingArr, setGoing] = useState([])
     const[notRespondedArr, setNotResponded] = useState([])
     const [editMode, setEditMode] = useState(null)
 
-    //COLLAPSE STATE AND TOGGLES
+    //COLLAPSE: STATE AND TOGGLES
     const [isFoodOpen, setIsFoodOpen] = useState(false)
     const toggleFood = () => setIsFoodOpen(!isFoodOpen)
     const [isActivitiesOpen, setIsActivitiesOpen] = useState(false)
@@ -86,6 +88,10 @@ export const EventPlanningSpace = props => {
         const rsvpStatusNotGoing = currentUserEvents.filter(cue => cue.rsvp === false) || {}
         setNotGoing(rsvpStatusNotGoing)
     },[userEvents])
+    useEffect(() => {
+        const eventUserEvents = userEvents.filter(ue => ue.eventId === parseInt(props.match.params.eventId)) || {}
+        setUserEvents(eventUserEvents)
+    }, [userEvents])
 
     //POST
     const constructNewActivity = () => {
@@ -190,6 +196,7 @@ export const EventPlanningSpace = props => {
                 <Collapse isOpen={isRSVPOpen}>
                     <Card>
                         <CardBody>
+                            <RSVPstatus ue={tUserEvents}/>
                             <h3>Going</h3>
                             <Users items={goingArr}/>
                             <h3>Not Going</h3>
