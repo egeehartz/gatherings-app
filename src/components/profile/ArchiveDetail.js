@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect, } from "react"
 //import { EventTypeContext } from "../events/EventTypeProvider"
 import { Button, Collapse, Card, CardBody } from "reactstrap"
 import {EventContext} from "../events/EventsProvider"
+import {Link} from "react-router-dom"
 
 
 
@@ -40,7 +41,11 @@ export const ArchiveDetail = ({ et }) => {
                         <div>
                             {
                                 fEvents.map(fe => {
-                                return <h3>{fe.name}</h3>
+                                return <Link 
+                                    to={{pathname: `/archive/${fe.id}`,
+                                    state: { chosenEvent: fe }}}>
+                                <h3>{fe.name}</h3>
+                                </Link>
                                 })
                             }
                         </div>
