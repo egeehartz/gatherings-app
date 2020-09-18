@@ -61,9 +61,8 @@ export const ProfileList = (props) => {
     return (
         <>
             <h1 className="profileTitle">{user.fname}'s Profile Page</h1>
-            <div className="content">
-            <div className="leftContent">
-                <button className="createEventButton"onClick={() => {
+            <div className="createEventButtonDiv">
+                <button className="createEventButton" onClick={() => {
                     createEvent.current.showModal()
                 }}>create event</button>
                 <dialog className="dialog dialog--createEvent" ref={createEvent}>
@@ -100,9 +99,12 @@ export const ProfileList = (props) => {
                         }}>nevermind</button>
                     </div>
                 </dialog>
+            </div>
+            <div className="content">
+            <div className="leftContent">
                 {/* Responsibilities */}
                 <div>
-                    <h2 className="contentTitle">Responsibilities</h2>
+                    <h2 className="contentTitleResp">Responsibilities</h2>
                     <p>You have signed up for:</p>
                     <div>
                         <h4>Food:</h4>
@@ -134,7 +136,7 @@ export const ProfileList = (props) => {
 
                 {/* events that already exist */}
                 <article className="eventsWithName">
-                    <h2 className="contentTitle">Events</h2>
+                    <h2 className="contentTitleEvents">Events</h2>
                     <div className="events">
                     {
                         events.map(event => {
