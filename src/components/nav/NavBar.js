@@ -20,6 +20,9 @@ export const NavBar = (props) => {
               <NavLink href="/responsibilities">responsibilities</NavLink>
             </NavItem>
             <NavItem>
+              <NavLink href="/archive">archive</NavLink>
+            </NavItem>
+            <NavItem>
               <NavLink href="/logout">logout</NavLink>
             </NavItem>
           </Nav>

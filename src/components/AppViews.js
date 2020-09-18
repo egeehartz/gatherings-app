@@ -11,6 +11,7 @@ import { FoodTypeProvider } from "./foods/FoodTypeProvider"
 import { UserProvider } from "./users/UserProvider"
 import { UserEventsProvider } from "./users/UserEventsProvider"
 import {Responsibilities} from "./profile/Responsibilities"
+import {Archive} from "./profile/Archive"
 
 
 
@@ -46,8 +47,27 @@ export const AppViews = props => {
                                 <FoodTypeProvider>
                                     <UserProvider>
                                         <UserEventsProvider>
-                                            <Route exact path="responsibilities" render={
+                                            <Route exact path="/responsibilities" render={
                                                 props => <Responsibilities {...props} />} />
+                                        </UserEventsProvider>
+                                    </UserProvider>
+                                </FoodTypeProvider>
+                            </MiscProvider>
+                        </ActivityProvider>
+                    </FoodProvider>
+                </EventTypeProvider>
+            </EventsProvider>
+            {/* ///////////////////////////////////////////// */}
+            <EventsProvider>
+                <EventTypeProvider>
+                    <FoodProvider>
+                        <ActivityProvider>
+                            <MiscProvider>
+                                <FoodTypeProvider>
+                                    <UserProvider>
+                                        <UserEventsProvider>
+                                            <Route exact path="/archived" render={
+                                                props => <Archive {...props} />} />
                                         </UserEventsProvider>
                                     </UserProvider>
                                 </FoodTypeProvider>
