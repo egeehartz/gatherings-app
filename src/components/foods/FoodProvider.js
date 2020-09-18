@@ -6,7 +6,7 @@ export const FoodProvider = (props) => {
     const [foodsArr, setFoods] = useState([])
 
     const getFood = () => {
-        return fetch("http://localhost:8088/food?_expand=foodType")
+        return fetch("http://localhost:8088/food?_expand=foodType&_expand=event")
             .then(res => res.json())
             .then(setFoods)
     }

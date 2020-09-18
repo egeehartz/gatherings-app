@@ -6,7 +6,7 @@ export const ActivityProvider = (props) => {
     const [activities, setActivities] = useState([])
 
     const getActivities = () => {
-        return fetch("http://localhost:8088/activities")
+        return fetch("http://localhost:8088/activities?_expand=event")
             .then(res => res.json())
             .then(setActivities)
     }

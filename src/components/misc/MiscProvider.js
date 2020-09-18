@@ -6,7 +6,7 @@ export const MiscProvider = (props) => {
     const [misc, setMisc] = useState([])
 
     const getMisc = () => {
-        return fetch("http://localhost:8088/misc")
+        return fetch("http://localhost:8088/misc?_expand=event")
             .then(res => res.json())
             .then(setMisc)
     }

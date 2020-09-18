@@ -1,12 +1,6 @@
 import React, { useEffect, useContext, useRef, useState } from "react"
 import { EventContext } from "../events/EventsProvider"
-import { FoodContext } from "../foods/FoodProvider"
-import { ActivityContext } from "../activities/ActivityProvider"
-import { MiscContext } from "../misc/MiscProvider"
 import { UserContext } from "../users/UserProvider"
-import { ProfileActivity } from "../activities/ProfileActivity"
-import { ProfileFood } from "../foods/ProfileFood"
-import { ProfileMisc } from "../misc/ProfileMisc"
 import { EditTitleForm } from "../events/EditTitleForm"
 import { Link } from "react-router-dom"
 import "./Profile.css"
@@ -15,16 +9,11 @@ import { UserEventsContext } from "../users/UserEventsProvider"
 
 export const ProfileList = (props) => {
     const { events, getEvents, addEvent } = useContext(EventContext)
-    const { foodsArr, getFood } = useContext(FoodContext)
-    const { activities, getActivities } = useContext(ActivityContext)
-    const { misc, getMisc } = useContext(MiscContext)
     const { users, getUsers } = useContext(UserContext)
     const { addUserEvents } = useContext(UserEventsContext)
 
-    const [tActivities, setActivities] = useState([])
-    const [tMisc, setMisc] = useState([])
-    const [tFood, setFood] = useState([])
     const [user, setUsers] = useState([])
+    const [ vEvents, setValidEvents] = useState([])
 
     const createEvent = useRef()
     const eventName = useRef(null)
@@ -32,9 +21,6 @@ export const ProfileList = (props) => {
 
     useEffect(() => {
         getEvents()
-        getFood()
-        getActivities()
-        getMisc()
         getUsers()
     }, [])
 
@@ -42,28 +28,18 @@ export const ProfileList = (props) => {
         const currentUser = users.find(u => u.id === parseInt(localStorage.getItem("gatherings_customer"))) || {}
         setUsers(currentUser)
     }, [users])
-    useEffect(() => {
-        const userActivity = activities.filter(a => a.userId === parseInt(localStorage.getItem("gatherings_customer"))) || {}
-        setActivities(userActivity)
-    }, [activities])
 
     useEffect(() => {
-        const userMisc = misc.filter(m => m.userId === parseInt(localStorage.getItem("gatherings_customer"))) || {}
-        setMisc(userMisc)
-    }, [misc])
-
-    useEffect(() => {
-        const userFood = foodsArr.filter(f => f.userId === parseInt(localStorage.getItem("gatherings_customer"))) || {}
-        setFood(userFood)
-    }, [foodsArr])
+        const currentEvents = events.filter(e => e.archived === false) || {}
+        setValidEvents(currentEvents)
+    }, [events])
 
 
     return (
         <>
             <h1 className="profileTitle">{user.fname}'s Profile Page</h1>
-            <div className="content">
-            <div className="leftContent">
-                <button className="createEventButton"onClick={() => {
+            <div className="createEventButtonDiv">
+                <button className="createEventButton" onClick={() => {
                     createEvent.current.showModal()
                 }}>create event</button>
                 <dialog className="dialog dialog--createEvent" ref={createEvent}>
@@ -100,44 +76,15 @@ export const ProfileList = (props) => {
                         }}>nevermind</button>
                     </div>
                 </dialog>
-                {/* Responsibilities */}
-                <div>
-                    <h2 className="contentTitle">Responsibilities</h2>
-                    <p>You have signed up for:</p>
-                    <div>
-                        <h4>Food:</h4>
-                        <ul>
-                            {tFood.map(f => {
-                                return <ProfileFood key={f.id} food={f} />
-                            })}
-                        </ul>
-                    </div>
-                    <div>
-                        <h4>Activities:</h4>
-                        <ul>
-                            {tActivities.map(a => {
-                                return <ProfileActivity key={a.id} activity={a} />
-                            })}
-                        </ul>
-                    </div>
-                    <div>
-                        <h4>Misc:</h4>
-                        <ul>
-                            {tMisc.map(m => {
-                                return <ProfileMisc key={m.id} misc={m} />
-                            })}
-                        </ul>
-                    </div>
-
-                </div>
             </div>
-
+            <div className="content">
+            <div className="leftContent">
                 {/* events that already exist */}
                 <article className="eventsWithName">
-                    <h2 className="contentTitle">Events</h2>
+                    <h2 className="contentTitleEvents">Events</h2>
                     <div className="events">
                     {
-                        events.map(event => {
+                        vEvents.map(event => {
                             return <section className="event" key={event.id}>
                                 <Link
                                     to={{
@@ -152,7 +99,7 @@ export const ProfileList = (props) => {
                     }
                     </div>
                 </article>
-
+                </div>
             </div>
         </>
     )
