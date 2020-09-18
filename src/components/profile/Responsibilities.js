@@ -15,13 +15,7 @@ import { EventContext } from "../events/EventsProvider"
     const { misc, getMisc } = useContext(MiscContext)
     const { events, getEvents } = useContext(EventContext)
 
-    useEffect(() => {
-        getFood()
-        getActivities()
-        getMisc()
-        getEvents()
-    }, [])
-
+    
     const [tActivities, setActivities] = useState([])
     const [tMisc, setMisc] = useState([])
     const [tFood, setFood] = useState([])
@@ -29,7 +23,13 @@ import { EventContext } from "../events/EventsProvider"
     const [ vFood, setValidFood] = useState([])
     const [ vActivities, setValidActivities] = useState([])
     const [ vMisc, setValidMisc] = useState([])
-
+    
+    useEffect(() => {
+        getFood()
+        getActivities()
+        getMisc()
+        getEvents()
+    }, [])
     useEffect(() => {
         const userActivity = activities.filter(a => a.userId === parseInt(localStorage.getItem("gatherings_customer"))) || {}
         setActivities(userActivity)

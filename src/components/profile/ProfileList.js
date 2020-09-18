@@ -1,8 +1,5 @@
 import React, { useEffect, useContext, useRef, useState } from "react"
 import { EventContext } from "../events/EventsProvider"
-import { FoodContext } from "../foods/FoodProvider"
-import { ActivityContext } from "../activities/ActivityProvider"
-import { MiscContext } from "../misc/MiscProvider"
 import { UserContext } from "../users/UserProvider"
 import { EditTitleForm } from "../events/EditTitleForm"
 import { Link } from "react-router-dom"
@@ -12,13 +9,11 @@ import { UserEventsContext } from "../users/UserEventsProvider"
 
 export const ProfileList = (props) => {
     const { events, getEvents, addEvent } = useContext(EventContext)
-    const { foodsArr, getFood } = useContext(FoodContext)
-    const { activities, getActivities } = useContext(ActivityContext)
-    const { misc, getMisc } = useContext(MiscContext)
     const { users, getUsers } = useContext(UserContext)
     const { addUserEvents } = useContext(UserEventsContext)
 
     const [user, setUsers] = useState([])
+    const [ vEvents, setValidEvents] = useState([])
 
     const createEvent = useRef()
     const eventName = useRef(null)
@@ -26,9 +21,6 @@ export const ProfileList = (props) => {
 
     useEffect(() => {
         getEvents()
-        getFood()
-        getActivities()
-        getMisc()
         getUsers()
     }, [])
 
@@ -36,6 +28,11 @@ export const ProfileList = (props) => {
         const currentUser = users.find(u => u.id === parseInt(localStorage.getItem("gatherings_customer"))) || {}
         setUsers(currentUser)
     }, [users])
+
+    useEffect(() => {
+        const currentEvents = events.filter(e => e.archived === false) || {}
+        setValidEvents(currentEvents)
+    }, [events])
 
 
     return (
@@ -87,7 +84,7 @@ export const ProfileList = (props) => {
                     <h2 className="contentTitleEvents">Events</h2>
                     <div className="events">
                     {
-                        events.map(event => {
+                        vEvents.map(event => {
                             return <section className="event" key={event.id}>
                                 <Link
                                     to={{
