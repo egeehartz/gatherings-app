@@ -98,7 +98,7 @@ export const ProfileList = (props) => {
             <div className="leftContent">
                 {/* events that already exist */}
                 <article className="eventsWithName">
-                <Button color="info">Events</Button>
+                <h1 className="eventsListTitle">Events</h1>
                     <div className="events">
                     {
                         vEvents.map(event => {
@@ -108,7 +108,7 @@ export const ProfileList = (props) => {
                                         pathname: `/events/${event.id}`,
                                         state: { chosenEvent: event }
                                     }}>
-                                    <h3 className="eventTitle">{event.name}</h3>
+                                    <Button color="info" className="eventTitle">{event.name}</Button>
                                 </Link>
                                 <EditTitleForm key={event.id} event={event} />
                                 <hr/>

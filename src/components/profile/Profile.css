@@ -70,6 +70,10 @@
     background-color: whitesmoke;
 }
 
+.eventsListTitle {
+    margin-top: 2rem;
+}
+
 .event > hr {
     border-top: 1.5px solid black;
 }
