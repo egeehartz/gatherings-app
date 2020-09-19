@@ -5,6 +5,7 @@ import { EditTitleForm } from "../events/EditTitleForm"
 import { Link } from "react-router-dom"
 import "./Profile.css"
 import { UserEventsContext } from "../users/UserEventsProvider"
+import {Button} from "reactstrap"
 
 
 export const ProfileList = (props) => {
@@ -81,7 +82,7 @@ export const ProfileList = (props) => {
             <div className="leftContent">
                 {/* events that already exist */}
                 <article className="eventsWithName">
-                    <h2 className="contentTitleEvents">Events</h2>
+                <Button color="info">Events</Button>
                     <div className="events">
                     {
                         vEvents.map(event => {
@@ -94,6 +95,7 @@ export const ProfileList = (props) => {
                                     <h3 className="eventTitle">{event.name}</h3>
                                 </Link>
                                 <EditTitleForm key={event.id} event={event} />
+                                <hr/>
                             </section>
                         })
                     }

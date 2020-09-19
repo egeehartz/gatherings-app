@@ -123,7 +123,7 @@ export const EventPlanningSpace = props => {
             <h1>{event.name}</h1>
             <fieldset>
                 <div className="form-group">
-                    <Button color="info" onClick={toggleDetails}>Details:</Button>
+                    <Button color="info" onClick={toggleDetails}>Details</Button>
                     <Collapse isOpen={isDetailsOpen}>
                         <Card>
                             <CardBody>
@@ -139,7 +139,7 @@ export const EventPlanningSpace = props => {
             <fieldset>
                 <div className="form-group">
                     {/* food */}
-                    <Button color="primary" onClick={toggleFood} >Food:</Button>
+                    <Button color="primary" onClick={toggleFood} >Food</Button>
                     <Collapse isOpen={isFoodOpen}>
                         {foodTypes.map(ft => {
                             return <FoodForm key={ft.id} foodTypeObj={ft} {...props} />
@@ -150,7 +150,7 @@ export const EventPlanningSpace = props => {
             <fieldset>
                 <div className="form-group">
                     {/* activity */}
-                    <Button color="success" onClick={toggleActivities}>Activities:</Button>
+                    <Button color="success" onClick={toggleActivities}>Activities</Button>
                     <Collapse isOpen={isActivitiesOpen}>
                         <Card>
                             <CardBody>
@@ -172,7 +172,7 @@ export const EventPlanningSpace = props => {
             <fieldset>
                 <div className="form-group">
                     {/* misc */}
-                    <Button color="warning" onClick={toggleMisc}>Miscellaneous:</Button>
+                    <Button color="warning" onClick={toggleMisc}>Miscellaneous</Button>
                     <Collapse isOpen={isMiscOpen}>
                         <Card>
                             <CardBody>
@@ -192,7 +192,7 @@ export const EventPlanningSpace = props => {
                 </div>
             </fieldset>
             <div className="form-group">
-                <Button color="danger" onClick={toggleRSVP}>RSVP:</Button>
+                <Button color="danger" onClick={toggleRSVP}>RSVP</Button>
                 <Collapse isOpen={isRSVPOpen}>
                     <Card>
                         <CardBody>

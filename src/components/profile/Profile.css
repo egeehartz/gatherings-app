@@ -13,11 +13,8 @@
 
 .contentTitleResp{
     text-align: center;
-    text-decoration: underline;
-    font-family: 'Ribeye Marrow', cursive;
+    font-family: 'Ranchers', cursive;
     margin-top: 2rem;
-    border: 1px solid;
-    padding: 1rem;
     margin-right: 3rem;
     margin-left: 3rem;
 }
@@ -25,16 +22,28 @@
 .contentTitleEvents {
     margin: 7.5rem;
     text-align: center;
-    text-decoration: underline;
-    font-family: 'Ribeye Marrow', cursive;
+    font-family: 'Ranchers', cursive;
     margin-top: 2rem;
-    border: 1px solid;
-    padding: 1rem;
 }
 
-.leftContent {
+.responsibilitiesContainer{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.responsibilitiesContainer > div > ul > a > div {
+    margin-right: 2.5rem;
+    color: black;
+    font-size: x-large;
+    font-family: "Oswald", sans-serif;
+}
+
+.eventsWithName {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .createEventButtonDiv {
     display: flex;
@@ -50,13 +59,19 @@
     display: flex;
     flex-flow: column;
     align-items: center;
+    margin-top: 2rem;
 }
 
 .event{
-    border: 2px solid black;
+    /* border: 2px solid black;
+    border-radius: 0.25rem;
     margin: 1rem;
-    width: 367.25px;
+    width: 367.25px; */
     background-color: whitesmoke;
+}
+
+.event > hr {
+    border-top: 1.5px solid black;
 }
 
 .eventActions {

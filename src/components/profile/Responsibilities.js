@@ -6,6 +6,7 @@ import { FoodContext } from "../foods/FoodProvider"
 import { ActivityContext } from "../activities/ActivityProvider"
 import { MiscContext } from "../misc/MiscProvider"
 import { EventContext } from "../events/EventsProvider"
+import {Button} from "reactstrap"
  
  
  
@@ -68,11 +69,11 @@ import { EventContext } from "../events/EventsProvider"
      return (
     <>
      {/* Responsibilities */}
-     <div>
+     <div className="responsibilitiesContainer">
      <h2 className="contentTitleResp">Responsibilities</h2>
-     <p>You have signed up for:</p>
+     <p>Click the items to got to the Event Planning Space</p>
      <div>
-         <h4>Food:</h4>
+     <Button color="primary" >Food</Button>
          <ul>
             {
                 vFood.map(f => {
@@ -82,7 +83,7 @@ import { EventContext } from "../events/EventsProvider"
          </ul>
      </div>
      <div>
-         <h4>Activities:</h4>
+     <Button color="success">Activities</Button>
          <ul>
              {vActivities.map(a => {
                  return <ProfileActivity key={a.id} activity={a} />
@@ -90,7 +91,7 @@ import { EventContext } from "../events/EventsProvider"
          </ul>
      </div>
      <div>
-         <h4>Misc:</h4>
+     <Button color="warning" >Miscellaneous</Button>
          <ul>
              {vMisc.map(m => {
                  return <ProfileMisc key={m.id} misc={m} />

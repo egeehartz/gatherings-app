@@ -2,7 +2,6 @@ import React, {useContext, useRef} from "react"
 import { EventContext } from "../events/EventsProvider"
 import {FoodContext} from "../foods/FoodProvider"
 import {Food} from "../foods/Food"
-import {UserContext} from "../users/UserProvider"
 import { CardBody, Card } from 'reactstrap';
 
 
@@ -13,9 +12,6 @@ export const FoodForm = (props) => {
     const fname = useRef(null)
     const {foodsArr, addFood} = useContext(FoodContext)
     const {events} = useContext(EventContext)
-    const {users} = useContext(UserContext)
-
-    //const editMode = props.match.params.hasOwnProperty("foodId")
 
     const event = events.find(e => e.id === parseInt(props.match.params.eventId)) || {}
     //
@@ -23,7 +19,6 @@ export const FoodForm = (props) => {
     const filteredFood = eventFood.filter(ef => ef.foodTypeId === props.foodTypeObj.id) || {}
     //
     
-
     const constructNewFood = () => {
         addFood({
             name: fname.current.value,
@@ -33,6 +28,7 @@ export const FoodForm = (props) => {
         })
         .then(fname.current.value = "")
     }
+
     return (
         <>
         <Card>
@@ -52,10 +48,4 @@ export const FoodForm = (props) => {
         </Card>
         </>
     )
-
-
-
 }
-
-
-//getFoodTypes, map, generate FoodForm component 
