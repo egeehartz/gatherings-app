@@ -17,6 +17,7 @@ export const ProfileList = (props) => {
     const [ vEvents, setValidEvents] = useState([])
 
     const createEvent = useRef()
+    const eventDate = useRef()
     const eventName = useRef(null)
 
 
@@ -32,7 +33,10 @@ export const ProfileList = (props) => {
 
     useEffect(() => {
         const currentEvents = events.filter(e => e.archived === false) || {}
-        setValidEvents(currentEvents)
+        const sortedByDate = currentEvents.sort(
+            (currentEntry, nextEntry) =>
+            Date.parse(currentEntry.date) - Date.parse(nextEntry.date))
+        setValidEvents(sortedByDate)
     }, [events])
 
 
@@ -46,15 +50,16 @@ export const ProfileList = (props) => {
                 <dialog className="dialog dialog--createEvent" ref={createEvent}>
                     <p>Enter an Event Title</p>
                     <input type="text" placeholder="type here" ref={eventName} ></input>
+                    <input type="date" ref={eventDate} ></input>
                     <div>
                         <button
                             onClick={() => {
                                 addEvent({
                                     name: eventName.current.value,
                                     eventTypeId: 1,
+                                    date: eventDate.current.value,
                                     host: "click edit",
-                                    location: "to",
-                                    date: "add",
+                                    location: "to add",
                                     time: "details!",
                                     archived: false
                                 })
