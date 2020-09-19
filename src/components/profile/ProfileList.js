@@ -95,6 +95,7 @@ export const ProfileList = (props) => {
                                     <h3 className="eventTitle">{event.name}</h3>
                                 </Link>
                                 <EditTitleForm key={event.id} event={event} />
+                                <hr/>
                             </section>
                         })
                     }

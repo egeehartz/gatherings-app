@@ -59,14 +59,19 @@
     display: flex;
     flex-flow: column;
     align-items: center;
+    margin-top: 2rem;
 }
 
 .event{
-    border: 2px solid black;
+    /* border: 2px solid black;
     border-radius: 0.25rem;
     margin: 1rem;
-    width: 367.25px;
+    width: 367.25px; */
     background-color: whitesmoke;
+}
+
+.event > hr {
+    border-top: 1.5px solid black;
 }
 
 .eventActions {
