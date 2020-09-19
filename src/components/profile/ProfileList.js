@@ -5,7 +5,7 @@ import { EditTitleForm } from "../events/EditTitleForm"
 import { Link } from "react-router-dom"
 import "./Profile.css"
 import { UserEventsContext } from "../users/UserEventsProvider"
-import {Button, Modal, ModalBody, ModalHeader} from "reactstrap"
+import {Button, Modal, ModalBody, ModalHeader, Alert} from "reactstrap"
 
 
 export const ProfileList = (props) => {
@@ -40,10 +40,12 @@ export const ProfileList = (props) => {
 
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
+    const [visible, setVisible] = useState(false);
+    const onDismiss = () => setVisible(false);
 
     const constructEvent = () => {
         if(eventName.current.value === "" || eventDate.current.value === "") {
-            window.alert("both fields must be filled out")
+            setVisible(true)
         } else {
             addEvent({
                 name: eventName.current.value,
@@ -78,6 +80,9 @@ export const ProfileList = (props) => {
                 <Modal isOpen={modal} toggle={toggle}>
                 <ModalHeader toggle={toggle}>Create an Event to start planning!</ModalHeader>
                 <ModalBody>
+                <Alert color="danger" isOpen={visible} toggle={onDismiss}>
+                    both fields must be filled out!
+                </Alert>
                     <p> Event Title</p>
                     <input type="text" placeholder="type here" ref={eventName} className="createEventInput" ></input>
                     <p> Event Date</p>
@@ -87,8 +92,8 @@ export const ProfileList = (props) => {
                             onClick={constructEvent}
                         >create!</button>
                     </div>
-               </ModalBody>
-               </Modal>
+                </ModalBody>
+                </Modal>
             <div className="content">
             <div className="leftContent">
                 {/* events that already exist */}
