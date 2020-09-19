@@ -110,4 +110,19 @@
 
 p {
     font-family: 'Oswald', sans-serif;
+    margin-left: 2rem;
+}
+
+.createEventInput {
+    margin-bottom: 1rem;
+    margin-left: 3rem;
+    font-family: "Ranchers", cursive;
+}
+
+.actualCreateEvent {
+    display: flex;
+    justify-content: flex-end;
+}
+.modal-title {
+    font-family: "Ranchers", cursive;
 }
