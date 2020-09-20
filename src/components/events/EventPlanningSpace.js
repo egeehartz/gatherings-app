@@ -14,7 +14,7 @@ import "./EventPlanningSpace.css"
 import { Collapse, Button, CardBody, Card } from 'reactstrap';
 import { Users } from "../users/Users"
 import { UserEventsContext } from "../users/UserEventsProvider"
-import {RSVPstatus} from "../users/RSVPstatus"
+import { RSVPstatus } from "../users/RSVPstatus"
 
 
 export const EventPlanningSpace = props => {
@@ -25,7 +25,7 @@ export const EventPlanningSpace = props => {
     const { activities, addActivity, getActivities } = useContext(ActivityContext)
     const { misc, getMisc, addMisc } = useContext(MiscContext)
     const { getUsers } = useContext(UserContext)
-    const {userEvents, getUserEvents} = useContext(UserEventsContext)
+    const { userEvents, getUserEvents } = useContext(UserEventsContext)
 
     //REFS
     const aName = useRef(null)
@@ -36,10 +36,11 @@ export const EventPlanningSpace = props => {
     const [tActivities, setActivities] = useState([])
     const [tMisc, setMisc] = useState([])
     const [tUserEvents, setUserEvents] = useState([])
-    const[notGoingArr, setNotGoing] = useState([])
-    const[goingArr, setGoing] = useState([])
-    const[notRespondedArr, setNotResponded] = useState([])
+    const [notGoingArr, setNotGoing] = useState([])
+    const [goingArr, setGoing] = useState([])
+    const [notRespondedArr, setNotResponded] = useState([])
     const [editMode, setEditMode] = useState(null)
+    const [today, setToday] = useState('')
 
     //COLLAPSE: STATE AND TOGGLES
     const [isFoodOpen, setIsFoodOpen] = useState(false)
@@ -87,7 +88,7 @@ export const EventPlanningSpace = props => {
         setGoing(rsvpStatusGoing)
         const rsvpStatusNotGoing = currentUserEvents.filter(cue => cue.rsvp === false) || {}
         setNotGoing(rsvpStatusNotGoing)
-    },[userEvents])
+    }, [userEvents])
     useEffect(() => {
         const eventUserEvents = userEvents.filter(ue => ue.eventId === parseInt(props.match.params.eventId)) || {}
         setUserEvents(eventUserEvents)
@@ -110,6 +111,7 @@ export const EventPlanningSpace = props => {
         })
             .then(mName.current.value = "")
     }
+    //OTHER FUNCTIONS THAT SET STATE
     const toggleEditMode = () => {
         if (editMode === true) {
             setEditMode(false)
@@ -117,12 +119,23 @@ export const EventPlanningSpace = props => {
             setEditMode(true)
         }
     }
+  useEffect(() => {
+      const dayToday = new Date();
+      const dd = String(dayToday.getDate()).padStart(2, '0');
+      const mm = String(dayToday.getMonth() + 1).padStart(2, '0');
+      const yyyy = dayToday.getFullYear();
+      const currentDate = yyyy + '-' + mm + '-' + dd;
+      console.log(currentDate, "today")
+      setToday(currentDate)
+  }) 
+    
 
+    /* {event.date === } */
     return (
         <>
             <h1>{event.name}</h1>
             <div className="finalizeButton">
-                <button disabled className="finalizeButton">finalize plans!</button>
+                <button disabled={event.date === today ? false : true} className="finalizeButton">finalize plans!</button>
             </div>
             <fieldset>
                 <div className="form-group">
@@ -199,13 +212,13 @@ export const EventPlanningSpace = props => {
                 <Collapse isOpen={isRSVPOpen}>
                     <Card>
                         <CardBody>
-                            <RSVPstatus ue={tUserEvents}/>
+                            <RSVPstatus ue={tUserEvents} />
                             <h3>Going</h3>
-                            <Users items={goingArr}/>
+                            <Users items={goingArr} />
                             <h3>Not Going</h3>
-                            <Users items={notGoingArr}/>
-                            <h3>Hasn't Responded</h3> 
-                            <Users items={notRespondedArr}/>
+                            <Users items={notGoingArr} />
+                            <h3>Hasn't Responded</h3>
+                            <Users items={notRespondedArr} />
                         </CardBody>
                     </Card>
                 </Collapse>
