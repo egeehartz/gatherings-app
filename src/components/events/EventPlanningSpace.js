@@ -19,7 +19,7 @@ import { RSVPstatus } from "../users/RSVPstatus"
 
 export const EventPlanningSpace = props => {
     //CONTEXT
-    const { events, getEvents } = useContext(EventContext)
+    const { events, getEvents, updateEvent } = useContext(EventContext)
     const { getFood } = useContext(FoodContext)
     const { foodTypes, getFoodType } = useContext(FoodTypeContext)
     const { activities, addActivity, getActivities } = useContext(ActivityContext)
@@ -55,7 +55,7 @@ export const EventPlanningSpace = props => {
     const toggleRSVP = () => setIsRSVPOpen(!isRSVPOpen)
 
 
-    // Get data from API when component initializes
+    // WHEN COMPONENT INITIALIZES
     useEffect(() => {
         getEvents()
         getFood()
@@ -93,6 +93,14 @@ export const EventPlanningSpace = props => {
         const eventUserEvents = userEvents.filter(ue => ue.eventId === parseInt(props.match.params.eventId)) || {}
         setUserEvents(eventUserEvents)
     }, [userEvents])
+    useEffect(() => {
+        const dayToday = new Date();
+        const dd = String(dayToday.getDate()).padStart(2, '0');
+        const mm = String(dayToday.getMonth() + 1).padStart(2, '0');
+        const yyyy = dayToday.getFullYear();
+        const currentDate = yyyy + '-' + mm + '-' + dd;
+        setToday(currentDate)
+    }) 
 
     //POST
     const constructNewActivity = () => {
@@ -111,7 +119,7 @@ export const EventPlanningSpace = props => {
         })
             .then(mName.current.value = "")
     }
-    //OTHER FUNCTIONS THAT SET STATE
+    //OTHER FUNCTIONS, SET STATE, TRIGGERED ONCLICK
     const toggleEditMode = () => {
         if (editMode === true) {
             setEditMode(false)
@@ -119,23 +127,28 @@ export const EventPlanningSpace = props => {
             setEditMode(true)
         }
     }
-  useEffect(() => {
-      const dayToday = new Date();
-      const dd = String(dayToday.getDate()).padStart(2, '0');
-      const mm = String(dayToday.getMonth() + 1).padStart(2, '0');
-      const yyyy = dayToday.getFullYear();
-      const currentDate = yyyy + '-' + mm + '-' + dd;
-      console.log(currentDate, "today")
-      setToday(currentDate)
-  }) 
     
-
-    /* {event.date === } */
     return (
         <>
             <h1>{event.name}</h1>
             <div className="finalizeButton">
-                <button disabled={event.date === today ? false : true} className="finalizeButton">finalize plans!</button>
+                <button disabled={event.date === today ? false : true} 
+                className="finalizeButton"
+                onClick={() => {
+                    updateEvent({
+                        id: event.id,
+                        name: event.name,
+                        eventTypeId: parseInt(event.eventTypeId),
+                        date: event.date,
+                        host: event.host,
+                        location: event.location,
+                        time: event.time,
+                        archived: true
+                    })
+                    .then(props.history.push("/home"))
+                }}>
+                    finalize plans!
+                    </button>
             </div>
             <fieldset>
                 <div className="form-group">
