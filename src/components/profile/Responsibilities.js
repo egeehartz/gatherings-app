@@ -71,7 +71,7 @@ import {Button} from "reactstrap"
      {/* Responsibilities */}
      <div className="responsibilitiesContainer">
      <h2 className="contentTitleResp">Responsibilities</h2>
-     <p>Click the items to got to the Event Planning Space</p>
+     <p>Click the items to go to the Event Planning Space</p>
      <div>
      <Button color="primary" >Food</Button>
          <ul>
