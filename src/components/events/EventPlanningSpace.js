@@ -121,6 +121,9 @@ export const EventPlanningSpace = props => {
     return (
         <>
             <h1>{event.name}</h1>
+            <div className="finalizeButton">
+                <button disabled className="finalizeButton">finalize plans!</button>
+            </div>
             <fieldset>
                 <div className="form-group">
                     <Button color="info" onClick={toggleDetails}>Details</Button>
