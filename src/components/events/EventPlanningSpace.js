@@ -132,7 +132,7 @@ export const EventPlanningSpace = props => {
         <>
             <h1>{event.name}</h1>
             <div className="finalizeButton">
-                <button disabled={event.date === today ? false : true} 
+                <button disabled={event.date === today || event.date < today ? false : true} 
                 className="finalizeButton"
                 onClick={() => {
                     updateEvent({
