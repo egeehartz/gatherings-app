@@ -108,7 +108,7 @@ export const ProfileList = (props) => {
                                         pathname: `/events/${event.id}`,
                                         state: { chosenEvent: event }
                                     }}>
-                                    <Button color="info" className="eventTitle">{event.name}</Button>
+                                    <Button color="primary" className="eventTitle">{event.name}</Button>
                                 </Link>
                                 <EditTitleForm key={event.id} event={event} />
                                 <hr/>

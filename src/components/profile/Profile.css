@@ -63,10 +63,9 @@
 }
 
 .event{
-    /* border: 2px solid black;
-    border-radius: 0.25rem;
-    margin: 1rem;
-    width: 367.25px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: whitesmoke;
 }
 
@@ -80,13 +79,12 @@
 
 .eventActions {
     display: flex;
-    display: flex;
     justify-content: space-between;
 }
 
 .eventActionButtons {
     margin:1rem;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Ranchers', cursive !important;
     
 }
 
@@ -129,4 +127,28 @@ p {
 }
 .modal-title {
     font-family: "Ranchers", cursive;
+}
+
+.btn-outline-primary {
+    color: #a9def9 !important;
+    border-color: #a9def9 !important; 
+}
+
+.btn-outline-primary:focus{
+    color:whitesmoke !important;
+    border-color: #a9def9 !important;
+    background-color: #a9def9 !important;
+    box-shadow: 0 0 0 0.2rem rgb(169, 222, 249, 0.5 ) !important;
+}
+
+.btn-outline-info {
+    color:  #ff99c8 !important;;
+    border-color:  #ff99c8 !important;;
+}
+
+.btn-outline-info:focus {
+    color:whitesmoke !important;
+    background-color: #ff99c8 !important;
+    border-color: #ff99c8 !important;
+    box-shadow: 0 0 0 0.2rem rgb(255, 153, 200, 0.5 ) !important;
 }

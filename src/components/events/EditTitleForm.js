@@ -55,7 +55,7 @@ const {updateEvent, deleteEvent} = useContext(EventContext)
     </Collapse>
   </div> 
     <div>
-    <Button outline className="eventActionButtons" color="danger" onClick={toggleDelete} style={{ marginBottom: '1rem' }}>
+    <Button outline className="eventActionButtons" color="info" onClick={toggleDelete} style={{ marginBottom: '1rem' }}>
       delete
     </Button>
     <Collapse isOpen={isDeleteOpen}>
