@@ -43,9 +43,9 @@ export const EventDetailsForm = (props) => {
                 id: eventId,
                 name: props.event.name,
                 eventTypeId: parseInt(event.eventTypeId),
+                date: event.date,
                 host: event.host,
                 location: event.location,
-                date: event.date,
                 time: event.time,
                 archived: false
             })
@@ -67,6 +67,11 @@ export const EventDetailsForm = (props) => {
             })}</select>
             </fieldset>
             <fieldset>
+            <label className="label">date</label>
+            <input className="input" type="date" name="date" value={event.date || ""} 
+                onChange={handleControlledInputChange} />
+            </fieldset>
+            <fieldset>
             <label className="label">host</label>
             <input className="input" type="text" name="host" defaultValue={event.host} placeholder="host"
                 onChange={handleControlledInputChange} />
@@ -79,11 +84,6 @@ export const EventDetailsForm = (props) => {
             <fieldset>
             <label className="label">time</label>
             <input className="input" type="text" name="time" defaultValue={event.time} placeholder="time"
-                onChange={handleControlledInputChange} />
-            </fieldset>
-            <fieldset>
-            <label className="label">date</label>
-            <input className="input" type="date" name="date" value={event.date || ""} 
                 onChange={handleControlledInputChange} />
             </fieldset>
             <button onClick={evt => {

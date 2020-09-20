@@ -5,7 +5,7 @@ import { EditTitleForm } from "../events/EditTitleForm"
 import { Link } from "react-router-dom"
 import "./Profile.css"
 import { UserEventsContext } from "../users/UserEventsProvider"
-import {Button} from "reactstrap"
+import {Button, Modal, ModalBody, ModalHeader, Alert} from "reactstrap"
 
 
 export const ProfileList = (props) => {
@@ -16,8 +16,8 @@ export const ProfileList = (props) => {
     const [user, setUsers] = useState([])
     const [ vEvents, setValidEvents] = useState([])
 
-    const createEvent = useRef()
-    const eventName = useRef(null)
+    const eventDate = useRef()
+    const eventName = useRef()
 
 
     useEffect(() => {
@@ -32,57 +32,73 @@ export const ProfileList = (props) => {
 
     useEffect(() => {
         const currentEvents = events.filter(e => e.archived === false) || {}
-        setValidEvents(currentEvents)
+        const sortedByDate = currentEvents.sort(
+            (currentEntry, nextEntry) =>
+            Date.parse(currentEntry.date) - Date.parse(nextEntry.date))
+        setValidEvents(sortedByDate)
     }, [events])
 
+    const [modal, setModal] = useState(false);
+    const toggle = () => setModal(!modal);
+    const [visible, setVisible] = useState(false);
+    const onDismiss = () => setVisible(false);
+
+    const constructEvent = () => {
+        if(eventName.current.value === "" || eventDate.current.value === "") {
+            setVisible(true)
+        } else {
+            addEvent({
+                name: eventName.current.value,
+                eventTypeId: 1,
+                date: eventDate.current.value,
+                host: "click edit",
+                location: "to add",
+                time: "details!",
+                archived: false
+            })
+            .then((newEventId) => {
+                {
+                    users.map(u => {
+                        addUserEvents({
+                            userId: u.id,
+                            eventId: newEventId,
+                            rsvp: null
+                        })
+                    })
+                }
+                props.history.push(`/events/${newEventId}`)
+            })
+        }
+    }
 
     return (
         <>
             <h1 className="profileTitle">{user.fname}'s Profile Page</h1>
             <div className="createEventButtonDiv">
-                <button className="createEventButton" onClick={() => {
-                    createEvent.current.showModal()
-                }}>create event</button>
-                <dialog className="dialog dialog--createEvent" ref={createEvent}>
-                    <p>Enter an Event Title</p>
-                    <input type="text" placeholder="type here" ref={eventName} ></input>
-                    <div>
-                        <button
-                            onClick={() => {
-                                addEvent({
-                                    name: eventName.current.value,
-                                    eventTypeId: 1,
-                                    host: "click edit",
-                                    location: "to",
-                                    date: "add",
-                                    time: "details!",
-                                    archived: false
-                                })
-                                .then((newEventId) => {
-                                    {
-                                        users.map(u => {
-                                            addUserEvents({
-                                                userId: u.id,
-                                                eventId: newEventId,
-                                                rsvp: null
-                                            })
-                                        })
-                                    }
-                                    props.history.push(`/events/${newEventId}`)
-                                })
-                            }}
-                        >create!</button>
-                        <button onClick={() => {
-                            createEvent.current.close()
-                        }}>nevermind</button>
-                    </div>
-                </dialog>
+                <button className="createEventButton" onClick={toggle}>create event</button>
             </div>
+                <Modal isOpen={modal} toggle={toggle}>
+                <ModalHeader toggle={toggle}>Create an Event to start planning!</ModalHeader>
+                <ModalBody>
+                <Alert color="danger" isOpen={visible} toggle={onDismiss}>
+                    both fields must be filled out!
+                </Alert>
+                    <p> Event Title</p>
+                    <input type="text" placeholder="type here" ref={eventName} className="createEventInput" ></input>
+                    <p> Event Date</p>
+                    <input type="date" ref={eventDate} className="createEventInput"></input>
+                    <div className="actualCreateEvent">
+                        <button className="createEventButton"
+                            onClick={constructEvent}
+                        >create!</button>
+                    </div>
+                </ModalBody>
+                </Modal>
             <div className="content">
             <div className="leftContent">
                 {/* events that already exist */}
                 <article className="eventsWithName">
-                <Button color="info">Events</Button>
+                <h1 className="eventsListTitle">Events</h1>
                     <div className="events">
                     {
                         vEvents.map(event => {
@@ -92,7 +108,7 @@ export const ProfileList = (props) => {
                                         pathname: `/events/${event.id}`,
                                         state: { chosenEvent: event }
                                     }}>
-                                    <h3 className="eventTitle">{event.name}</h3>
+                                    <Button color="primary" className="eventTitle">{event.name}</Button>
                                 </Link>
                                 <EditTitleForm key={event.id} event={event} />
                                 <hr/>
