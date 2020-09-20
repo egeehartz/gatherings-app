@@ -44,24 +44,26 @@ const {updateEvent, deleteEvent} = useContext(EventContext)
       <Card className="collapseCard">
         <CardBody>
           <label className="editTitleLabel">Edit Event Title</label>
+          <div>
           <input className="editTitleLabel" type="text" placeholder={event.name} ref={editingTitle}  ></input>
           <button className="editTitleLabel" onClick={() => {
                 addToEvent()
                 editingTitle.current.value = ""
                 setIsOpen(false)
                 }}>save</button>
+          </div>
         </CardBody>
       </Card>
     </Collapse>
   </div> 
     <div>
-    <Button outline className="eventActionButtons" color="danger" onClick={toggleDelete} style={{ marginBottom: '1rem' }}>
+    <Button outline className="eventActionButtons" color="info" onClick={toggleDelete} style={{ marginBottom: '1rem' }}>
       delete
     </Button>
     <Collapse isOpen={isDeleteOpen}>
       <Card >
         <CardBody className="collapseCard">
-          <p >Are you absolutely sure?</p>
+          <p class="deleteMessage">Are you absolutely sure?</p>
           <button className="editTitleLabel" onClick={() => {
               deleteTheEvent()
           }}>Delete it!</button>

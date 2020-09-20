@@ -16,7 +16,7 @@ h2 {
     margin-bottom: 1rem !important;
 }
 
-.userRSVP{
+.userRSVP {
     text-align: center;
     font-family: "Oswald", sans-serif;
 }
@@ -137,4 +137,10 @@ margin: 2rem 0.25rem 0.25rem 0.25rem;
     display: flex;
     justify-content: center;
     margin-bottom: 1rem;
+}
+
+.finalizeButton {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
 }

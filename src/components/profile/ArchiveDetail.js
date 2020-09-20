@@ -23,12 +23,16 @@ export const ArchiveDetail = ({ et }) => {
 
     useEffect(() => {
         const currentEvents = events.filter(e => e.archived === true) || {}
+        
         setValidEvents(currentEvents)
     }, [events])
 
     useEffect(() => {
        const filteredByType = vEvents.filter(ve => ve.eventTypeId === et.id)
-       setFilteredEvents(filteredByType)
+       const sortedByDate = filteredByType.sort(
+        (currentEntry, nextEntry) =>
+        Date.parse(currentEntry.date) - Date.parse(nextEntry.date))
+       setFilteredEvents(sortedByDate)
     },[vEvents])
 
 
