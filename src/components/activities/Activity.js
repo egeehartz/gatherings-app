@@ -1,5 +1,5 @@
-import React, {useContext, useEffect} from "react"
-import {UserContext} from "../users/UserProvider"
+import React, { useContext, useEffect } from "react"
+import { UserContext } from "../users/UserProvider"
 import { ActivityContext } from "./ActivityProvider"
 
 //this component handles the rendering of activities in the event planning space

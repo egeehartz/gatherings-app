@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from "react"
-import {UserContext} from "../users/UserProvider"
+import { UserContext } from "../users/UserProvider"
 import { FoodContext } from "./FoodProvider"
 
+//this component handles the rendering of food items in the event planning space
 export const Food = ({food}) => {
     const {deleteFood} = useContext(FoodContext)
     const {users, getUsers} = useContext(UserContext)

@@ -1,31 +1,31 @@
 import React, { useContext, useState, useEffect, useRef } from "react"
+import { Collapse, Button, CardBody, Card } from 'reactstrap';
 import { EventContext } from "./EventsProvider"
 import { FoodContext } from "../foods/FoodProvider"
 import { ActivityContext } from "../activities/ActivityProvider"
 import { MiscContext } from "../misc/MiscProvider"
 import { UserContext } from "../users/UserProvider"
+import { FoodTypeContext } from "../foods/FoodTypeProvider"
+import { UserEventsContext } from "../users/UserEventsProvider"
+import { Users } from "../users/Users"
 import { Activity } from "../activities/Activity"
 import { Misc } from "../misc/Misc"
-import { FoodTypeContext } from "../foods/FoodTypeProvider"
 import { FoodForm } from "../forms/FoodForm"
 import { EventDetailsForm } from "../events/EventDetailsForm"
 import { EventDetails } from "../events/EventDetails"
-import "./EventPlanningSpace.css"
-import { Collapse, Button, CardBody, Card } from 'reactstrap';
-import { Users } from "../users/Users"
-import { UserEventsContext } from "../users/UserEventsProvider"
 import { RSVPstatus } from "../users/RSVPstatus"
+import "./EventPlanningSpace.css"
 
 
 export const EventPlanningSpace = props => {
     //CONTEXTS
-    const { events, getEvents, updateEvent } = useContext(EventContext)
-    const { getFood } = useContext(FoodContext)
-    const { foodTypes, getFoodType } = useContext(FoodTypeContext)
-    const { activities, addActivity, getActivities } = useContext(ActivityContext)
-    const { misc, getMisc, addMisc } = useContext(MiscContext)
-    const { getUsers } = useContext(UserContext)
-    const { userEvents, getUserEvents } = useContext(UserEventsContext)
+    const {events, getEvents, updateEvent} = useContext(EventContext)
+    const {getFood} = useContext(FoodContext)
+    const {foodTypes, getFoodType} = useContext(FoodTypeContext)
+    const {activities, addActivity, getActivities} = useContext(ActivityContext)
+    const {misc, getMisc, addMisc} = useContext(MiscContext)
+    const {getUsers} = useContext(UserContext)
+    const {userEvents, getUserEvents} = useContext(UserEventsContext)
 
     //REFS
     const aName = useRef(null)

@@ -3,8 +3,8 @@ import { EventContext } from "./EventsProvider"
 import { Collapse, Button, CardBody, Card } from 'reactstrap';
 
 //this component handles the EDIT and DELETE collapses on the profile page
-export const EditTitleForm = ({ event }) => {
-  const { updateEvent, deleteEvent } = useContext(EventContext)
+export const EditTitleForm = ({event}) => {
+  const {updateEvent, deleteEvent} = useContext(EventContext)
 
   const editingTitle = useRef()
 

@@ -11,13 +11,13 @@ export const FoodTypeProvider = (props) => {
             .then(setFoodTypes)
     }
 
-    const addFoodType = FoodType => {
+    const addFoodType = foodType => {
         return fetch("http://localhost:8088/foodTypes", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(FoodType)
+            body: JSON.stringify(foodType)
         })
             .then(getFoodType)
     }

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, { useState, useEffect } from "react"
 
 //this component renders the event details in the planning space
 //the edit button toggles edit mode which then renders EventDetailsForm.js

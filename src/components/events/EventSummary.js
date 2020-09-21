@@ -9,10 +9,10 @@ import "../profile/Archive.css"
 
 
 export const EventSummary = (props) => {
-    const { events, getEvents } = useContext(EventContext)
-    const { activities, getActivities } = useContext(ActivityContext)
-    const { misc, getMisc } = useContext(MiscContext)
-    const { foodsArr, getFood } = useContext(FoodContext)
+    const {events, getEvents} = useContext(EventContext)
+    const {activities, getActivities} = useContext(ActivityContext)
+    const {misc, getMisc} = useContext(MiscContext)
+    const {foodsArr, getFood} = useContext(FoodContext)
 
     const [event, setEvents] = useState([])
     const [tActivities, setActivities] = useState([])
