@@ -63,7 +63,7 @@ export const EditTitleForm = ({event}) => {
           <Collapse isOpen={isDeleteOpen}>
             <Card >
               <CardBody className="collapseCard">
-                <p class="deleteMessage">Are you absolutely sure?</p>
+                <p className="deleteMessage">Are you absolutely sure?</p>
                 <button className="editTitleLabel" onClick={() => {
                   deleteTheEvent()
                 }}>Delete it!</button>
