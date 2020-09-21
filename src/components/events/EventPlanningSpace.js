@@ -79,15 +79,14 @@ export const EventPlanningSpace = props => {
         setMisc(eventMisc)
     }, [misc])
     useEffect(() => { //listen for a change in userEvents to set the RSVP state variables
-        const currentUserEvents = userEvents.filter(ue => ue.eventId === parseInt(props.match.params.eventId)) || {}
-        const rsvpStatusNull = currentUserEvents.filter(cue => cue.rsvp === null) || {}
+        const rsvpStatusNull = tUserEvents.filter(tue => tue.rsvp === null) || {}
         setNotResponded(rsvpStatusNull)
-        const rsvpStatusGoing = currentUserEvents.filter(cue => cue.rsvp === true) || {}
+        const rsvpStatusGoing = tUserEvents.filter(tue => tue.rsvp === true) || {}
         setGoing(rsvpStatusGoing)
-        const rsvpStatusNotGoing = currentUserEvents.filter(cue => cue.rsvp === false) || {}
+        const rsvpStatusNotGoing = tUserEvents.filter(tue => tue.rsvp === false) || {}
         setNotGoing(rsvpStatusNotGoing)
     }, [userEvents])
-    useEffect(() => { //listen for a change in userEvents and pull the ones with the eventId that matches the selected event
+    useEffect(() => { //listen for a change in userEvents and pulls the ones with the eventId that matches the selected event
         const eventUserEvents = userEvents.filter(ue => ue.eventId === parseInt(props.match.params.eventId)) || {}
         setUserEvents(eventUserEvents)
     }, [userEvents])
