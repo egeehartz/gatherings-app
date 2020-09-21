@@ -116,6 +116,7 @@ export const EventPlanningSpace = props => {
         })
             .then(mName.current.value = "")
     }
+    
     //OTHER FUNCTIONS, SET STATE, TRIGGERED ONCLICK
     const toggleEditMode = () => {
         if (editMode === true) {
