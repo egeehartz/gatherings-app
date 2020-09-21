@@ -18,6 +18,7 @@ export const EventSummary = (props) => {
     const [tActivities, setActivities] = useState([])
     const [tMisc, setMisc] = useState([])
     const [tFood, setFood] = useState([])
+    const [date, setDate] = useState('')
 
     useEffect(() => {
         getEvents()
@@ -43,7 +44,12 @@ export const EventSummary = (props) => {
         const eventFood = foodsArr.filter(f => f.eventId === parseInt(props.match.params.eventId)) || {}
        setFood(eventFood)
     }, [foodsArr])
-
+   useEffect(() => {
+    const eventDate = event.date || "-"
+    const splitDate = eventDate.split("-")
+    const combinedDate = splitDate[1] + "-" + splitDate[2] + "-" + splitDate[0]
+    setDate(combinedDate)
+   },[event]) 
 
 
     return (
@@ -54,7 +60,7 @@ export const EventSummary = (props) => {
             <div>Host: {event.host}</div>
             <div>Location: {event.location}</div>
             <div>Time: {event.time}</div>
-            <div>Date: {event.date}</div>
+            <div>Date: {date}</div>
 
             <Button color="primary">Food Brought</Button>
             {
