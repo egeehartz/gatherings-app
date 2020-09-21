@@ -31,7 +31,7 @@ export const UserEventsProvider = (props) => {
             body: JSON.stringify(userEvent)
             })
                 .then(getUserEvents)
-}
+    }
     
     return (
         <UserEventsContext.Provider value={{

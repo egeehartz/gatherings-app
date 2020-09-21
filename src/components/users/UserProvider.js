@@ -21,11 +21,11 @@ export const UserProvider = (props) => {
         })
             .then(getUsers)
     }
-    
+
     return (
         <UserContext.Provider value={{
             users, getUsers, addUser, setUsers
-        }}>
+            }}>
             {props.children}
         </UserContext.Provider>
     )
