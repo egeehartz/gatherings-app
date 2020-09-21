@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald&family=Ranchers&display=swap&family=Ribeye+Marrow&display=swap');
 
 
-h1, .label, h3 {
+h1, .label, h3, .labelDone {
     font-family: 'Ranchers', cursive;
 }
 
@@ -21,27 +21,20 @@ h2 {
     font-family: "Oswald", sans-serif;
 }
 
-.input {
+.input, .inputDone {
     font-family: "Oswald", sans-serif;
 }
 .mainInput {
     font-family: "Oswald", sans-serif;
-    
 }
-
 .details {
     display: flex;
 }
-
-.savedDetailsContainer {
-    display: flex;
-    flex-direction: column;
-   align-items: center;
-}
-
 .editButton {
     text-align: center;
     font-family: "Oswald", sans-serif;
+    margin-top: 0.25rem;
+    margin-left: 2rem;
 }
 
 .renderedFood, .renderedActivity, .renderedMisc {
@@ -63,28 +56,23 @@ h2 {
     align-items: center;
     flex-direction: column;
 }
-
 .inputButton {
     display: flex;
     justify-content: center;
     font-family: "Oswald", sans-serif;
 }
-
 .typeTitle {
     margin: 1rem 0;
 }
-
 .btn {
     align-self: center;
     font-family: 'Ribeye Marrow', cursive;
     font-size: xx-large !important;
 }
-
 .form-group{
     display: flex;
     flex-direction: column;
 }
-
 .btn-info {
 background-color: #ff99c8 !important;
 border-color: #ff99c8 !important;
@@ -143,4 +131,37 @@ margin: 2rem 0.25rem 0.25rem 0.25rem;
     display: flex;
     justify-content: center;
     margin-top: 1rem;
+}
+
+.evtDetailsForm {
+    align-items: center;
+}
+.evtDetailsForm > button {
+    margin-top: 1rem;
+    font-family: "Oswald", sans-serif;
+}
+
+.label, .input {
+    margin-right: 1rem;
+    margin-top: .5rem;
+}
+
+.input {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.labelDone{
+    margin-right: 0.5rem;
+    margin-left: 7.75rem;
+    margin-bottom: 1rem;
+}
+.date > .inputDone {
+    margin-left: 1.2rem;
+    
+}
+.host > .inputDone{
+    margin-left: 1.5rem;
+}
+.time > .inputDone{
+    margin-left: 1.5rem;
 }

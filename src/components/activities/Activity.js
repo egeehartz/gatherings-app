@@ -1,8 +1,8 @@
-import React, {useContext, useEffect} from "react"
-import {UserContext} from "../users/UserProvider"
+import React, { useContext, useEffect } from "react"
+import { UserContext } from "../users/UserProvider"
 import { ActivityContext } from "./ActivityProvider"
 
-
+//this component handles the rendering of activities in the event planning space
 export const Activity = (props) => {
     const {deleteActivity} = useContext(ActivityContext)
     const {users, getUsers} = useContext(UserContext)
@@ -12,6 +12,11 @@ export const Activity = (props) => {
         getUsers()
         },[])
 
+    /* 
+    * use the ternary operator to determine if the
+    * logged in user matches the activity being rendered
+    * if it is, display the delete button!
+    */
     return(
     <div className="renderedActivity">
         <div className="activity">{props.activity.text} -{userActivity.fname}</div>

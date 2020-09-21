@@ -39,7 +39,7 @@ export const AppViews = props => {
                     </FoodProvider>
                 </EventTypeProvider>
             </EventsProvider>
-            {/* ///////////////////////////////////////////// */}
+            {/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */}
             <EventsProvider>
                 <EventTypeProvider>
                     <FoodProvider>
@@ -48,6 +48,7 @@ export const AppViews = props => {
                                 <FoodTypeProvider>
                                     <UserProvider>
                                         <UserEventsProvider>
+                                            {/* function that renders responsibilities page */}
                                             <Route exact path="/responsibilities" render={
                                                 props => <Responsibilities {...props} />} />
                                         </UserEventsProvider>
@@ -58,7 +59,7 @@ export const AppViews = props => {
                     </FoodProvider>
                 </EventTypeProvider>
             </EventsProvider>
-            {/* ///////////////////////////////////////////// */}
+            {/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */}
             <EventsProvider>
                 <EventTypeProvider>
                     <FoodProvider>
@@ -67,6 +68,7 @@ export const AppViews = props => {
                                 <FoodTypeProvider>
                                     <UserProvider>
                                         <UserEventsProvider>
+                                            {/* function that renders archive page */}
                                             <Route exact path="/archive" render={
                                                 props => <Archive {...props} />} />
                                         </UserEventsProvider>
@@ -77,7 +79,7 @@ export const AppViews = props => {
                     </FoodProvider>
                 </EventTypeProvider>
             </EventsProvider>
-            {/* ///////////////////////////////////////////// */}
+            {/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */}
             <EventsProvider>
                 <EventTypeProvider>
                     <FoodProvider>
@@ -86,9 +88,9 @@ export const AppViews = props => {
                                 <FoodTypeProvider>
                                     <UserProvider>
                                         <UserEventsProvider>
+                                            {/* function that renders EventPlanning page */}
                                             <Route path="/events/:eventId(\d+)" render={
-                                                props => <EventPlanningSpace {...props} />
-                                            } />
+                                                props => <EventPlanningSpace {...props} />} />
                                         </UserEventsProvider>
                                     </UserProvider>
                                 </FoodTypeProvider>
@@ -97,7 +99,7 @@ export const AppViews = props => {
                     </FoodProvider>
                 </EventTypeProvider>
             </EventsProvider>
-            {/* ///////////////////////////////////////////// */}
+            {/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */}
             <EventsProvider>
                 <EventTypeProvider>
                     <FoodProvider>
@@ -106,9 +108,9 @@ export const AppViews = props => {
                                 <FoodTypeProvider>
                                     <UserProvider>
                                         <UserEventsProvider>
+                                            {/* renders the specific event from the archives page */}
                                             <Route path="/archive/:eventId(\d+)" render={
-                                                props => <EventSummary {...props} />
-                                            } />
+                                                props => <EventSummary {...props} />} />
                                         </UserEventsProvider>
                                     </UserProvider>
                                 </FoodTypeProvider>
@@ -117,7 +119,7 @@ export const AppViews = props => {
                     </FoodProvider>
                 </EventTypeProvider>
             </EventsProvider>
-            {/* ///////////////////////////////////////////// */}
+            {/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */}
             <Route path="/logout" render={
                 (props) => {
                     localStorage.removeItem("gatherings_customer")

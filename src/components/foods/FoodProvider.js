@@ -27,9 +27,8 @@ export const FoodProvider = (props) => {
             .then(getFood)
     }
 
-    //for deleting Food functionality
-    const deleteFood = (FoodId) => {
-        return fetch(`http://localhost:8088/food/${FoodId}`, {
+    const deleteFood = (foodId) => {
+        return fetch(`http://localhost:8088/food/${foodId}`, {
             method: "DELETE"
         })
         .then(getFood)
@@ -37,9 +36,8 @@ export const FoodProvider = (props) => {
     
     return (
         <FoodContext.Provider value={{
-            foodsArr,
-             getFood,  getFoodById, addFood, deleteFood
-        }}>
+            foodsArr, getFood,  getFoodById, addFood, deleteFood
+            }}>
             {props.children}
         </FoodContext.Provider>
     )
@@ -57,13 +55,4 @@ const updateFood = Food => {
         })
             .then(getFood)
 }
-
-//for deleting Food functionality
-const deleteFood = (FoodId) => {
-        return fetch(`http://localhost:8088/food/${FoodId}`, {
-            method: "DELETE"
-        })
-        .then(getFood)
-    }
-
 */

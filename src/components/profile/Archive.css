@@ -9,3 +9,28 @@
     flex-direction: column;
     align-items: center;
 }
+
+.detailItem, .item {
+    font-family: "Oswald", sans-serif;
+}
+
+.detailCategory {
+    font-family: "Ranchers", cursive;
+}
+.host > .detailItem {
+    margin-left: 2rem;
+}
+.locale > .detailItem {
+    margin-left: 0.5rem;
+}
+.time > .detailItem {
+    margin-left: 1.8rem;
+}
+.date > .detailItem {
+    margin-left: 1.7rem;
+}
+.archivedEventTitle {
+    font-family: "Ranchers", cursive;
+    color: black;
+    margin-bottom: 1rem;
+}

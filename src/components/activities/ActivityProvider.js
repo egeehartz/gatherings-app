@@ -6,6 +6,7 @@ export const ActivityProvider = (props) => {
     const [activities, setActivities] = useState([])
 
     const getActivities = () => {
+        //expanded so I can access event.name from activity in Responsibilites
         return fetch("http://localhost:8088/activities?_expand=event")
             .then(res => res.json())
             .then(setActivities)
@@ -16,24 +17,23 @@ export const ActivityProvider = (props) => {
             .then(res => res.json())
     }
 
-    const addActivity = Activity => {
+    const addActivity = activity => {
         return fetch("http://localhost:8088/activities", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(Activity)
+            body: JSON.stringify(activity)
         })
             .then(getActivities)
     }
 
-    //for deleting Activity functionality
     const deleteActivity = (activityId) => {
         return fetch(`http://localhost:8088/activities/${activityId}`, {
             method: "DELETE"
         })
         .then(getActivities)
-}
+    }
     
     return (
         <ActivityContext.Provider value={{
@@ -45,7 +45,6 @@ export const ActivityProvider = (props) => {
 }
 
 /* 
-//for editing functionality
 const updateActivity = activity => {
     return fetch(`http://localhost:8088/activities/${activity.id}`, {
         method: "PUT",
@@ -56,13 +55,4 @@ const updateActivity = activity => {
         })
             .then(getActivities)
 }
-
-//for deleting Activity functionality
-const deleteActivity = (activityId) => {
-        return fetch(`http://localhost:8088/activities/${activityId}`, {
-            method: "DELETE"
-        })
-        .then(getActivities)
-    }
-
 */

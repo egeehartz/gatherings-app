@@ -1,31 +1,30 @@
 import React, { useContext, useState, useEffect, useRef } from "react"
+import { Collapse, Button, CardBody, Card } from 'reactstrap';
 import { EventContext } from "./EventsProvider"
 import { FoodContext } from "../foods/FoodProvider"
 import { ActivityContext } from "../activities/ActivityProvider"
 import { MiscContext } from "../misc/MiscProvider"
 import { UserContext } from "../users/UserProvider"
+import { FoodTypeContext } from "../foods/FoodTypeProvider"
+import { UserEventsContext } from "../users/UserEventsProvider"
+import { Users } from "../users/Users"
 import { Activity } from "../activities/Activity"
 import { Misc } from "../misc/Misc"
-import { FoodTypeContext } from "../foods/FoodTypeProvider"
 import { FoodForm } from "../forms/FoodForm"
 import { EventDetailsForm } from "../events/EventDetailsForm"
 import { EventDetails } from "../events/EventDetails"
-import "./EventPlanningSpace.css"
-import { Collapse, Button, CardBody, Card } from 'reactstrap';
-import { Users } from "../users/Users"
-import { UserEventsContext } from "../users/UserEventsProvider"
 import { RSVPstatus } from "../users/RSVPstatus"
-
+import "./EventPlanningSpace.css"
 
 export const EventPlanningSpace = props => {
-    //CONTEXT
-    const { events, getEvents, updateEvent } = useContext(EventContext)
-    const { getFood } = useContext(FoodContext)
-    const { foodTypes, getFoodType } = useContext(FoodTypeContext)
-    const { activities, addActivity, getActivities } = useContext(ActivityContext)
-    const { misc, getMisc, addMisc } = useContext(MiscContext)
-    const { getUsers } = useContext(UserContext)
-    const { userEvents, getUserEvents } = useContext(UserEventsContext)
+    //CONTEXTS
+    const {events, getEvents, updateEvent} = useContext(EventContext)
+    const {getFood} = useContext(FoodContext)
+    const {foodTypes, getFoodType} = useContext(FoodTypeContext)
+    const {activities, addActivity, getActivities} = useContext(ActivityContext)
+    const {misc, getMisc, addMisc} = useContext(MiscContext)
+    const {getUsers} = useContext(UserContext)
+    const {userEvents, getUserEvents} = useContext(UserEventsContext)
 
     //REFS
     const aName = useRef(null)
@@ -54,7 +53,6 @@ export const EventPlanningSpace = props => {
     const [isRSVPOpen, setIsRSVPOpen] = useState(false)
     const toggleRSVP = () => setIsRSVPOpen(!isRSVPOpen)
 
-
     // WHEN COMPONENT INITIALIZES
     useEffect(() => {
         getEvents()
@@ -65,35 +63,34 @@ export const EventPlanningSpace = props => {
         getUsers()
         getUserEvents()
     }, [])
-    useEffect(() => {
+    useEffect(() => { //listen for change in events, find the specific event that the user clicked
         const event = events.find(e => e.id === parseInt(props.match.params.eventId)) || {}
         setEvents(event)
         if (editMode === null) {
             setEditMode(event.host === "click edit" && event.location === "to" && event.date === "add" && event.time === "details!")
         }
     }, [events])
-    useEffect(() => {
+    useEffect(() => { //listen for a change in activities and find the ones with the same eventId as the selected event
         const eventActivity = activities.filter(a => a.eventId === parseInt(props.match.params.eventId)) || {}
         setActivities(eventActivity)
     }, [activities])
-    useEffect(() => {
+    useEffect(() => { //listen for a change in misc and find the ones with the same eventId as the selected event
         const eventMisc = misc.filter(m => m.eventId === parseInt(props.match.params.eventId)) || {}
         setMisc(eventMisc)
     }, [misc])
-    useEffect(() => {
-        const currentUserEvents = userEvents.filter(ue => ue.eventId === parseInt(props.match.params.eventId)) || {}
-        const rsvpStatusNull = currentUserEvents.filter(cue => cue.rsvp === null) || {}
+    useEffect(() => { //listen for a change in userEvents to set the RSVP state variables
+        const rsvpStatusNull = tUserEvents.filter(tue => tue.rsvp === null) || {}
         setNotResponded(rsvpStatusNull)
-        const rsvpStatusGoing = currentUserEvents.filter(cue => cue.rsvp === true) || {}
+        const rsvpStatusGoing = tUserEvents.filter(tue => tue.rsvp === true) || {}
         setGoing(rsvpStatusGoing)
-        const rsvpStatusNotGoing = currentUserEvents.filter(cue => cue.rsvp === false) || {}
+        const rsvpStatusNotGoing = tUserEvents.filter(tue => tue.rsvp === false) || {}
         setNotGoing(rsvpStatusNotGoing)
     }, [userEvents])
-    useEffect(() => {
+    useEffect(() => { //listen for a change in userEvents and pulls the ones with the eventId that matches the selected event
         const eventUserEvents = userEvents.filter(ue => ue.eventId === parseInt(props.match.params.eventId)) || {}
         setUserEvents(eventUserEvents)
     }, [userEvents])
-    useEffect(() => {
+    useEffect(() => { //changes the format of the date to be MM-DD-YYYY
         const dayToday = new Date();
         const dd = String(dayToday.getDate()).padStart(2, '0');
         const mm = String(dayToday.getMonth() + 1).padStart(2, '0');
@@ -102,7 +99,7 @@ export const EventPlanningSpace = props => {
         setToday(currentDate)
     }) 
 
-    //POST
+    //POSTS
     const constructNewActivity = () => {
         addActivity({
             text: aName.current.value,
