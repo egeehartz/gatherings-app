@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 
-export const NavBar = (props) => {
-  const [collapsed, setCollapsed] = useState(true);
+//this component is responsible for the html rep of the NavBar
+export const NavBar = () => {
 
+  const [collapsed, setCollapsed] = useState(true);
   const toggleNavbar = () => setCollapsed(!collapsed);
 
   return (

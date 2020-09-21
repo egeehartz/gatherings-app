@@ -18,29 +18,30 @@ export const EventSummary = (props) => {
     const [tFood, setFood] = useState([])
     const [date, setDate] = useState('')
 
+    //useEffect for on page load and when data changes
     useEffect(() => {
         getEvents()
         getActivities()
         getMisc()
         getFood()
     }, [])
-    useEffect(() => {
+    useEffect(() => { //find the specific event that matches the eventId from the url
         const event = events.find(e => e.id === parseInt(props.match.params.eventId)) || {}
         setEvents(event)
     }, [events])
-    useEffect(() => {
+    useEffect(() => { //find the activities that match the specific event
         const eventActivity = activities.filter(a => a.eventId === parseInt(props.match.params.eventId)) || {}
         setActivities(eventActivity)
     }, [activities])
-    useEffect(() => {
+    useEffect(() => { //find the misc items that match the specific event
         const eventMisc = misc.filter(m => m.eventId === parseInt(props.match.params.eventId)) || {}
         setMisc(eventMisc)
     }, [misc])
-    useEffect(() => {
+    useEffect(() => { //find the food that match the specific event
         const eventFood = foodsArr.filter(f => f.eventId === parseInt(props.match.params.eventId)) || {}
         setFood(eventFood)
     }, [foodsArr])
-    useEffect(() => {
+    useEffect(() => {//format the date to MM-DD-YYYY
         const eventDate = event.date || "-"
         const splitDate = eventDate.split("-")
         const combinedDate = splitDate[1] + "-" + splitDate[2] + "-" + splitDate[0]
@@ -71,7 +72,6 @@ export const EventSummary = (props) => {
                     <div className="detailItem">{date}</div>
                 </div>
                 </div>
-
                 <Button color="primary">Food Brought</Button>
                 {
                     tFood.map(f => {

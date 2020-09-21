@@ -29,3 +29,8 @@
 .date > .detailItem {
     margin-left: 1.7rem;
 }
+.archivedEventTitle {
+    font-family: "Ranchers", cursive;
+    color: black;
+    margin-bottom: 1rem;
+}
