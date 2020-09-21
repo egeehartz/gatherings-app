@@ -85,7 +85,7 @@ export const EventPlanningSpace = props => {
         setGoing(rsvpStatusGoing)
         const rsvpStatusNotGoing = tUserEvents.filter(tue => tue.rsvp === false) || {}
         setNotGoing(rsvpStatusNotGoing)
-    }, [userEvents])
+    }, [tUserEvents])
     useEffect(() => { //listen for a change in userEvents and pulls the ones with the eventId that matches the selected event
         const eventUserEvents = userEvents.filter(ue => ue.eventId === parseInt(props.match.params.eventId)) || {}
         setUserEvents(eventUserEvents)

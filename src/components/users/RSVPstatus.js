@@ -62,6 +62,3 @@ export const RSVPstatus = ({ ue }) => {
         </>
     )
 }
-
-
-//change boolean, 
