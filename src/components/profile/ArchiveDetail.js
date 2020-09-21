@@ -36,14 +36,16 @@ export const ArchiveDetail = ({et}) => {
             <Collapse isOpen={isTypeOpen}>
                 <Card>
                     <CardBody>
-                        <div>
+                    <div className="archivedEventsDiv">
                             {
                                 fEvents.map(fe => {
-                                return <Link 
+                                return <div className="archivedEventsInnerDiv" >
+                                <Link className="eventLink"
                                     to={{pathname: `/archive/${fe.id}`,
                                     state: { chosenEvent: fe }}}>
                                 <h3 className="archivedEventTitle">{fe.name}</h3>
                                 </Link>
+                                </div>
                                 })
                             }
                         </div>

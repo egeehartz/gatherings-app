@@ -140,3 +140,15 @@ p {
 .deleteMessage {
     margin-left: 0;
 }
+.archivedEventsDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.archivedEventsInnerDiv {
+    display: flex;
+}
+
+.eventLink {
+    display: flex !important;
+}
