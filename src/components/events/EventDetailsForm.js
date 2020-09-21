@@ -1,7 +1,7 @@
 import React, { useEffect,useContext, useState } from "react"
 import { EventContext } from "./EventsProvider"
 import { EventTypeContext } from "./EventTypeProvider"
-//import "./EventPlanningSpace.css"
+import "./EventPlanningSpace.css"
 
 export const EventDetailsForm = (props) => {
     const {eventTypes, getEventType} = useContext(EventTypeContext)
@@ -56,7 +56,7 @@ export const EventDetailsForm = (props) => {
         <>
         <div>
         </div>
-        <form className="form-group">
+        <form className="form-group evtDetailsForm">
             {/* type, host, location, date, time */}
             <fieldset>
                 <label className="label">type</label>
