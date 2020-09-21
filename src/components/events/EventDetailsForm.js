@@ -60,12 +60,17 @@ export const EventDetailsForm = (props) => {
                 <select className="input" name="eventTypeId" value={event.eventTypeId} onChange={handleControlledInputChange}>
                     <option value="0">Select a type</option>
                         {eventTypes.map(type => {
+                            {/* 
+                                //TODO: {type.id === 6 ? <input type="text" name="eventType"></input> : the return statement 
+                                // ? somehow gotta save the new type AND send the value of this id to the updateEvent function
+                                // * we want it to display as the event name when the user clicks save on the event details form
+                            */}
                             return <option key={type.id} value={type.id}>{type.type}</option>
                         })}</select>
             </fieldset>
             <fieldset>
                 <label className="label">Date</label>
-                <input className="input" type="date" name="date" value={event.date || ""}
+                <input className="input" type="date" name="date" value={event.date}
                     onChange={handleControlledInputChange} />
             </fieldset>
             <fieldset>

@@ -58,7 +58,6 @@ export const RSVPstatus = ({ue}) => {
                         <button className="rsvpButton" onClick={toggleRSVPEditMode}>change RSVP status</button>
                     </div>
             }
-
         </>
     )
 }
