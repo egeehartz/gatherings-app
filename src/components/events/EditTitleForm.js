@@ -75,4 +75,3 @@ const {updateEvent, deleteEvent} = useContext(EventContext)
         </>
     )
 }
-
