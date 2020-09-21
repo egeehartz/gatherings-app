@@ -27,10 +27,9 @@ export const EventsProvider = (props) => {
            .then(res => res.json())
             .then(newEvent => {
                 getEvents()
-               return newEvent.id })
-           
+               return newEvent.id })      
     }
-    //for editing functionality
+ 
     const updateEvent = event => {
         return fetch(`http://localhost:8088/events/${event.id}`, {
             method: "PUT",
@@ -43,8 +42,8 @@ export const EventsProvider = (props) => {
 }
 
 //for deleting event functionality
-const deleteEvent = (EventId) => {
-    return fetch(`http://localhost:8088/events/${EventId}`, {
+const deleteEvent = (eventId) => {
+    return fetch(`http://localhost:8088/events/${eventId}`, {
         method: "DELETE"
     })
     .then(getEvents)
@@ -60,7 +59,6 @@ const deleteEvent = (EventId) => {
 }
 
 /* 
-
 //for deleting event functionality
 const deleteEvent = (EventId) => {
         return fetch(`http://localhost:8088/Events/${EventId}`, {
@@ -68,5 +66,4 @@ const deleteEvent = (EventId) => {
         })
         .then(getEvents)
     }
-
 */

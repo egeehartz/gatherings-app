@@ -6,8 +6,6 @@ import { MiscContext } from "../misc/MiscProvider"
 import { FoodContext } from "../foods/FoodProvider"
 import "../profile/Archive.css"
 
-
-
 export const EventSummary = (props) => {
     const {events, getEvents} = useContext(EventContext)
     const {activities, getActivities} = useContext(ActivityContext)
@@ -26,12 +24,10 @@ export const EventSummary = (props) => {
         getMisc()
         getFood()
     }, [])
-
     useEffect(() => {
         const event = events.find(e => e.id === parseInt(props.match.params.eventId)) || {}
         setEvents(event)
     }, [events])
-
     useEffect(() => {
         const eventActivity = activities.filter(a => a.eventId === parseInt(props.match.params.eventId)) || {}
         setActivities(eventActivity)

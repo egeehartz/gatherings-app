@@ -16,7 +16,6 @@ import { EventDetails } from "../events/EventDetails"
 import { RSVPstatus } from "../users/RSVPstatus"
 import "./EventPlanningSpace.css"
 
-
 export const EventPlanningSpace = props => {
     //CONTEXTS
     const {events, getEvents, updateEvent} = useContext(EventContext)

@@ -6,6 +6,7 @@ import { FoodContext } from "./FoodProvider"
 export const Food = ({food}) => {
     const {deleteFood} = useContext(FoodContext)
     const {users, getUsers} = useContext(UserContext)
+    
     const userFood = users.find(u => u.id === food.userId) || {}
 
     useEffect(() => {
