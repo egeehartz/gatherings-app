@@ -100,6 +100,9 @@ export const ProfileList = (props) => {
                 </ModalBody>
                 </Modal>
             <div className="content">
+            {/*Responsibilites used to be on this page
+             I might need the two divs because of CSS... 
+             so I'm not removing the content div */}
             <div className="leftContent">
                 {/* events that already exist */}
                 <article className="eventsWithName">
@@ -122,11 +125,8 @@ export const ProfileList = (props) => {
                     }
                     </div>
                 </article>
-                </div>
+            </div>
             </div>
         </>
     )
 }
-
-
-
