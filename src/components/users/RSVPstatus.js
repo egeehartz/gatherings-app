@@ -3,7 +3,7 @@ import { UserEventsContext } from "../users/UserEventsProvider"
 
 //the value of ue is an array of userEvents that correspond to the specific event
 //this component handles the buttons that allow a user to change their RSVP status
-export const RSVPstatus = ({ ue }) => {
+export const RSVPstatus = ({ue}) => {
     const { updateUserEvent } = useContext(UserEventsContext)
 
     const userUE = ue.find(u => u.userId === parseInt(localStorage.getItem("gatherings_customer")))
