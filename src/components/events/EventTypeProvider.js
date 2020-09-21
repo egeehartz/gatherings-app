@@ -21,15 +21,8 @@ export const EventTypeProvider = (props) => {
 }
 
 
+//TODO: could be a stretch goal, in the event of an other
 /*
-//don't think I will need this one
-const getEventById = (id) => {
-    return fetch(`http://localhost:8088/events/${id}`)
-        .then(res => res.json())
-}
-
-
-//could be a stretch goal, in the event of an other
  const addEventType = eventType => {
         return fetch("http://localhost:8088/eventTypes", {
             method: "POST",

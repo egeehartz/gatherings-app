@@ -79,19 +79,19 @@ export const EventSummary = (props) => {
                 <Button color="primary">Food Brought</Button>
                 {
                     tFood.map(f => {
-                        return <div>{f.name}</div>
+                        return <div className="item">{f.name}</div>
                     })
                 }
                 <Button color="success">Activities</Button>
                 {
                     tActivities.map(a => {
-                        return <div>{a.text}</div>
+                        return <div className="item">{a.text}</div>
                     })
                 }
                 <Button color="warning">Miscellaneous Details</Button>
                 {
                     tMisc.map(m => {
-                        return <div>{m.text}</div>
+                        return <div className="item">{m.text}</div>
                     })
                 }
             </div>
