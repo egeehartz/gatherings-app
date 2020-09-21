@@ -1,26 +1,26 @@
- import React, { useEffect, useContext, useState } from "react"
- import { ProfileActivity } from "../activities/ProfileActivity"
+import React, { useEffect, useContext, useState } from "react"
+import { ProfileActivity } from "../activities/ProfileActivity"
 import { ProfileFood } from "../foods/ProfileFood"
 import { ProfileMisc } from "../misc/ProfileMisc"
 import { FoodContext } from "../foods/FoodProvider"
 import { ActivityContext } from "../activities/ActivityProvider"
 import { MiscContext } from "../misc/MiscProvider"
 import { EventContext } from "../events/EventsProvider"
-import {Button} from "reactstrap"
- 
- 
- 
- export const Responsibilities = (props) => {
-    const {foodsArr, getFood} = useContext(FoodContext)
-    const {activities, getActivities} = useContext(ActivityContext)
-    const {misc, getMisc} = useContext(MiscContext)
-    const {events, getEvents} = useContext(EventContext)
+import { Button } from "reactstrap"
+
+
+//this component handles getting the items related to the user for events that are not archived and sends that info to their corresponding components
+export const Responsibilities = () => {
+    const { foodsArr, getFood } = useContext(FoodContext)
+    const { activities, getActivities } = useContext(ActivityContext)
+    const { misc, getMisc } = useContext(MiscContext)
+    const { events, getEvents } = useContext(EventContext)
 
     const [vEvents, setValidEvents] = useState([])
     const [vFood, setValidFood] = useState([])
     const [vActivities, setValidActivities] = useState([])
     const [vMisc, setValidMisc] = useState([])
-    
+
     useEffect(() => {
         getFood()
         getActivities()
@@ -35,7 +35,7 @@ import {Button} from "reactstrap"
         const userActivity = activities.filter(a => a.userId === parseInt(localStorage.getItem("gatherings_customer"))) || {}
         const currentActivity = userActivity.filter(a => a.event.archived === false)
         setValidActivities(currentActivity)
-    }, [activities],[events])
+    }, [activities], [events])
     useEffect(() => { //get the misc items that relate to the logged in user
         const userMisc = misc.filter(m => m.userId === parseInt(localStorage.getItem("gatherings_customer"))) || {}
         const currentMisc = userMisc.filter(m => m.event.archived === false)
@@ -47,41 +47,42 @@ import {Button} from "reactstrap"
         setValidFood(currentFood)
     }, [foodsArr], [vEvents])
 
-     return (
-    <>
-     {/* Responsibilities */}
-     <div className="responsibilitiesContainer">
-     <h2 className="contentTitleResp">Responsibilities</h2>
-     <p>Click the items to go to the Event Planning Space</p>
-     <div>
-     <Button color="primary" >Food</Button>
-         <ul>
-            {
-                vFood.map(f => {
-                    return <ProfileFood key={f.id} food={f} />
-                })
-            }
-         </ul>
-     </div>
-     <div>
-     <Button color="success">Activities</Button>
-         <ul>
-             {vActivities.map(a => {
-                 return <ProfileActivity key={a.id} activity={a} />
-             })}
-         </ul>
-     </div>
-     <div>
-     <Button color="warning" >Miscellaneous</Button>
-         <ul>
-             {vMisc.map(m => {
-                 return <ProfileMisc key={m.id} misc={m} />
-             })}
-         </ul>
-     </div>
-    
-    </div>
-    </>
-     )
- }
- 
+    return (
+        <>
+        <div className="responsibilitiesContainer">
+            <h2 className="contentTitleResp">Responsibilities</h2>
+            <p>Click the items to go to the Event Planning Space</p>
+            <div>
+                <Button color="primary" >Food</Button>
+                <ul>
+                    {
+                        vFood.map(f => {
+                            return <ProfileFood key={f.id} food={f} />
+                            })
+                    }
+                </ul>
+            </div>
+            <div>
+                <Button color="success">Activities</Button>
+                <ul>
+                    {
+                        vActivities.map(a => {
+                            return <ProfileActivity key={a.id} activity={a} />
+                            })
+                    }
+                </ul>
+            </div>
+            <div>
+                <Button color="warning" >Miscellaneous</Button>
+                <ul>
+                    {
+                        vMisc.map(m => {
+                            return <ProfileMisc key={m.id} misc={m} />
+                            })
+                    }
+                </ul>
+            </div>
+        </div>
+        </>
+    )
+}
