@@ -31,7 +31,7 @@ export const EventPlanningSpace = props => {
     const mName = useRef(null)
 
     //STATE
-    const [event, setEvents] = useState([])
+    const [event, setEvents] = useState({eventType:{}})
     const [tActivities, setActivities] = useState([])
     const [tMisc, setMisc] = useState([])
     const [tUserEvents, setUserEvents] = useState([])
@@ -64,7 +64,7 @@ export const EventPlanningSpace = props => {
         getUserEvents()
     }, [])
     useEffect(() => { //listen for change in events, find the specific event that the user clicked
-        const event = events.find(e => e.id === parseInt(props.match.params.eventId)) || {}
+        const event = events.find(e => e.id === parseInt(props.match.params.eventId)) || {eventType:{}}
         setEvents(event)
         if (editMode === null) {
             setEditMode(event.host === "click edit" && event.location === "to" && event.date === "add" && event.time === "details!")

@@ -25,9 +25,9 @@ export const EventDetailsForm = (props) => {
     }
 
     const handleControlledInputChange = (browserEvent) => {
-        const newEvent = Object.assign({}, event)         
-        newEvent[browserEvent.target.name] = browserEvent.target.value 
-        setEvent(newEvent)                             
+        const newEvent = Object.assign({}, event)          
+        newEvent[browserEvent.target.name] = browserEvent.target.value  
+        setEvent(newEvent)                         
             
     }
 
@@ -97,7 +97,9 @@ export const EventDetailsForm = (props) => {
                         {parseInt(eventType) === 6 ? 
                         <>
                         <input type="text" name="type" value={eventTypeUser.type} onChange={handleOtherControlledInputChange}></input>
-                        <button onClick={constructET}>save</button>
+                        <button onClick={(evt)=>{
+                            evt.preventDefault()
+                            constructET()}}>save</button>
                         </> 
                     : ""}
                 </div>

@@ -17,6 +17,10 @@ export const EventDetails = (props) => {
     return (
     <>
     <div className="savedDetailsContainer">
+        <div className="details type">
+            <div className="labelDone">Type: </div>
+            <div className="inputDone"> {props.event.eventType.type}</div>
+        </div>
         <div className="details date">
             <div className="labelDone">Date: </div>
             <div className="inputDone"> {date}</div>
