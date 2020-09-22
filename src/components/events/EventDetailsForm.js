@@ -11,8 +11,8 @@ export const EventDetailsForm = (props) => {
     const { events, updateEvent, getEvents } = useContext(EventContext)
 
     const [event, setEvent] = useState({})
-    const [eventType, setEventType] = useState('')
-    const [eventTypeUser, setEventTypeUser] = useState('')
+    const [eventType, setEventType] = useState('') //just a number
+    const [eventTypeUser, setEventTypeUser] = useState('') //text (type)
 
     const editMode = props.match.params.hasOwnProperty("eventId")
 
@@ -32,9 +32,9 @@ export const EventDetailsForm = (props) => {
     }
 
     const handleOtherControlledInputChange = (browserEvent) => {
-        const newEventType = Object.assign({}, eventTypes)          // Create copy
-        newEventType[browserEvent.target.name] = browserEvent.target.value    // Modify copy
-        setEventTypeUser(newEventType)                                 // Set copy as new state
+        const newEventType = Object.assign({}, eventTypes)          
+        newEventType[browserEvent.target.name] = browserEvent.target.value 
+        setEventTypeUser(newEventType)                                 
     }
 
     useEffect(() => {
@@ -65,8 +65,21 @@ export const EventDetailsForm = (props) => {
 
     const constructET = () => {
         addEventType({
-            type: eventTypeUser
+            type: eventTypeUser.type
         })
+        .then(((eventTypeId) => {
+            const eventId = parseInt(props.match.params.eventId)
+            updateEvent({
+                id: eventId,
+                name: props.event.name,
+                eventTypeId: parseInt(eventTypeId),
+                date: event.date,
+                host: event.host,
+                location: event.location,
+                time: event.time,
+                archived: false
+            })
+        }))
     }
 
     return (
@@ -78,16 +91,12 @@ export const EventDetailsForm = (props) => {
                         <option value="0">Select a type</option>
                         {eventTypes.map(type => {
                             return <option key={type.id} value={type.id}>{type.type}</option>
-                            {/* 
-                                // ? somehow gotta save the new type AND send the value of this id to the updateEvent function
-                                // * we want it to display as the event name when the user clicks save on the event details form
-                            */}
                         })}
                     </select>
                     <div>
                         {parseInt(eventType) === 6 ? 
                         <>
-                        <input type="text" name="eventType" value={eventType} onChange={handleOtherControlledInputChange}></input>
+                        <input type="text" name="type" value={eventTypeUser.type} onChange={handleOtherControlledInputChange}></input>
                         <button onClick={constructET}>save</button>
                         </> 
                     : ""}

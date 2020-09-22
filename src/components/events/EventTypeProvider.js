@@ -19,7 +19,10 @@ export const EventTypeProvider = (props) => {
             },
             body: JSON.stringify(eventType)
         })
-        .then(getEventType)
+        .then(res => res.json())
+            .then(newEventType => {
+                getEventType()
+               return newEventType.id }) 
     }
     
     return (
