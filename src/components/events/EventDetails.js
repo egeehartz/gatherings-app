@@ -11,7 +11,6 @@ export const EventDetails = (props) => {
     const eventDate = props.event.date || "-"
     const splitDate = eventDate.split("-")
     const combinedDate = splitDate[1] + "-" + splitDate[2] + "-" + splitDate[0]
-    console.log(combinedDate)
     setDate(combinedDate)
    },[]) 
 
