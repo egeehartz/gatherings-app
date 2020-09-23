@@ -6,7 +6,8 @@ import { FoodContext } from "../foods/FoodProvider"
 import { ActivityContext } from "../activities/ActivityProvider"
 import { MiscContext } from "../misc/MiscProvider"
 import { EventContext } from "../events/EventsProvider"
-import { Button } from "reactstrap"
+import { Button, Collapse } from "reactstrap"
+//import { Collapse } from "@material-ui/core"
 
 
 //this component handles getting the items related to the user for events that are not archived and sends that info to their corresponding components
@@ -20,6 +21,13 @@ export const Responsibilities = () => {
     const [vFood, setValidFood] = useState([])
     const [vActivities, setValidActivities] = useState([])
     const [vMisc, setValidMisc] = useState([])
+
+    const [isOpen, setIsOpen] = useState(false);
+    const toggle = () => setIsOpen(!isOpen);
+    const [isFoodOpen, setFoodIsOpen] = useState(false);
+    const toggleFood = () => setFoodIsOpen(!isFoodOpen);
+    const [isMiscOpen, setMiscIsOpen] = useState(false);
+    const toggleMisc = () => setMiscIsOpen(!isMiscOpen);
 
     useEffect(() => {
         getFood()
@@ -62,7 +70,8 @@ export const Responsibilities = () => {
             <h2 className="contentTitleResp">Responsibilities</h2>
             <p>Click the items to go to the Event Planning Space</p>
             <div>
-                <Button color="primary">Food</Button>
+                <Button onClick={toggleFood} color="primary">Food</Button>
+                <Collapse isOpen={isFoodOpen}>
                 <ul>
                     {
                         vFood.map(f => {
@@ -70,9 +79,11 @@ export const Responsibilities = () => {
                             })
                     }
                 </ul>
+                </Collapse>
             </div>
             <div>
-                <Button color="success">Activities</Button>
+                <Button onClick={toggle} color="success">Activities</Button>
+                <Collapse isOpen={isOpen}>
                 <ul>
                     {
                         vActivities.map(a => {
@@ -80,9 +91,12 @@ export const Responsibilities = () => {
                             })
                     }
                 </ul>
+                </Collapse>
             </div>
             <div>
-                <Button color="warning" >Miscellaneous</Button>
+                <Button onClick={toggleMisc} color="warning" >Miscellaneous</Button>
+                <Collapse isOpen={isMiscOpen}>
+                <p className="miscSubtitle">You wrote: </p>
                 <ul>
                     {
                         vMisc.map(m => {
@@ -90,6 +104,7 @@ export const Responsibilities = () => {
                             })
                     }
                 </ul>
+                </Collapse>
             </div>
         </div>
         </>

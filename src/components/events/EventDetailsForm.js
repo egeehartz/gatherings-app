@@ -103,8 +103,8 @@ export const EventDetailsForm = (props) => {
                     <div>
                         {parseInt(eventType) === 6 ? 
                         <>
-                        <input type="text" name="type" value={eventTypeUser.type} onChange={handleOtherControlledInputChange}></input>
-                        <button onClick={(evt)=>{
+                        <input className="otherInput" type="text" name="type" value={eventTypeUser.type} onChange={handleOtherControlledInputChange}></input>
+                        <button className="otherInputButton" onClick={(evt)=>{
                             evt.preventDefault()
                             constructET()}}>save</button>
                         </> 
