@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { EventTypeContext } from "../events/EventTypeProvider"
 import { ArchiveDetail } from "./ArchiveDetail"
 
@@ -7,10 +7,15 @@ import { ArchiveDetail } from "./ArchiveDetail"
 //that info gets passed to ArchiveDetail for the next step
 export const Archive = () => {
     const {eventTypes, getEventType} = useContext(EventTypeContext)
+    const [filteredTypes, setTypes] = useState([])
 
     useEffect(() => {
         getEventType()
     },[])
+    useEffect(() => {
+        const filteredTypes = eventTypes.filter(et => et.id !== 6)
+        setTypes(filteredTypes)
+    },[eventTypes])
 
     return (
         <>
@@ -18,7 +23,7 @@ export const Archive = () => {
         <p className="archiveSubtitle">click on event titles to go to their summary page</p>
         <div className="archivedEventTypes">
             {
-                eventTypes.map(et => <ArchiveDetail key={et.id} et={et} />)
+                filteredTypes.map(et => <ArchiveDetail key={et.id} et={et} />)
             }
         </div>
         </>
