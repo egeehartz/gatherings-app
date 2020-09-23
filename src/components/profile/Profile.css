@@ -31,13 +31,14 @@
 .itemName {
     margin-right: 1rem;
     color: black;
-    font-size: x-large;
+    font-size: large;
     font-family: "Oswald", sans-serif;
 }
 .eventName {
     color: #007bff;
     font-family: "Oswald", sans-serif;
     align-self: center;
+    font-size: small;
 }
 .ulContainer {
     display: flex;
@@ -148,7 +149,17 @@ p {
 .archivedEventsInnerDiv {
     display: flex;
 }
-
 .eventLink {
     display: flex !important;
+}
+.miscSubtitle {
+    text-align: center;
+    margin: 0.25rem 0 1rem 0;
+}
+.eventName {
+    margin-right: 1rem;;
+}
+.miscContainer {
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid black;
 }

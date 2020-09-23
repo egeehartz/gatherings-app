@@ -154,7 +154,7 @@ margin: 2rem 0.25rem 0.25rem 0.25rem;
     margin-top: .5rem;
 }
 
-.input {
+.input, .otherInput {
     border: 1px solid black;
     border-radius: 5px;
 }
@@ -163,13 +163,14 @@ margin: 2rem 0.25rem 0.25rem 0.25rem;
     margin-left: 7.75rem;
     margin-bottom: 1rem;
 }
-.date > .inputDone {
+.date > .inputDone, .host > .inputDone, .time > .inputDone, .type > .inputDone {
     margin-left: 1.2rem;
     
 }
-.host > .inputDone{
-    margin-left: 1.5rem;
+.otherInput, .otherInputButton {
+    font-family: "Oswald", sans-serif;
 }
-.time > .inputDone{
-    margin-left: 1.5rem;
+.otherInput {
+    border: 1px solid black;
+    border-radius: 5px 0 0 5px;
 }
