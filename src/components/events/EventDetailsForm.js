@@ -11,6 +11,7 @@ export const EventDetailsForm = (props) => {
     const { events, updateEvent, getEvents } = useContext(EventContext)
 
     const [event, setEvent] = useState({})
+    const [filteredTypes, setTypes] = useState([])
     const [eventType, setEventType] = useState('') //just a number
     const [eventTypeUser, setEventTypeUser] = useState('') //text (type)
 
@@ -47,6 +48,11 @@ export const EventDetailsForm = (props) => {
     useEffect(() => {
         setEventType(event.eventTypeId)
     },[event])
+    useEffect(() => {
+        const filteredTypes = eventTypes.filter(et => et.id !== 6)
+        setTypes(filteredTypes)
+    },[eventTypes])
+
     const addToEvent = () => {
         if (editMode) {
             const eventId = parseInt(props.match.params.eventId)
@@ -89,9 +95,10 @@ export const EventDetailsForm = (props) => {
                     <label className="label">Type</label>
                     <select className="input" name="eventTypeId" value={event.eventTypeId} onChange={handleControlledInputChange}>
                         <option value="0">Select a type</option>
-                        {eventTypes.map(type => {
+                        {filteredTypes.map(type => {
                             return <option key={type.id} value={type.id}>{type.type}</option>
                         })}
+                        <option value="6">Other</option>
                     </select>
                     <div>
                         {parseInt(eventType) === 6 ? 
