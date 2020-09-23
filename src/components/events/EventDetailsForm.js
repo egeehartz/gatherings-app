@@ -81,7 +81,7 @@ export const EventDetailsForm = (props) => {
             })
         }))
     }
-
+    
     return (
         <>
             <form className="form-group evtDetailsForm">
