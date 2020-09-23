@@ -48,3 +48,8 @@ You can copy + paste sample data to get an idea of how it can be used or the emp
 ### Sample Data
 
 Sample Data Coming Soon
+
+## Author
+
+[Emily Hartzell - GitHub](https://github.com/egeehartz)
+[LinkedIn](www.linkedin.com/in/emilyhartzell)
