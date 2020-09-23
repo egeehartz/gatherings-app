@@ -37,7 +37,8 @@ export const ArchiveDetail = ({et}) => {
                 <Card>
                     <CardBody>
                     <div className="archivedEventsDiv">
-                            {
+                            { fEvents.length === 0 ?
+                                <div>Nothing to see here!</div> :
                                 fEvents.map(fe => {
                                 return <div className="archivedEventsInnerDiv" >
                                 <Link className="eventLink"

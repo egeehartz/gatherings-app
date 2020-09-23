@@ -34,17 +34,26 @@ export const Responsibilities = () => {
     useEffect(() => { //get the activities that relate to the logged in user, pull out the activities for events that are not archived
         const userActivity = activities.filter(a => a.userId === parseInt(localStorage.getItem("gatherings_customer"))) || {}
         const currentActivity = userActivity.filter(a => a.event.archived === false)
-        setValidActivities(currentActivity)
+        const sorted = currentActivity.sort(
+            (currentEntry, nextEntry) =>
+            Date.parse(currentEntry.event.date) - Date.parse(nextEntry.event.date))
+        setValidActivities(sorted)
     }, [activities], [events])
     useEffect(() => { //get the misc items that relate to the logged in user
         const userMisc = misc.filter(m => m.userId === parseInt(localStorage.getItem("gatherings_customer"))) || {}
         const currentMisc = userMisc.filter(m => m.event.archived === false)
-        setValidMisc(currentMisc)
+        const sorted = currentMisc.sort(
+            (currentEntry, nextEntry) =>
+            Date.parse(currentEntry.event.date) - Date.parse(nextEntry.event.date))
+        setValidMisc(sorted)
     }, [misc], [vEvents])
     useEffect(() => { //get the food that relates to the logged in user, pull out the food for events that are not archived 
         const userFood = foodsArr.filter(f => f.userId === parseInt(localStorage.getItem("gatherings_customer"))) || {}
         const currentFood = userFood.filter(f => f.event.archived === false)
-        setValidFood(currentFood)
+        const sorted = currentFood.sort(
+            (currentEntry, nextEntry) =>
+            Date.parse(currentEntry.event.date) - Date.parse(nextEntry.event.date))
+        setValidFood(sorted)
     }, [foodsArr], [vEvents])
 
     return (
@@ -53,7 +62,7 @@ export const Responsibilities = () => {
             <h2 className="contentTitleResp">Responsibilities</h2>
             <p>Click the items to go to the Event Planning Space</p>
             <div>
-                <Button color="primary" >Food</Button>
+                <Button color="primary">Food</Button>
                 <ul>
                     {
                         vFood.map(f => {
