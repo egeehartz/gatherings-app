@@ -51,5 +51,4 @@ Sample Data Coming Soon
 
 ## Author
 
-[Emily Hartzell - GitHub](https://github.com/egeehartz)
-[LinkedIn](www.linkedin.com/in/emilyhartzell)
+Emily Hartzell - [GitHub](https://github.com/egeehartz), [LinkedIn](www.linkedin.com/in/emilyhartzell)
