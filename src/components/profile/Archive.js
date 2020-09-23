@@ -15,6 +15,7 @@ export const Archive = () => {
     return (
         <>
         <h1>Archives</h1>
+        <p className="archiveSubtitle">click on event titles to go to their summary page</p>
         <div className="archivedEventTypes">
             {
                 eventTypes.map(et => <ArchiveDetail key={et.id} et={et} />)

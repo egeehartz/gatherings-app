@@ -5,12 +5,10 @@
     text-align: center;
     font-family: 'Ranchers', cursive;
 }
-
 .content{
     display: flex;
     flex-direction: column-reverse;
 }
-
 .contentTitleResp{
     text-align: center;
     font-family: 'Ranchers', cursive;
@@ -18,28 +16,32 @@
     margin-right: 3rem;
     margin-left: 3rem;
 }
-
 .contentTitleEvents {
     margin: 7.5rem;
     text-align: center;
     font-family: 'Ranchers', cursive;
     margin-top: 2rem;
 }
-
 .responsibilitiesContainer{
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
-
-.responsibilitiesContainer > div > ul > a > div {
-    margin-right: 2.5rem;
+.itemName {
+    margin-right: 1rem;
     color: black;
     font-size: x-large;
     font-family: "Oswald", sans-serif;
 }
-
+.eventName {
+    color: #007bff;
+    font-family: "Oswald", sans-serif;
+    align-self: center;
+}
+.ulContainer {
+    display: flex;
+}
 .eventsWithName {
     display: flex;
     flex-direction: column;
@@ -50,48 +52,39 @@
     justify-content: center;
     margin-top: 2rem;
 }
-
  h4 {
     font-family: 'Ranchers', cursive;
 }
-
 .events{
     display: flex;
     flex-flow: column;
     align-items: center;
     margin-top: 2rem;
 }
-
 .event{
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: whitesmoke;
 }
-
 .eventsListTitle {
     margin-top: 2rem;
 }
-
 .event > hr {
     border-top: 1.5px solid black;
 }
-
 .eventActions {
     display: flex;
     justify-content: space-between;
 }
-
 .eventActionButtons {
     margin:1rem;
     font-family: 'Ranchers', cursive !important;
     
 }
-
 .editTitleLabel {
     font-family: "Oswald", sans-serif;
 }
-
 .eventTitle{
     text-align: center;
     color: black;
@@ -99,28 +92,23 @@
     font-family: 'Ranchers', cursive;
     
 }
-
 .card {
     border: none !important;
     background-color: whitesmoke !important;
 }
-
 .createEventButton {
     align-self: center;
     font-family: 'Oswald', sans-serif;
 }
-
 p {
     font-family: 'Oswald', sans-serif;
     margin-left: 2rem;
 }
-
 .createEventInput {
     margin-bottom: 1rem;
     margin-left: 3rem;
     font-family: "Ranchers", cursive;
 }
-
 .actualCreateEvent {
     display: flex;
     justify-content: flex-end;
@@ -133,26 +121,34 @@ p {
     color: #a9def9 !important;
     border-color: #a9def9 !important; 
 }
-
 .btn-outline-primary:focus{
     color:whitesmoke !important;
     border-color: #a9def9 !important;
     background-color: #a9def9 !important;
     box-shadow: 0 0 0 0.2rem rgb(169, 222, 249, 0.5 ) !important;
 }
-
 .btn-outline-info {
     color:  #ff99c8 !important;;
     border-color:  #ff99c8 !important;;
 }
-
 .btn-outline-info:focus {
     color:whitesmoke !important;
     background-color: #ff99c8 !important;
     border-color: #ff99c8 !important;
     box-shadow: 0 0 0 0.2rem rgb(255, 153, 200, 0.5 ) !important;
 }
-
 .deleteMessage {
     margin-left: 0;
+}
+.archivedEventsDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.archivedEventsInnerDiv {
+    display: flex;
+}
+
+.eventLink {
+    display: flex !important;
 }

@@ -14,6 +14,7 @@ import { FoodForm } from "../forms/FoodForm"
 import { EventDetailsForm } from "../events/EventDetailsForm"
 import { EventDetails } from "../events/EventDetails"
 import { RSVPstatus } from "../users/RSVPstatus"
+import { Countdown } from "./Countdown"
 import "./EventPlanningSpace.css"
 
 export const EventPlanningSpace = props => {
@@ -31,7 +32,7 @@ export const EventPlanningSpace = props => {
     const mName = useRef(null)
 
     //STATE
-    const [event, setEvents] = useState([])
+    const [event, setEvents] = useState({eventType:{}})
     const [tActivities, setActivities] = useState([])
     const [tMisc, setMisc] = useState([])
     const [tUserEvents, setUserEvents] = useState([])
@@ -64,7 +65,7 @@ export const EventPlanningSpace = props => {
         getUserEvents()
     }, [])
     useEffect(() => { //listen for change in events, find the specific event that the user clicked
-        const event = events.find(e => e.id === parseInt(props.match.params.eventId)) || {}
+        const event = events.find(e => e.id === parseInt(props.match.params.eventId)) || {eventType:{}}
         setEvents(event)
         if (editMode === null) {
             setEditMode(event.host === "click edit" && event.location === "to" && event.date === "add" && event.time === "details!")
@@ -85,7 +86,7 @@ export const EventPlanningSpace = props => {
         setGoing(rsvpStatusGoing)
         const rsvpStatusNotGoing = tUserEvents.filter(tue => tue.rsvp === false) || {}
         setNotGoing(rsvpStatusNotGoing)
-    }, [userEvents])
+    }, [tUserEvents])
     useEffect(() => { //listen for a change in userEvents and pulls the ones with the eventId that matches the selected event
         const eventUserEvents = userEvents.filter(ue => ue.eventId === parseInt(props.match.params.eventId)) || {}
         setUserEvents(eventUserEvents)
@@ -116,6 +117,7 @@ export const EventPlanningSpace = props => {
         })
             .then(mName.current.value = "")
     }
+    
     //OTHER FUNCTIONS, SET STATE, TRIGGERED ONCLICK
     const toggleEditMode = () => {
         if (editMode === true) {
@@ -146,6 +148,7 @@ export const EventPlanningSpace = props => {
                 }}>
                     finalize plans!
                     </button>
+                <Countdown key={event.id} event={event}/>
             </div>
             <fieldset>
                 <div className="form-group">

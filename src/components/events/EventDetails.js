@@ -11,13 +11,16 @@ export const EventDetails = (props) => {
     const eventDate = props.event.date || "-"
     const splitDate = eventDate.split("-")
     const combinedDate = splitDate[1] + "-" + splitDate[2] + "-" + splitDate[0]
-    console.log(combinedDate)
     setDate(combinedDate)
    },[]) 
 
     return (
     <>
     <div className="savedDetailsContainer">
+        <div className="details type">
+            <div className="labelDone">Type: </div>
+            <div className="inputDone"> {props.event.eventType.type}</div>
+        </div>
         <div className="details date">
             <div className="labelDone">Date: </div>
             <div className="inputDone"> {date}</div>

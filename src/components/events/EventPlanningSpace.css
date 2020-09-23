@@ -129,8 +129,16 @@ margin: 2rem 0.25rem 0.25rem 0.25rem;
 
 .finalizeButton {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     margin-top: 1rem;
+}
+.finalizeButton > div {
+    font-family: "Ranchers", cursive;
+}
+.finalizeButton > button {
+    font-family: "Oswald", sans-serif;
+    margin-bottom: 1rem;
 }
 
 .evtDetailsForm {
