@@ -14,6 +14,7 @@ import { FoodForm } from "../forms/FoodForm"
 import { EventDetailsForm } from "../events/EventDetailsForm"
 import { EventDetails } from "../events/EventDetails"
 import { RSVPstatus } from "../users/RSVPstatus"
+import { Countdown } from "./Countdown"
 import "./EventPlanningSpace.css"
 
 export const EventPlanningSpace = props => {
@@ -147,6 +148,7 @@ export const EventPlanningSpace = props => {
                 }}>
                     finalize plans!
                     </button>
+                <Countdown key={event.id} event={event}/>
             </div>
             <fieldset>
                 <div className="form-group">
