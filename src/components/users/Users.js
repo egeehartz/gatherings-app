@@ -20,7 +20,8 @@ export const Users = ({items}) => {
 
     return (
     <div>
-        {
+        {user.length === 0 ? "" : 
+            
             user.map(u => {
                 return <div className="userRSVP">{u.fname}</div>
             })

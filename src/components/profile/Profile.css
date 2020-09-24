@@ -163,3 +163,9 @@ p {
     padding-bottom: 0.5rem;
     border-bottom: 1px solid black;
 }
+.misc {
+    display: flex;
+}
+.miscUsername {
+    color: #007bff;
+}
