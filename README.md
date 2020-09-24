@@ -59,7 +59,8 @@ You can copy + paste sample data to get an idea of how it can be used or the emp
 ### Sample Data
 <details><summary>CLICK ME</summary>
 <p>
-```{
+```JSON
+{
    "events": [    
       {
          "name": "Jane's Birthday",
