@@ -16,6 +16,10 @@ Features include:
 * A Finalize Plans button that is disabled until the day of the event
 * The Finalize Plans button archives the event that users can see a summary of on the Archives page
 
+## GIFs
+
+
+
 ## Setup
 1. Clone this repository
 2. ```cd``` into the directory
