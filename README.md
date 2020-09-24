@@ -16,13 +16,12 @@ Features include:
 * A Finalize Plans button that is disabled until the day of the event
 * The Finalize Plans button archives the event that users can see a summary of on the Archives page
 
-## GIFs and PICs
+## GIFs
 | <img src="./images/detailsGIF.gif" width="207"> | <img src="./images/foodGIF.gif" width="207"> | <img src="./images/actMiscGIF.gif" width="207"> | <img src="./images/rsvpGIF.gif" width="207"> |
 | :---: | :---: | :---: | :---: |
 | Details | Food | Activities and Misc | RSVP |
 
-<br />
-
+## PICs
 | <img src="./images/resp.png" width="207"> |
 | :---: |
 | A list of the user's responsibilities for each event |
