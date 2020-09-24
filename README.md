@@ -57,8 +57,95 @@ You can copy + paste sample data to get an idea of how it can be used or the emp
                 }
 
 ### Sample Data
-
-Sample Data Coming Soon
+                {
+                   "events": [    
+                      {
+                        "name": "Jane's Birthday",
+                        "eventTypeId": 1,
+                        "date": "2020-12-11",
+                        "host": "click edit",
+                        "location": "to add",
+                        "time": "details!",
+                        "archived": false,
+                        "id": 1
+                     },
+                     {
+                        "id": 2,
+                        "name": "4th of July",
+                        "eventTypeId": 3,
+                        "date": "2020-07-04",
+                        "host": "Jane",
+                        "location": "Jane's house",
+                        "time": "2pm",
+                        "archived": true
+                     }],
+                   "eventTypes": [{
+                        "id": 1,
+                        "type": "Birthday"
+                        },
+                        {
+                           "id": 2,
+                           "type": "Easter"
+                        },
+                        {
+                           "id": 3,
+                           "type": "4th of July"
+                           },
+                        {
+                           "id": 4,
+                           "type": "Thanksgiving"
+                        },
+                        {
+                           "id": 5,
+                           "type": "Christmas"
+                        },
+                        {
+                           "id": 6,
+                           "type": "Other"
+                     }],
+                   "users": [{
+                           "email": "emily@emily.com",
+                           "password": "123",
+                           "fname": "Jane",
+                           "lname": "Doe",
+                           "id": 1
+                        }],
+                   "userEvents": [{
+                           "id": 1,
+                           "userId": 1,
+                           "eventId": 1,
+                           "rsvp": true
+                        },
+                        {
+                           "id": 2,
+                           "userId": 1,
+                           "eventId": 2,
+                           "rsvp": true
+                        }],
+                   "food":[],
+                   "misc":[],
+                   "activities": [],
+                   "foodTypes": [{
+                           "id": 1,
+                           "type": "Main"
+                        },
+                        {
+                           "id": 2,
+                           "type": "Sides"
+                        },
+                        {
+                           "id": 3,
+                           "type": "Dessert"
+                        },
+                        {
+                           "id": 4,
+                           "type": "Drinks"
+                        },
+                        {
+                           "id": 5,
+                           "type": "Snacks"
+                        }]
+                }
 
 ## Author
 
