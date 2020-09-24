@@ -2,18 +2,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0 2rem 2rem;
 }
-
 .archivedEventTypes {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
 .detailItem, .item {
     font-family: "Oswald", sans-serif;
 }
-
 .detailCategory {
     font-family: "Ranchers", cursive;
 }
@@ -41,4 +39,11 @@
 }
 .archivedEventsDiv > div {
     font-family: "Ranchers", cursive;
+}
+.itemMisc{
+    text-align: left;
+    display: flex;
+}
+.miscUser {
+    color: #007bff;
 }
