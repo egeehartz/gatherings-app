@@ -19,7 +19,7 @@ export const Activity = (props) => {
     */
     return(
     <div className="renderedActivity">
-        <div className="activity">{props.activity.text} -{userActivity.fname}</div>
+        <div className="activity">{props.activity.text} <div className="aUsername"> -{userActivity.fname}</div></div>
         {props.activity.userId === parseInt(localStorage.getItem("gatherings_customer")) ?
         <button className="deleteActivity" onClick={() => {
             deleteActivity(props.activity.id)}}>X</button> : ""}

@@ -165,7 +165,11 @@ p {
 }
 .misc {
     display: flex;
+    justify-content: left;
 }
-.miscUsername {
+.miscUsername, .aUsername, .userFood {
     color: #007bff;
+}
+.activity {
+    display: flex;
 }
