@@ -205,7 +205,7 @@ export const EventPlanningSpace = props => {
                     <Collapse isOpen={isMiscOpen}>
                         <Card>
                             <CardBody>
-                                <div className="renderedItemsContainer">{tMisc.map(em => {
+                                <div className="renderedItemsContainerMisc">{tMisc.map(em => {
                                     return <Misc key={em.id} misc={em} {...props} />
                                 })}</div>
                                 <div className="inputButton">

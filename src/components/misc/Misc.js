@@ -13,7 +13,7 @@ export const Misc = (props) => {
         },[])
 return(
     <div className="renderedMisc">
-        <div className="misc">{props.misc.text} -{userMisc.fname}</div>
+        <div className="misc"><div className="miscUsername">{userMisc.fname}</div>: {props.misc.text}</div>
         {props.misc.userId === parseInt(localStorage.getItem("gatherings_customer")) ?
         <button className="deleteMisc" onClick={() => {
             deleteMisc(props.misc.id)}}>X</button> : ""}

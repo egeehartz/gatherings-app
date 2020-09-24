@@ -163,3 +163,13 @@ p {
     padding-bottom: 0.5rem;
     border-bottom: 1px solid black;
 }
+.misc {
+    display: flex;
+    justify-content: left;
+}
+.miscUsername, .aUsername, .userFood {
+    color: #007bff;
+}
+.activity {
+    display: flex;
+}
