@@ -57,7 +57,7 @@ You can copy + paste sample data to get an idea of how it can be used or the emp
                 }
 
 ### Sample Data
-<details><summary>CLICK ME</summary>
+<details><summary>Click for Sample Data</summary>
 <p>
 
 ```
