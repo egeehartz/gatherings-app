@@ -17,7 +17,7 @@ Features include:
 * The Finalize Plans button archives the event that users can see a summary of on the Archives page
 
 ## GIFs
-
+![](https://github.com/egeehartz/gatherings-app/blob/master/images/detailsGIF.gif)
 
 
 ## Setup
