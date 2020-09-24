@@ -18,8 +18,13 @@ Features include:
 
 ## GIFs
 | <img src="./images/detailsGIF.gif" width="207"> | <img src="./images/foodGIF.gif" width="207"> | <img src="./images/actMiscGIF.gif" width="207"> | <img src="./images/rsvpGIF.gif" width="207"> |
-| --- | --- | --- | --- |
+| :---: | :---: | :---: | :---: |
 | Details | Food | Activities and Misc | RSVP |
+
+## PICs
+
+| :---: |
+| A list of the user's responsibilities for each event |
 
 
 ## Setup

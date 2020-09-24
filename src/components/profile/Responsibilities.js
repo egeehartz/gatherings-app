@@ -44,7 +44,7 @@ export const Responsibilities = () => {
         const currentActivity = userActivity.filter(a => a.event.archived === false)
         const sorted = currentActivity.sort(
             (currentEntry, nextEntry) =>
-            Date.parse(currentEntry.event.date) - Date.parse(nextEntry.event.date))
+                Date.parse(currentEntry.event.date) - Date.parse(nextEntry.event.date))
         setValidActivities(sorted)
     }, [activities], [events])
     useEffect(() => { //get the misc items that relate to the logged in user
@@ -52,7 +52,7 @@ export const Responsibilities = () => {
         const currentMisc = userMisc.filter(m => m.event.archived === false)
         const sorted = currentMisc.sort(
             (currentEntry, nextEntry) =>
-            Date.parse(currentEntry.event.date) - Date.parse(nextEntry.event.date))
+                Date.parse(currentEntry.event.date) - Date.parse(nextEntry.event.date))
         setValidMisc(sorted)
     }, [misc], [vEvents])
     useEffect(() => { //get the food that relates to the logged in user, pull out the food for events that are not archived 
@@ -60,53 +60,64 @@ export const Responsibilities = () => {
         const currentFood = userFood.filter(f => f.event.archived === false)
         const sorted = currentFood.sort(
             (currentEntry, nextEntry) =>
-            Date.parse(currentEntry.event.date) - Date.parse(nextEntry.event.date))
+                Date.parse(currentEntry.event.date) - Date.parse(nextEntry.event.date))
         setValidFood(sorted)
     }, [foodsArr], [vEvents])
 
     return (
         <>
-        <div className="responsibilitiesContainer">
-            <h2 className="contentTitleResp">Responsibilities</h2>
-            <p>Click the items to go to the Event Planning Space</p>
-            <div>
-                <Button onClick={toggleFood} color="primary">Food</Button>
-                <Collapse isOpen={isFoodOpen}>
-                <ul>
-                    {
-                        vFood.map(f => {
-                            return <ProfileFood key={f.id} food={f} />
-                            })
-                    }
-                </ul>
-                </Collapse>
+            <div className="responsibilitiesContainer">
+                <h2 className="contentTitleResp">Responsibilities</h2>
+                <p>Click the items to go to the Event Planning Space</p>
+                <div>
+                    <Button onClick={toggleFood} color="primary">Food</Button>
+                    <Collapse isOpen={isFoodOpen}>
+                        {vFood.length === 0 ?
+                            <div className="emptyCard">You're not responsible for any food... yet...😉</div> :
+                            <ul>
+                                {
+                                    vFood.map(f => {
+                                        return <ProfileFood key={f.id} food={f} />
+                                    })
+                                }
+                            </ul>
+                        }
+                    </Collapse>
+                </div>
+                <div>
+                    <Button onClick={toggle} color="success">Activities</Button>
+                    <Collapse isOpen={isOpen}>
+                        {vActivities.length === 0 ?
+                            <div className="emptyCard">You're not responsible for any activies... yet...😉</div> :
+                            <ul>
+                                {
+                                    vActivities.map(a => {
+                                        return <ProfileActivity key={a.id} activity={a} />
+                                    })
+                                }
+                            </ul>
+
+                        }
+                    </Collapse>
+                </div>
+                <div>
+                    <Button onClick={toggleMisc} color="warning" >Miscellaneous</Button>
+                    <Collapse isOpen={isMiscOpen}>
+                        {vMisc.length === 0 ?
+                            <div className="emptyCard">Nothing to see here!</div> :
+                            <>
+                                <p className="miscSubtitle">You wrote: </p>
+                                <ul>
+                                    {
+                                        vMisc.map(m => {
+                                            return <ProfileMisc key={m.id} misc={m} />
+                                        })
+                                    }
+                                </ul>
+                            </>}
+                    </Collapse>
+                </div>
             </div>
-            <div>
-                <Button onClick={toggle} color="success">Activities</Button>
-                <Collapse isOpen={isOpen}>
-                <ul>
-                    {
-                        vActivities.map(a => {
-                            return <ProfileActivity key={a.id} activity={a} />
-                            })
-                    }
-                </ul>
-                </Collapse>
-            </div>
-            <div>
-                <Button onClick={toggleMisc} color="warning" >Miscellaneous</Button>
-                <Collapse isOpen={isMiscOpen}>
-                <p className="miscSubtitle">You wrote: </p>
-                <ul>
-                    {
-                        vMisc.map(m => {
-                            return <ProfileMisc key={m.id} misc={m} />
-                            })
-                    }
-                </ul>
-                </Collapse>
-            </div>
-        </div>
         </>
     )
 }

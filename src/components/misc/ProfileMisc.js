@@ -6,8 +6,8 @@ import { Link } from "react-router-dom"
 export const ProfileMisc = ({misc}) => (
     <Link className="ulContainer" to={`/events/${misc.eventId}`}>
         <div className="miscContainer">
-        <div className="itemName">{misc.text}</div>
-        <div className="eventName"> (for {misc.event.name})</div>        
+        <div className="itemNameMisc">{misc.text}</div>
+        <div className="eventNameMisc"> (for {misc.event.name})</div>        
         </div>
     </Link>
 
