@@ -21,7 +21,7 @@ Features include:
 | :---: | :---: | :---: | :---: |
 | Details | Food | Activities and Misc | RSVP |
 <br />
-| <img src="./images/responsibilities.png" width="207">|
+| <img src="./images/responsibilities.png" width="207"> |
 |:---:|
 | A list of the user's responsibilities for each event |
 
