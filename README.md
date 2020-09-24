@@ -17,10 +17,11 @@ Features include:
 * The Finalize Plans button archives the event that users can see a summary of on the Archives page
 
 ## GIFs
-![details example | 207x368](https://github.com/egeehartz/gatherings-app/blob/master/images/detailsGIF.gif)
-![](https://github.com/egeehartz/gatherings-app/blob/master/images/foodGIF.gif)
-![](https://github.com/egeehartz/gatherings-app/blob/master/images/actMiscGIF.gif)
-![](https://github.com/egeehartz/gatherings-app/blob/master/images/rsvpGIF.gif)
+<img src="./images/detailsGIF" width="207" />
+![event planning example 1](https://github.com/egeehartz/gatherings-app/blob/master/images/detailsGIF.gif)
+![event planning example 2](https://github.com/egeehartz/gatherings-app/blob/master/images/foodGIF.gif)
+![event planning example 3](https://github.com/egeehartz/gatherings-app/blob/master/images/actMiscGIF.gif)
+![event planning example 4](https://github.com/egeehartz/gatherings-app/blob/master/images/rsvpGIF.gif)
 
 
 ## Setup
