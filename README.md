@@ -24,7 +24,7 @@ Features include:
 ## PICs
 | <img src="./images/resp.png" width="207"> |
 | :---: |
-| A list of the user's responsibilities for each event |
+| the user's responsibilities for each event |
 
 
 ## Setup

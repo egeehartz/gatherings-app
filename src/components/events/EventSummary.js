@@ -5,6 +5,7 @@ import { ActivityContext } from "../activities/ActivityProvider"
 import { MiscContext } from "../misc/MiscProvider"
 import { FoodContext } from "../foods/FoodProvider"
 import "../profile/Archive.css"
+import { Users } from "../users/Users"
 
 export const EventSummary = (props) => {
     const {events, getEvents} = useContext(EventContext)
@@ -17,6 +18,7 @@ export const EventSummary = (props) => {
     const [tMisc, setMisc] = useState([])
     const [tFood, setFood] = useState([])
     const [date, setDate] = useState('')
+
 
     //useEffect for on page load and when data changes
     useEffect(() => {
@@ -84,12 +86,14 @@ export const EventSummary = (props) => {
                         return <div className="item">{a.text}</div>
                     })
                 }
-                <Button color="warning">Miscellaneous Details</Button>
+                <Button color="warning">Miscellaneous</Button>
+                <div>
                 {
                     tMisc.map(m => {
-                        return <div className="item">{m.text}</div>
+                    return <div className="item itemMisc"><div className="miscUser">{m.user.fname}</div>: {m.text}</div>
                     })
                 }
+                </div>
             </div>
 
         </>
