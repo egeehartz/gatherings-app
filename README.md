@@ -18,10 +18,9 @@ Features include:
 
 ## GIFs
 <img src="./images/detailsGIF.gif" width="207" />
-![event planning example 1](https://github.com/egeehartz/gatherings-app/blob/master/images/detailsGIF.gif)
-![event planning example 2](https://github.com/egeehartz/gatherings-app/blob/master/images/foodGIF.gif)
-![event planning example 3](https://github.com/egeehartz/gatherings-app/blob/master/images/actMiscGIF.gif)
-![event planning example 4](https://github.com/egeehartz/gatherings-app/blob/master/images/rsvpGIF.gif)
+<img src="./images.foodGIF.gif" width="207"/>
+<img src="./images.actMiscGIF.gif" width="207"/>
+<img src="./images.rsvpGIF.gif" width="207"/>
 
 
 ## Setup
