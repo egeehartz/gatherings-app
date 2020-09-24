@@ -17,10 +17,10 @@ Features include:
 * The Finalize Plans button archives the event that users can see a summary of on the Archives page
 
 ## GIFs
-<img src="./images/detailsGIF.gif" width="207" />
-<img src="./images.foodGIF.gif" width="207"/>
-<img src="./images.actMiscGIF.gif" width="207"/>
-<img src="./images.rsvpGIF.gif" width="207"/>
+<img src="./images/detailsGIF.gif" width="207" >
+<img src="./images.foodGIF.gif" width="207">
+<img src="./images.actMiscGIF.gif" width="207">
+<img src="./images.rsvpGIF.gif" width="207">
 
 
 ## Setup
