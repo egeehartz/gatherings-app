@@ -29,7 +29,7 @@
     text-align: center;
 }
 .itemName {
-    margin-right: 1rem;
+    margin-right: 0.5rem;
     color: black;
     font-size: large;
     font-family: "Oswald", sans-serif;
@@ -90,8 +90,7 @@
     text-align: center;
     color: black;
     margin-top: 1rem;
-    font-family: 'Ranchers', cursive;
-    
+    font-family: 'Ranchers', cursive;  
 }
 .card {
     border: none !important;
@@ -163,6 +162,7 @@ p {
     padding-bottom: 0.5rem;
     border-bottom: 1px solid black;
     display: flex;
+    margin: 0 2rem 0.5rem 0;
 }
 .misc {
     display: flex;
@@ -173,4 +173,20 @@ p {
 }
 .activity {
     display: flex;
+}
+.emptyCard {
+    font-family: "Oswald", sans-serif;
+}
+.itemNameMisc {
+    margin-right: 0.5rem;
+    color: black;
+    font-size: large;
+    font-family: "Oswald", sans-serif;
+    text-align: left;
+}
+.eventNameMisc {
+    color: #007bff;
+    font-family: "Oswald", sans-serif;
+    text-align: left;
+    font-size: small;
 }
