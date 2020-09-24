@@ -18,9 +18,9 @@ Features include:
 
 ## GIFs
 <img src="./images/detailsGIF.gif" width="207" >
-<img src="./images.foodGIF.gif" width="207">
-<img src="./images.actMiscGIF.gif" width="207">
-<img src="./images.rsvpGIF.gif" width="207">
+<img src="./images/foodGIF.gif" width="207">
+<img src="./images/actMiscGIF.gif" width="207">
+<img src="./images/rsvpGIF.gif" width="207">
 
 
 ## Setup
