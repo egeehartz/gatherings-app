@@ -162,6 +162,7 @@ p {
 .miscContainer {
     padding-bottom: 0.5rem;
     border-bottom: 1px solid black;
+    display: flex;
 }
 .misc {
     display: flex;
