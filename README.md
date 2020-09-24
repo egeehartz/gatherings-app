@@ -22,7 +22,7 @@ Features include:
 | Details | Food | Activities and Misc | RSVP |
 
 ## PICs
-| <img src="./images/resp.png"> |
+| <img src="./images/resp.png" width="207"> |
 | :---: |
 | A list of the user's responsibilities for each event |
 
