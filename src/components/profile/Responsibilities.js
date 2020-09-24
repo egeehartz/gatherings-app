@@ -7,7 +7,7 @@ import { ActivityContext } from "../activities/ActivityProvider"
 import { MiscContext } from "../misc/MiscProvider"
 import { EventContext } from "../events/EventsProvider"
 import { Button, Collapse } from "reactstrap"
-//import { Collapse } from "@material-ui/core"
+
 
 
 //this component handles getting the items related to the user for events that are not archived and sends that info to their corresponding components
