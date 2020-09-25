@@ -20,7 +20,7 @@ export const Users = ({items}) => {
             }) || {}
         })
         setStateUser(foundUsers)
-    },[users])
+    },[users, items])
     
         return (
         <div>

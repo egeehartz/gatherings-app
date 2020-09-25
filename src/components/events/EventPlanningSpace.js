@@ -77,8 +77,10 @@ export const EventPlanningSpace = props => {
         const eventMisc = misc.filter(m => m.eventId === parseInt(props.match.params.eventId)) || {}
         setMisc(eventMisc)
     }, [misc])
-    
-    
+    useEffect(() => { //listen for a change in userEvents and pulls the ones with the eventId that matches the selected event
+        const eventUserEvents = userEvents.filter(ue => ue.eventId === parseInt(props.match.params.eventId))
+        setUserEvents(eventUserEvents)
+    }, [userEvents])
     useEffect(() => { //listen for a change in userEvents to set the RSVP state variables
         const rsvpStatusNull = tUserEvents.filter(tue => tue.rsvp === null)
         setNotResponded(rsvpStatusNull)
@@ -87,13 +89,6 @@ export const EventPlanningSpace = props => {
         const rsvpStatusNotGoing = tUserEvents.filter(tue => tue.rsvp === false)
         setNotGoing(rsvpStatusNotGoing)
     }, [tUserEvents])
-
-    useEffect(() => { //listen for a change in userEvents and pulls the ones with the eventId that matches the selected event
-        const eventUserEvents = userEvents.filter(ue => ue.eventId === parseInt(props.match.params.eventId))
-        setUserEvents(eventUserEvents)
-    }, [userEvents])
-
-
     useEffect(() => { //changes the format of the date to be MM-DD-YYYY
         const dayToday = new Date();
         const dd = String(dayToday.getDate()).padStart(2, '0');
