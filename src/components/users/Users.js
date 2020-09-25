@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react"
+import React, { useEffect, useContext, useState } from "react"
 import { UserContext } from "./UserProvider"
 
 //this component is called 3 times in EventPlanningSpace.js (for each RSVP category)
@@ -8,24 +8,28 @@ import { UserContext } from "./UserProvider"
 export const Users = ({items}) => {
     const {users, getUsers} = useContext(UserContext)
     
+    const [usersByStatus, setStateUser] = useState([])
+
     useEffect(() => {
         getUsers()
     }, [])
-
-    const user = items.map(i => {
-        return users.find(u => {
-           return u.id === i.userId
+    useEffect(() => {
+        const foundUsers = items.map(i => {
+            return users.find(u => {
+               return u.id === i.userId
+            }) || {}
         })
-    })
+        setStateUser(foundUsers)
+    },[users, items])
+    
+        return (
+        <div>
+            {usersByStatus.length === 0 ? "" : 
 
-    return (
-    <div>
-        {user.length === 0 ? "" : 
-            
-            user.map(u => {
-                return <div className="userRSVP">{u.fname}</div>
-            })
-        }
-    </div>
-    )
+                usersByStatus.map(u => {
+                    return <div key={u.id} className="userRSVP">{u.fname}</div>
+                })
+            }
+        </div>
+        )
 }

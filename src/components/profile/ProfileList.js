@@ -14,7 +14,7 @@ export const ProfileList = (props) => {
     const { addUserEvents } = useContext(UserEventsContext)
 
     const [user, setUsers] = useState([])
-    const [ vEvents, setValidEvents] = useState([])
+    const [vEvents, setValidEvents] = useState([])
 
     const eventDate = useRef()
     const eventName = useRef()
@@ -32,7 +32,7 @@ export const ProfileList = (props) => {
         const currentEvents = events.filter(e => e.archived === false) || {}
         const sortedByDate = currentEvents.sort(
             (currentEntry, nextEntry) =>
-            Date.parse(currentEntry.date) - Date.parse(nextEntry.date))
+                Date.parse(currentEntry.date) - Date.parse(nextEntry.date))
         setValidEvents(sortedByDate)
     }, [events])
 
@@ -43,7 +43,7 @@ export const ProfileList = (props) => {
 
     const constructEvent = () => {
         //form validation, if condition triggers the alert to show
-        if(eventName.current.value === "" || eventDate.current.value === "") {
+        if (eventName.current.value === "" || eventDate.current.value === "") {
             setVisible(true)
         } else {
             //Only place where creation of events occurs
@@ -60,19 +60,26 @@ export const ProfileList = (props) => {
                 time: "details!",
                 archived: false
             })
-            //creates as many userEvent objects as there are users for the specific event to set their initial RSVP status of null (or Haven't Responded Yet) 
-            .then((newEventId) => {
-                {
+                //creates as many userEvent objects as there are users for the specific event to set their initial RSVP status of null (or Haven't Responded Yet) 
+                .then((newEventId) => {
+                    const userEventPromises = []
+
                     users.map(u => {
-                        addUserEvents({
-                            userId: u.id,
-                            eventId: newEventId,
-                            rsvp: null
-                        })
+                        userEventPromises.push(
+                            addUserEvents({
+                                userId: u.id,
+                                eventId: newEventId,
+                                rsvp: null
+                            })
+                        )
                     })
-                }
-                props.history.push(`/events/${newEventId}`)
-            })
+
+                    Promise.all(userEventPromises)
+                        .then(() => {
+                            props.history.push(`/events/${newEventId}`)
+                        })
+
+                })
         }
     }
 
@@ -82,11 +89,11 @@ export const ProfileList = (props) => {
             <div className="createEventButtonDiv">
                 <button className="createEventButton" onClick={toggle}>create event</button>
             </div>
-                <Modal isOpen={modal} toggle={toggle}>
+            <Modal isOpen={modal} toggle={toggle}>
                 <ModalHeader toggle={toggle}>Create an Event to start planning!</ModalHeader>
                 <ModalBody>
-                <Alert color="danger" isOpen={visible} toggle={onDismiss}>
-                    both fields must be filled out!
+                    <Alert color="danger" isOpen={visible} toggle={onDismiss}>
+                        both fields must be filled out!
                 </Alert>
                     <p> Event Title</p>
                     <input type="text" placeholder="type here" ref={eventName} className="createEventInput" ></input>
@@ -98,34 +105,34 @@ export const ProfileList = (props) => {
                         >create!</button>
                     </div>
                 </ModalBody>
-                </Modal>
+            </Modal>
             <div className="content">
-            {/*Responsibilites used to be on this page
+                {/*Responsibilites used to be on this page
              I might need the two divs because of CSS... 
              so I'm not removing the content div */}
-            <div className="leftContent">
-                {/* events that already exist */}
-                <article className="eventsWithName">
-                <h1 className="eventsListTitle">Events</h1>
-                    <div className="events">
-                    {
-                        vEvents.map(event => {
-                            return <section className="event" key={event.id}>
-                                <Link
-                                    to={{
-                                        pathname: `/events/${event.id}`,
-                                        state: { chosenEvent: event }
-                                    }}>
-                                    <Button color="primary" className="eventTitle">{event.name}</Button>
-                                </Link>
-                                <EditTitleForm key={event.id} event={event} />
-                                <hr/>
-                            </section>
-                        })
-                    }
-                    </div>
-                </article>
-            </div>
+                <div className="leftContent">
+                    {/* events that already exist */}
+                    <article className="eventsWithName">
+                        <h1 className="eventsListTitle">Events</h1>
+                        <div className="events">
+                            {
+                                vEvents.map(event => {
+                                    return <section className="event" key={event.id}>
+                                        <Link
+                                            to={{
+                                                pathname: `/events/${event.id}`,
+                                                state: { chosenEvent: event }
+                                            }}>
+                                            <Button color="primary" className="eventTitle">{event.name}</Button>
+                                        </Link>
+                                        <EditTitleForm key={event.id} event={event} />
+                                        <hr />
+                                    </section>
+                                })
+                            }
+                        </div>
+                    </article>
+                </div>
             </div>
         </>
     )
