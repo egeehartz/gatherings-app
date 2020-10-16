@@ -34,6 +34,7 @@ Features include:
 * ```npm install```
 * ```npm i --save react react-dom react-router-dom reactstrap```
 * ```npm i --save bootstrap```
+* ```npm install json-server```
 4. ```mkdir api``` and ```touch database.json``` to create the database
 5. Copy and paste sample api below into the database
 6. Run ```json-server -w database.json -p 8088``` from the api directory
@@ -45,11 +46,37 @@ Features include:
 ## Sample API
 
 You can copy + paste sample data to get an idea of how it can be used or the empty data to try it out from scratch!
+***Event Type "other" HAS to have "id":6***
 
 ### Empty Data
                 {
                    "events": [],
-                   "eventTypes": [],
+                   "eventTypes": [
+                     {
+                        "id": 1,
+                        "type": "Birthday"
+                     },
+                     {
+                        "id": 2,
+                        "type": "Easter"
+                     },
+                     {
+                        "id": 3,
+                        "type": "4th of July"
+                        },
+                     {
+                        "id": 4,
+                        "type": "Thanksgiving"
+                     },
+                     {
+                        "id": 5,
+                        "type": "Christmas"
+                     },
+                     {
+                        "id": 6,
+                        "type": "Other"
+                     }
+                  ],
                    "users": [],
                    "userEvents": [],
                    "food":[],
