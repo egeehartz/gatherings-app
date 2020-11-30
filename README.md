@@ -57,41 +57,41 @@ You can copy + paste sample data to get an idea of how it can be used or the emp
 
 ```
 
-                {
-                   "events": [],
-                   "eventTypes": [
-                     {
-                        "id": 1,
-                        "type": "Birthday"
-                     },
-                     {
-                        "id": 2,
-                        "type": "Easter"
-                     },
-                     {
-                        "id": 3,
-                        "type": "4th of July"
-                        },
-                     {
-                        "id": 4,
-                        "type": "Thanksgiving"
-                     },
-                     {
-                        "id": 5,
-                        "type": "Christmas"
-                     },
-                     {
-                        "id": 6,
-                        "type": "Other"
-                     }
-                  ],
-                   "users": [],
-                   "userEvents": [],
-                   "food":[],
-                   "misc":[],
-                   "activities": [],
-                   "foodTypes": []
-                }
+{
+   "events": [],
+   "eventTypes": [
+   {
+      "id": 1,
+      "type": "Birthday"
+   },
+   {
+      "id": 2,
+      "type": "Easter"
+   },
+   {
+      "id": 3,
+      "type": "4th of July"
+      },
+   {
+      "id": 4,
+      "type": "Thanksgiving"
+   },
+   {
+      "id": 5,
+      "type": "Christmas"
+   },
+   {
+      "id": 6,
+      "type": "Other"
+   }
+],
+   "users": [],
+   "userEvents": [],
+   "food":[],
+   "misc":[],
+   "activities": [],
+   "foodTypes": []
+}
 
 ```
 
