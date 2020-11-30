@@ -16,6 +16,9 @@ Features include:
 * A Finalize Plans button that is disabled until the day of the event
 * The Finalize Plans button archives the event that users can see a summary of on the Archives page
 
+## ERD
+<img src="./images/gatherings-ERD.png">
+
 ## GIFs
 | <img src="./images/detailsGIF.gif" width="207"> | <img src="./images/foodGIF.gif" width="207"> | <img src="./images/actMiscGIF.gif" width="207"> | <img src="./images/rsvpGIF.gif" width="207"> |
 | :---: | :---: | :---: | :---: |
@@ -49,6 +52,9 @@ You can copy + paste sample data to get an idea of how it can be used or the emp
 ***Event Type "other" HAS to have "id":6***
 
 ### Empty Data
+<details><summary>Click for Empty Data</summary>
+<p>
+```
                 {
                    "events": [],
                    "eventTypes": [
@@ -84,6 +90,10 @@ You can copy + paste sample data to get an idea of how it can be used or the emp
                    "activities": [],
                    "foodTypes": []
                 }
+```
+
+</p>
+</details>
 
 ### Sample Data
 <details><summary>Click for Sample Data</summary>
