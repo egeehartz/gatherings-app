@@ -54,7 +54,9 @@ You can copy + paste sample data to get an idea of how it can be used or the emp
 ### Empty Data
 <details><summary>Click for Empty Data</summary>
 <p>
+
 ```
+
                 {
                    "events": [],
                    "eventTypes": [
@@ -90,6 +92,7 @@ You can copy + paste sample data to get an idea of how it can be used or the emp
                    "activities": [],
                    "foodTypes": []
                 }
+
 ```
 
 </p>
